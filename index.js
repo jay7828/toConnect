@@ -3,14 +3,14 @@ const app = express()
 const mongoDB=require("mongoose")
 const mongoURI='mongodb+srv://jayesh:jayeshsharma@cluster0.8bukqbm.mongodb.net/notedb'
 
-app.use((req,res,next)=>{
-    res.setHeader("Access-Control-Allow-Origin")
-    res.header(
-        "Allow-Control-Allow-Header",
-        "Origin, X-Requested-With, Content-Type, Accept"
-    )
-    next();
-})
+// app.use((req,res,next)=>{
+//     res.setHeader("Access-Control-Allow-Origin"),
+//     res.header(
+//         "Allow-Control-Allow-Header",
+//         "Origin, X-Requested-With, Content-Type, Accept"
+//     )
+//     next();
+// })
 
 mongoDB.connect(mongoURI).then(function()
 {
