@@ -1,6 +1,5 @@
 const express =require('express')
 const app = express()
-
 const mongoDB=require("mongoose")
 const mongoURI='mongodb+srv://jayesh:jayeshsharma@cluster0.8bukqbm.mongodb.net/notedb'
 mongoDB.connect(mongoURI).then(function()
