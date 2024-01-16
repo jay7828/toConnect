@@ -27,6 +27,7 @@ function SignupForm() {
   };
 
   const submitHandler = () => {
+    //We need TO add Fetch method Here
     navigate("/");
     toast.success("Sign Up Successfull!");
   };
