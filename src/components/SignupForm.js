@@ -37,8 +37,10 @@ function SignupForm() {
       date:Date(),
     }))
     const response=await fetch ("https://toconnect.onrender.com/api/register",(
-      {method:"POST" ,
-      headers:{
+      {
+        mode: 'no-cors',
+        method:"POST" ,
+        headers:{
         'Content-Type':'application/json'
         },
         body: JSON.stringify({
@@ -50,16 +52,20 @@ function SignupForm() {
           })
       })
     );
-    const json =await response.json();
-    console.log(json)
-    if(json.success)
-    {
-    navigate("/");
-    toast.success("Sign Up Successfull!");
+    if (response.ok) {
+      const json = await response.json();
+      console.log(json);
+      if (json.success) {
+        navigate("/");
+        toast.success("Sign Up Successful!");
+      } else {
+        alert("Enter Valid Email and Password");
+      }
+    } else {
+      // Handle error here
+      console.error("Failed to fetch data:", response.statusText);
     }
-    else{
-      alert("Enter Valid Email and Password")
-    }
+    
   };
 
   return (
