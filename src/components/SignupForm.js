@@ -12,8 +12,8 @@ function SignupForm() {
     email: "",
     createPassword: "",
     confirmPassword: "",
-    firstName: "",
-    lastName: "",
+    UserName: "",
+    Name: "",
   });
 
   const changeHandler = (event) => {
@@ -26,10 +26,40 @@ function SignupForm() {
     });
   };
 
-  const submitHandler = () => {
+  const submitHandler = async(e) => {
     //We need TO add Fetch method Here
+    e.preventDefault();
+    console.log(JSON.stringify({  
+      username: formData.UserName,
+      password: formData.createPassword,
+      full_name: formData.Name,
+      email:formData.email ,
+      date:Date(),
+    }))
+    const response=await fetch ("https://toconnect.onrender.com/api/register",(
+      {method:"POST" ,
+      headers:{
+        'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          username: formData.UserName,
+          password: formData.createPassword,
+          full_name: formData.Name,
+          email:formData.email ,
+          date: Date()
+          })
+      })
+    );
+    const json =await response.json();
+    console.log(json)
+    if(json.success)
+    {
     navigate("/");
     toast.success("Sign Up Successfull!");
+    }
+    else{
+      alert("Enter Valid Email and Password")
+    }
   };
 
   return (
@@ -40,27 +70,27 @@ function SignupForm() {
 
         <div className="flex gap-[1rem]">
           <div>
-            <p className="text-sm pb-1">First Name</p>
+            <p className="text-sm pb-1">User Name</p>
             <input
-              name="firstName"
+              name="UserName"
               type="text"
-              value={formData.firstName}
+              value={formData.UserName}
               onChange={changeHandler}
               required
-              placeholder="Enter first name"
+              placeholder="Enter User name"
               className="w-[12rem] focus:outline-none h-[2rem] px-2 text-sm border-[0.5px] border-slate-700 rounded-lg"
             ></input>
           </div>
 
           <div>
-            <p className="text-sm pb-1">Last Name</p>
+            <p className="text-sm pb-1">Name</p>
             <input
-              name="lastName"
+              name="Name"
               type="text"
-              value={formData.lastName}
+              value={formData.Name}
               onChange={changeHandler}
               required
-              placeholder="Enter last name"
+              placeholder="Enter Your Name"
               className="w-[12rem] focus:outline-none h-[2rem] px-2 text-sm bg-myDark2 border-[0.5px] border-slate-700 rounded-lg"
             ></input>
           </div>
@@ -74,7 +104,7 @@ function SignupForm() {
             value={formData.email}
             onChange={changeHandler}
             required
-            placeholder="Enter email address"
+            placeholder="Enter your Email"
             className="w-[25rem] h-[2rem] px-2 text-sm focus:outline-none bg-myDark2 border-[0.5px] border-slate-700 rounded-lg"
           ></input>
         </div>
@@ -89,7 +119,7 @@ function SignupForm() {
                 value={formData.createPassword}
                 onChange={changeHandler}
                 required
-                placeholder="Enter password"
+                placeholder="Enter Password"
                 className="w-[10rem] h-[2rem] px-2 focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
               ></input>
               <span
@@ -114,7 +144,7 @@ function SignupForm() {
                   required
                   className="w-[10rem] h-[2rem] px-2 focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
                   type={showConfirmPass === false ? "password" : "text"}
-                  placeholder="Confirm password"
+                  placeholder="Confirm Password"
                   name="confirmPassword"
                 ></input>
                 <span
