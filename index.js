@@ -1,7 +1,7 @@
 const express =require('express')
 const app = express()
 const mongoDB=require("mongoose")
-const mongoURI='mongodb+srv://jayesh:jayeshsharma@cluster0.8bukqbm.mongodb.net/notedb'
+const mongoURI='mongodb+srv://jayesh:toconnect@userdetails.fdxtamm.mongodb.net/?retryWrites=true&w=majority'
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
