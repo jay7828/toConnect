@@ -32,13 +32,12 @@ function SignupForm() {
     console.log(JSON.stringify({  
       username: formData.UserName,
       password: formData.createPassword,
-      full_name: formData.Name,
+      name: formData.Name,
       email:formData.email ,
       date:Date(),
     }))
     const response=await fetch ("https://toconnect.onrender.com/api/register",(
       {
-        mode: 'no-cors',
         method:"POST" ,
         headers:{
         'Content-Type':'application/json'
@@ -46,7 +45,7 @@ function SignupForm() {
         body: JSON.stringify({
           username: formData.UserName,
           password: formData.createPassword,
-          full_name: formData.Name,
+          name: formData.Name,
           email:formData.email ,
           date: Date()
           })

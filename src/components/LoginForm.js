@@ -23,10 +23,40 @@ function LoginForm() {
     });
   };
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    navigate("/");
-    toast.success("Log In Successfull!");
+  const submitHandler = async(e) => {
+    //We need TO add Fetch method Here
+    e.preventDefault();
+    console.log(JSON.stringify({  
+      email:formData.email ,
+      password: formData.createPassword,
+    }))
+    const response=await fetch ("https://toconnect.onrender.com/api/login",(
+      {
+        method:"POST" ,
+        headers:{
+        'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          email:formData.email ,
+          password: formData.createPassword,
+          })
+      })
+    );
+    console.log(response);
+    if (response.ok) {
+      const json = await response.json();
+      console.log(json);
+      if (json.success) {
+        navigate("/");
+        toast.success("Login Successful!");
+      } else {
+        alert("Enter Valid Email and Password");
+      }
+    } else {
+      // Handle error here
+      console.error("Failed to fetch data:", response.statusText);
+    }
+    
   };
 
   return (
