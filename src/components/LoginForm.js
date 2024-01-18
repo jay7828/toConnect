@@ -28,7 +28,7 @@ function LoginForm() {
     e.preventDefault();
     console.log(JSON.stringify({  
       email:formData.email ,
-      password: formData.createPassword,
+      password: formData.password,
     }))
     const response=await fetch ("https://toconnect.onrender.com/api/login",(
       {
@@ -38,7 +38,7 @@ function LoginForm() {
         },
         body: JSON.stringify({
           email:formData.email ,
-          password: formData.createPassword,
+          password: formData.password,
           })
       })
     );
