@@ -23,25 +23,25 @@ function LoginForm() {
     });
   };
 
-  const submitHandler = async(e) => {
+  const submitHandler = async (e) => {
     //We need TO add Fetch method Here
     e.preventDefault();
-    console.log(JSON.stringify({  
-      email:formData.email ,
-      password: formData.password,
-    }))
-    const response=await fetch ("https://toconnect.onrender.com/api/login",(
-      {
-        method:"POST" ,
-        headers:{
-        'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-          email:formData.email ,
-          password: formData.password,
-          })
+    console.log(
+      JSON.stringify({
+        email: formData.email,
+        password: formData.password,
       })
     );
+    const response = await fetch("https://toconnect.onrender.com/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password,
+      }),
+    });
     console.log(response);
     if (response.ok) {
       const json = await response.json();
@@ -56,7 +56,6 @@ function LoginForm() {
       // Handle error here
       console.error("Failed to fetch data:", response.statusText);
     }
-    
   };
 
   return (
