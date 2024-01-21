@@ -1,8 +1,10 @@
 import {React} from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./css files/Navbar.css";
 
 function Navbar() {
+  const navigate = useNavigate();
+
   return (
     <nav className="navbar-main mx-auto flex justify-between">
       <div className="h-full w-[14rem] flex items-center ml-7 justify-between">
@@ -104,8 +106,8 @@ function Navbar() {
       </div>
 
       <div className="flex text-sm font-medium w-[14rem] mr-7 justify-between items-center ">{/* login signup btn */}
-      <NavLink to='/login'><button className="btn-login btn">Login</button></NavLink>
-      <button className="btn-signup btn"><NavLink to='/signup'>Signup</NavLink></button>
+      <button className="btn-login btn" onClick={()=>navigate('/login')}>Login</button>
+      <button className="btn-signup btn" onClick={()=>navigate('/signup')}>Signup</button>
       </div>
     </nav>
   );

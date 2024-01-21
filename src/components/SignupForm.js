@@ -73,7 +73,7 @@ function SignupForm() {
       onSubmit={submitHandler} 
       className="max-w-max flex flex-col gap-4">
 
-        <div className="flex gap-[1rem]">
+        <div className="flex gap-[1rem] z-10">
           <div>
             <p className="text-sm pb-1">User Name</p>
             <input
@@ -83,7 +83,7 @@ function SignupForm() {
               onChange={changeHandler}
               required
               placeholder="Enter User name"
-              className="w-[12rem] focus:outline-none h-[2rem] px-2 text-sm border-[0.5px] border-slate-700 rounded-lg"
+              className="w-[12rem] focus:outline-none h-[2rem] px-2 text-sm border-[0.5px] text-black bg-white border-slate-700 rounded-lg"
             ></input>
           </div>
 
@@ -96,12 +96,12 @@ function SignupForm() {
               onChange={changeHandler}
               required
               placeholder="Enter Your Name"
-              className="w-[12rem] focus:outline-none h-[2rem] px-2 text-sm bg-myDark2 border-[0.5px] border-slate-700 rounded-lg"
+              className="w-[12rem] text-black bg-white focus:outline-none h-[2rem] px-2 text-sm bg-myDark2 border-[0.5px] border-slate-700 rounded-lg"
             ></input>
           </div>
         </div>
 
-        <div>
+        <div className="z-10">
           <p className="text-sm pb-1">Email Address</p>
           <input
             name="email"
@@ -110,12 +110,12 @@ function SignupForm() {
             onChange={changeHandler}
             required
             placeholder="Enter your Email"
-            className="w-[25rem] h-[2rem] px-2 text-sm focus:outline-none bg-myDark2 border-[0.5px] border-slate-700 rounded-lg"
+            className="w-[25rem] h-[2rem] px-2 bg-white text-black text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
           ></input>
         </div>
 
         <div className="flex gap-[1rem]">
-          <div>
+          <div className="z-10">
             <p className="text-sm pb-1">Create password</p>
             <lable className="flex">
               <input
@@ -125,11 +125,11 @@ function SignupForm() {
                 onChange={changeHandler}
                 required
                 placeholder="Enter Password"
-                className="w-[10rem] h-[2rem] px-2 focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
+                className="w-[10rem] bg-white text-black h-[2rem] px-2 focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
               ></input>
               <span
                 onClick={() => setShowPass((prev) => !prev)}
-                className="flex justify-center items-center h-[2rem] w-[2rem] rounded-r-lg border-r-[0.5px] border-y-[0.5px] border-slate-700 cursor-pointer "
+                className="flex bg-white text-black justify-center items-center h-[2rem] w-[2rem] rounded-r-lg border-r-[0.5px] border-y-[0.5px] border-slate-700 cursor-pointer "
               >
                 {showPass === false ? (
                   <AiOutlineEye />
@@ -147,14 +147,14 @@ function SignupForm() {
                   value={formData.confirmPassword}
                   onChange={changeHandler}
                   required
-                  className="w-[10rem] h-[2rem] px-2 focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
+                  className="w-[10rem] bg-white text-black h-[2rem] px-2 focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
                   type={showConfirmPass === false ? "password" : "text"}
                   placeholder="Confirm Password"
                   name="confirmPassword"
                 ></input>
                 <span
                   onClick={() => setShowConfirmPass((prev) => !prev)}
-                  className="flex justify-center items-center h-[2rem] w-[2rem] rounded-r-lg border-r-[0.5px] border-y-[0.5px] cursor-pointer border-slate-700 "
+                  className="bg-white text-black flex justify-center items-center h-[2rem] w-[2rem] rounded-r-lg border-r-[0.5px] border-y-[0.5px] cursor-pointer border-slate-700 "
                 >
                   {showConfirmPass === false ? (
                     <AiOutlineEye />

@@ -1,7 +1,7 @@
 import React from "react";
 import "./css files/Home.css";
 import Navbar from "./Navbar";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CiUser } from "react-icons/ci";
 import { BsDot } from "react-icons/bs";
 import HomeMainImage from "./assets/HomeMainImage";
@@ -9,6 +9,8 @@ import { FaInstagram, FaLinkedin, FaFacebookSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className="main-home-bg pt-10 min-h-[100vh]">
       <div className="gradient-1"></div>
@@ -118,8 +120,11 @@ function Home() {
           <div className="mt-14 w-max">
             <div className="text-white flex w-[12rem] justify-between items-center font-medium py-6">
               {/* know more and sign up btn */}
-              <button className="btn-signup btn">
-                <NavLink to="/signup">Signup</NavLink>
+              <button
+                className="btn-signup btn"
+                onClick={() => navigate("/signup")}
+              >
+                Signup
               </button>
 
               <button>know More</button>

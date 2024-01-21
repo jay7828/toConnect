@@ -61,10 +61,10 @@ function LoginForm() {
   return (
     <div>
       <form className="max-w-max flex flex-col gap-4" onSubmit={submitHandler}>
-        <div>
-          <p className="text-sm pb-1">Email Address</p>
+        <div className="z-10">
+          <p className="text-sm  pb-1">Email Address</p>
           <input
-            className="w-[25rem] h-[2rem] px-2 text-sm focus:outline-none bg-myDark2 border-[0.5px] border-slate-700 rounded-lg"
+            className="w-[25rem] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
             type="email"
             name="email"
             placeholder="Enter email address"
@@ -74,11 +74,11 @@ function LoginForm() {
           ></input>
         </div>
 
-        <div>
+        <div className="z-10">
           <p className="text-sm pb-1">Password</p>
-          <lable className="flex">
+          <lable className="z-10 text-black flex">
             <input
-              className="w-[23rem] h-[2rem] px-2 focus:outline-none text-sm bg-myDark2 border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
+              className="w-[23rem] z-10 h-[2rem] px-2 focus:outline-none text-black text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
               type={showPass === false ? "password" : "text"}
               placeholder="Enter password"
               name="password"
@@ -88,7 +88,7 @@ function LoginForm() {
             ></input>
             <span
               onClick={() => setShowPass((prev) => !prev)}
-              className="bg-myDark2 flex justify-center items-center h-[2rem] w-[2rem] cursor-pointer rounded-r-lg border-r-[0.5px] border-y-[0.5px] border-slate-700 "
+              className="bg-myDark2 bg-white text-black z-10 flex justify-center items-center h-[2rem] w-[2rem] cursor-pointer rounded-r-lg border-r-[0.5px] border-y-[0.5px] border-slate-700 "
             >
               {showPass === false ? (
                 <AiOutlineEye />
