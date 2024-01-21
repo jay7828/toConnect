@@ -1,5 +1,9 @@
 .navbar-main {
   color: #fff;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
   width: 90%;
   height: 4.87rem;
   flex-shrink: 0;
@@ -11,7 +15,6 @@
 .navbar-heading {
   color: #fff;
   font-family: "Red Hat Display";
-  font-size: 1.75rem /* 20px */;
   line-height: 2rem /* 28px */;
   font-weight: 700;
 }
@@ -36,27 +39,80 @@
 }
 
 .btn-login {
-  width: 5.62938rem;
-  height: 2.29344rem;
-  flex-shrink: 0;
-  border-radius: 0.2085rem;
   background: linear-gradient(99deg, #773cd8 0.07%, #194ed5 106.32%);
 }
 
 .btn-signup {
-  width: 5.62938rem;
-  height: 2.29344rem;
-  flex-shrink: 0;
-  border-radius: 0.2085rem;
   background: linear-gradient(99deg, #773cd8 0.07%, #c54b8c 106.32%);
 }
 
 .btn {
+  flex-shrink: 0;
+  border-radius: 0.2085rem;
+  width: 4rem;
+  height: 2rem;
   z-index: 10;
   transition: all;
   transition-timing-function: ease-in-out;
   transition-duration: 200ms;
-  font-size: 15.5px;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 14rem;
+  font-size: 12.5px;
+  width: 10rem;
+  flex-direction: row;
+}
+
+.logo-container{
+  width: 8rem;
+}
+
+@media (min-width: 5px){
+  .btn-container{
+    flex-direction: column;
+  }
+  .logo-container{
+    width: 10rem;
+  }
+}
+
+@media (min-width: 640px){
+  .btn {
+    width: 4rem;
+    height: 2rem;
+  }
+  .btn-container{
+    font-size: 12.5px;
+    width: 8.5rem;
+    flex-direction: row;
+  }
+  .logo-container{
+    width: 10rem;
+  }
+}
+
+@media (min-width: 900px){
+  .btn {
+    width: 5.63rem;
+    height: 2.23rem;
+  }
+  .btn-container{
+    font-size: 15.5px;
+    width: 14rem;
+    flex-direction: row;
+  }
+  .logo-container{
+    width: 14rem;
+  }
+}
+
+.parent-container{
+  display:flex;
+  width: calc(100% - 7rem);
 }
 
 .btn:hover{

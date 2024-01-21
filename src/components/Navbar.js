@@ -1,4 +1,4 @@
-import {React} from "react";
+import { React } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css files/Navbar.css";
 
@@ -6,8 +6,8 @@ function Navbar() {
   const navigate = useNavigate();
 
   return (
-    <nav className="navbar-main mx-auto flex justify-between">
-      <div className="h-full w-[14rem] flex items-center ml-7 justify-between">
+    <nav className="navbar-main mx-auto">
+      <div className="h-full logo-container flex items-center ml-7 justify-between">
         {/* logo and icon */}
         <div className="max-w-max rounded-full">
           <svg
@@ -95,19 +95,32 @@ function Navbar() {
             </defs>
           </svg>
         </div>
-        <h1 className="navbar-heading ">toConnect</h1>
+        <h1 className="navbar-heading text-[1.25rem] lg:text-[1.75rem]">
+          toConnect
+        </h1>
       </div>
 
-      <div className="w-[14rem] flex justify-between items-center text-sm font-medium">
+      <div className="text-sm btn-container font-medium">
         {/* home about contact */}
-        <a href="#" className="on-hover">Home</a>
-        <a herf="#about" className="on-hover">About</a>
-        <a herf="#contact" className="on-hover">Contact</a>
+        <div className="w-max h-max">
+          <a herf="#" className="w-max h-max">Home</a>
+        </div>
+        <div className="w-max h-max">
+          <a className="w-max h-max" herf="#about">About</a>
+        </div>
+        <div className="w-max h-max">
+          <a className="w-max h-max" herf="#contact">Contact</a>
+        </div>
       </div>
 
-      <div className="flex text-sm font-medium w-[14rem] mr-7 justify-between items-center ">{/* login signup btn */}
-      <button className="btn-login btn" onClick={()=>navigate('/login')}>Login</button>
-      <button className="btn-signup btn" onClick={()=>navigate('/signup')}>Signup</button>
+      <div className="flex text-sm font-medium btn-container mr-7 justify-between items-center ">
+        {/* login signup btn */}
+        <button className="btn-login btn" onClick={() => navigate("/login")}>
+          Login
+        </button>
+        <button className="btn-signup btn" onClick={() => navigate("/signup")}>
+          Signup
+        </button>
       </div>
     </nav>
   );

@@ -2,13 +2,13 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  height: 100%;
+  height: auto;
   background: #000;
 }
 
 .footer{
+  margin-top: 2rem;
   width: 85%;
-  height: 11rem;
   position: relative;
   z-index: 2;
 }
@@ -16,7 +16,6 @@
 .home-main-heading {
   color: #fff;
   font-family: "Red Hat Display";
-  font-size: 5.04313rem;
   font-style: normal;
   font-weight: 900;
   line-height: 2.71044rem; /* 53.745% */
@@ -47,8 +46,6 @@
 
 .home-main-desc {
   color: #fff;
-  width: 30.8125rem;
-  font-size: 1.4375rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
