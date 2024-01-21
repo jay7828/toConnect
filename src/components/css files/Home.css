@@ -1,0 +1,122 @@
+.main-home-bg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.footer{
+  width: 85%;
+  height: 11rem;
+  position: relative;
+  z-index: 2;
+}
+
+.home-main-heading {
+  color: #fff;
+  font-family: "Red Hat Display";
+  font-size: 5.04313rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 2.71044rem; /* 53.745% */
+}
+
+.user-icon {
+  color: #fff;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+.btn-signup {
+  color: #fff;
+  width: 5.62938rem;
+  height: 2.29344rem;
+  flex-shrink: 0;
+  border-radius: 0.2085rem;
+  background: linear-gradient(99deg, #773cd8 0.07%, #c54b8c 106.32%);
+}
+
+.btn:hover {
+  transition: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 200ms;
+  font-size: 15px;
+}
+
+.home-main-desc {
+  color: #fff;
+  width: 30.8125rem;
+  font-size: 1.4375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.gradient-4 {
+  position: absolute;
+  bottom: 0%;
+  z-index: 1;
+  width: 100%;
+  height: 353px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    360deg,
+    #8c3cb1 -42.59%,
+    rgba(0, 0, 0, 0) -42.59%,
+    rgba(130, 20, 240, 0.52) -42.58%,
+    rgba(66, 10, 122, 0.49) 27.28%,
+    rgba(13, 2, 24, 0.14) 99.97%,
+    rgba(0, 0, 0, 0.05) 99.99%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.gradient-3 {
+  position: absolute;
+  right: 10%;
+  top: 2vw;
+  z-index: 1;
+  width: 667.974px;
+  height: 644.117px;
+  flex-shrink: 0;
+  border-radius: 667.974px;
+  background: radial-gradient(
+    40.17% 39.79% at 50% 50%,
+    rgba(66, 0, 255, 0.31) 0%,
+    rgba(90, 20, 240, 0) 100%
+  );
+}
+
+.gradient-2 {
+  position: absolute;
+  left: -2%;
+  top: -35vh;
+  z-index: 1;
+  border-radius: 675.527px;
+  background: radial-gradient(
+    40.17% 39.79% at 50% 50%,
+    rgba(90, 20, 240, 0.31) 0%,
+    rgba(20, 95, 240, 0) 100%
+  );
+  width: 675.527px;
+  height: 651.401px;
+  flex-shrink: 0;
+}
+
+.gradient-1 {
+  border-radius: 742px;
+  position: absolute;
+  top: 0%;
+  left: -25%;
+  z-index: 1;
+  background: radial-gradient(
+    40.17% 39.79% at 50% 50%,
+    rgba(24, 20, 240, 0.31) 0%,
+    rgba(90, 20, 240, 0) 100%
+  );
+  width: 742px;
+  height: 709px;
+  flex-shrink: 0;
+}

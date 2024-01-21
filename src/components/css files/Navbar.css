@@ -1,0 +1,64 @@
+.navbar-main {
+  color: #fff;
+  width: 90%;
+  height: 4.87rem;
+  flex-shrink: 0;
+  border-radius: 2.125rem;
+  border: 1px solid #472ee3;
+  background: rgba(79, 32, 212, 0.37);
+}
+
+.navbar-heading {
+  color: #fff;
+  font-family: "Red Hat Display";
+  font-size: 1.75rem /* 20px */;
+  line-height: 2rem /* 28px */;
+  font-weight: 700;
+}
+
+.on-hover {
+  background: white;
+  -webkit-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -ms-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.on-hover:hover {
+  background: linear-gradient(99deg, #c824ec 0.07%, #df308d 106.32%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-login {
+  width: 5.62938rem;
+  height: 2.29344rem;
+  flex-shrink: 0;
+  border-radius: 0.2085rem;
+  background: linear-gradient(99deg, #773cd8 0.07%, #194ed5 106.32%);
+}
+
+.btn-signup {
+  width: 5.62938rem;
+  height: 2.29344rem;
+  flex-shrink: 0;
+  border-radius: 0.2085rem;
+  background: linear-gradient(99deg, #773cd8 0.07%, #c54b8c 106.32%);
+}
+
+.btn {
+  z-index: 10;
+  transition: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 200ms;
+  font-size: 15.5px;
+}
+
+.btn:hover{
+  font-size: 15px;
+}
