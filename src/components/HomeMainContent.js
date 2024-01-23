@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CiUser } from "react-icons/ci";
-import { BsDot } from "react-icons/bs";
-import HomeMainImage from "./assets/HomeMainImage";
 import { useNavigate } from "react-router-dom";
 import homeMain from "./assets/homeMain.png";
+import { AppContext } from "./context/AppContext";
 
 function HomeMainContent() {
   const navigate = useNavigate();
+  const {sidebar, setSidebar} = useContext(AppContext);
 
   return (
-    <div className=" w-[85%] relative z-10 mb-24 xl:mb-56 mx-auto my-[8%] xl:flex ">
+    <div 
+    onClick={()=>{setSidebar(false)}}
+    className=" w-[85%] relative z-10 mb-24 xl:mb-56 mx-auto my-[8%] xl:flex ">
       <div className="mx-auto flex">
-        <div className="mr-8 w-max min-h-full ">
+        <div className="sm:mr-4 md:mr-8 min-w-[2rem] w-[3.5rem] sm:w-[5rem] md:w-[6rem] lg:w-[7rem] min-h-full">
           {/* icon */}
           <svg
+            className="w-[100%]"
             xmlns="http://www.w3.org/2000/svg"
             width="102"
             height="102"
@@ -138,7 +141,7 @@ function HomeMainContent() {
       </div>
 
       <div className="pl-10 flex justify-center items-center">
-        <img src={homeMain} className="relative z-10"/>
+        <img src={homeMain} className="relative z-10" />
       </div>
     </div>
   );

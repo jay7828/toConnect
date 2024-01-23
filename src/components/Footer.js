@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaInstagram, FaLinkedin, FaFacebookSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { AppContext } from "./context/AppContext";
 
 function Footer() {
+  const {sidebar, setSidebar} = useContext(AppContext);
+
   return (
-    <footer className="footer mx-auto text-white sm:flex justify-between items-start">
+    <footer 
+    onClick={()=>{setSidebar(false)}}
+    className="footer mx-auto text-white sm:flex justify-between items-start">
       <div className="flex mr-10">
         <div className="h-max w-max pr-6">
           <svg

@@ -1,16 +1,29 @@
-import { React } from "react";
+import { React, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css files/Navbar.css";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { AppContext } from "./context/AppContext";
 
 function Navbar() {
   const navigate = useNavigate();
+  const {sidebar, setSidebar} = useContext(AppContext);
+
+  function sidebarHandler() {
+    if (sidebar) {
+      setSidebar(false);
+    } else {
+      setSidebar(true);
+    }
+    console.log(sidebar);
+  }
 
   return (
     <nav className="navbar-main mx-auto">
       <div className="h-full logo-container flex items-center ml-7 justify-between">
         {/* logo and icon */}
-        <div className="max-w-max rounded-full">
+        <div className="min-w-[2rem] w-[2rem] sm:w-[2.5rem] md:w-[3rem] lg:w-[3.6rem] rounded-full">
           <svg
+            className="w-[100%]"
             width="52"
             height="52"
             viewBox="0 0 52 52"
@@ -95,25 +108,37 @@ function Navbar() {
             </defs>
           </svg>
         </div>
-        <h1 className="navbar-heading text-[1.25rem] lg:text-[1.75rem]">
+        <h1 className="navbar-heading text-[1.4rem] lg:text-[1.75rem]">
           toConnect
         </h1>
       </div>
 
-      <div className="text-sm btn-container font-medium">
+      <div className="hamburger w-[1.75rem] flex justify-center items-center mr-7 text-3xl">
+        <button onClick={() => sidebarHandler()}>
+          <RxHamburgerMenu />
+        </button>
+      </div>
+
+      <div className="text-sm btn-container hamburger font-medium">
         {/* home about contact */}
         <div className="w-max h-max">
-          <a herf="#" className="w-max h-max">Home</a>
+          <a herf="#" className="w-max h-max">
+            Home
+          </a>
         </div>
         <div className="w-max h-max">
-          <a className="w-max h-max" herf="#about">About</a>
+          <a className="w-max h-max" herf="#about">
+            About
+          </a>
         </div>
         <div className="w-max h-max">
-          <a className="w-max h-max" herf="#contact">Contact</a>
+          <a className="w-max h-max" herf="#contact">
+            Contact
+          </a>
         </div>
       </div>
 
-      <div className="flex text-sm font-medium btn-container mr-7 justify-between items-center ">
+      <div className="flex text-sm font-medium hamburger btn-container mr-7 justify-between items-center ">
         {/* login signup btn */}
         <button className="btn-login btn" onClick={() => navigate("/login")}>
           Login

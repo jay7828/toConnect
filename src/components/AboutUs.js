@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "./context/AppContext";
 
 function AboutUs() {
+  const {sidebar, setSidebar} = useContext(AppContext);
+  
   return (
-    <div className="footer mx-auto text-white flex-col justify-between items-start my-24">
+    <div
+    onClick={()=>{setSidebar(false)}}
+    id="about" 
+    className="footer mx-auto text-white flex-col justify-between items-start py-24">
       <div>
         <h1 className="text-5xl font-bold">About Us</h1>
         <p className="pt-6">
