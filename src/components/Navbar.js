@@ -14,7 +14,7 @@ function Navbar() {
     } else {
       setSidebar(true);
     }
-    console.log(sidebar);
+    // console.log(sidebar);
   }
 
   return (

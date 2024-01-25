@@ -8,7 +8,7 @@ import Sidebar from "./Sidebar";
 import { AppContext } from "./context/AppContext";
 
 function Home() {
-  const {sidebar, setSidebar} = useContext(AppContext);
+  const {sidebar} = useContext(AppContext);
 
   return (
     <div className="main-home-bg pt-10 min-h-[100vh]">
