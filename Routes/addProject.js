@@ -39,8 +39,12 @@ router.put('/update/:projectID', async (req, res) => {
   const { projectID } = req.params;
 
   try {
-    const updatedProject = await Project.findByIdAndUpdate(
-      projectID,
+    if (!projectID) {
+      return res.status(400).json({ success: false, message: 'ProjectID parameter is missing' });
+    }
+
+    const updatedProject = await Project.findOneAndUpdate(
+      { projectID }, // Use the unique field for the query
       {
         email: req.body.email,
         projectID: req.body.projectID,
@@ -65,12 +69,13 @@ router.put('/update/:projectID', async (req, res) => {
   }
 });
 
+
 // Delete a project
 router.delete('/delete/:projectID', async (req, res) => {
   const { projectID } = req.params;
 
   try {
-    const deletedProject = await Project.findByIdAndDelete(projectID);
+    const deletedProject = await Project.findOneAndDelete(projectID);
 
     if (!deletedProject) {
       return res.status(404).json({ success: false, message: 'Project not found' });
