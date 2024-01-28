@@ -13,7 +13,11 @@ function DashBoardTemplate() {
     }
   }, []);
 
-  return <div>{isLoggedIn ? <DashBoard /> : <div className="hidden"></div>}</div>;
+  return (
+    <div>
+      {isLoggedIn ? <DashBoard /> : <div className="hidden"></div>}
+    </div>
+  );
 }
 
 export default DashBoardTemplate;

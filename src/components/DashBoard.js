@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "./Navbar";
 import { PiSquaresFourFill } from "react-icons/pi";
 import { RiFileCodeFill } from "react-icons/ri";
@@ -9,10 +9,12 @@ import { RiSettingsFill } from "react-icons/ri";
 import user from "./assets/user.png";
 import { useNavigate } from "react-router-dom";
 import DashBoardHome from "./DashBoardHome";
+import { AppContext } from "./context/AppContext";
+import Sidebar from "./Sidebar";
 
 const DashBoard = () => {
   const navigate = useNavigate();
-
+  const {sidebar} = useContext(AppContext);
 
   return (
     <div className="main-home-bg pt-10 min-h-[100vh]">
@@ -22,6 +24,8 @@ const DashBoard = () => {
       <div className="gradient-4"></div>
 
       <Navbar />
+
+      {sidebar ? <Sidebar /> : <div className="hidden"></div>}
 
       <div className="text-white flex justify-between mx-auto my-10 dashboard-main">
 
@@ -45,7 +49,7 @@ const DashBoard = () => {
 
             <button className="flex mt-3 mx-auto option-btn items-center gap-1 justify-start">
               <RiGroupFill />
-              <h2 className="text-sm">My team</h2>
+              <h2 className="text-sm">Teams</h2>
             </button>
 
             <button className="flex mt-3 mx-auto option-btn items-center gap-1 justify-start">
@@ -55,7 +59,7 @@ const DashBoard = () => {
 
             <button className="flex mt-3 mx-auto option-btn items-center gap-1 justify-start">
               <RiSettingsFill />
-              <h2 className="text-sm">Settings</h2>
+              <h2 className="text-sm">Setting</h2>
             </button>
           </div>
 
@@ -77,7 +81,7 @@ const DashBoard = () => {
               <h2 className="text-sm font-bold">User's Full Name</h2>
 
               {/* proffesion */}
-              <h3 className="text-xs">proffesion</h3>
+              <h3 className="text-xs">proffession</h3>
             </div>
           </div>
         </div>

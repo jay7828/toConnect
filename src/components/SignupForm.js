@@ -71,7 +71,7 @@ function SignupForm() {
     <div>
       <form 
       onSubmit={submitHandler} 
-      className="max-w-max flex flex-col gap-4">
+      className="min-w-max flex flex-col gap-4">
 
         <div className="flex gap-[1rem] z-10">
           <div>

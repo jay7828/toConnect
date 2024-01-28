@@ -6,6 +6,7 @@ export default function AppContextProvider({ children }) {
   const [sidebar, setSidebar] = useState(false);
   const [dashboardPanel, setDashboardPanle] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [loading, setLoading] = useState(true);
   const value = {
     sidebar,
     setSidebar,
@@ -13,6 +14,8 @@ export default function AppContextProvider({ children }) {
     setIsLoggedIn,
     dashboardPanel,
     setDashboardPanle,
+    loading,
+    setLoading
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

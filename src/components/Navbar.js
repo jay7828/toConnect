@@ -122,17 +122,17 @@ function Navbar() {
       <div className="text-sm btn-container hamburger font-medium">
         {/* home about contact */}
         <div className="w-max h-max">
-          <a herf="#" className="w-max h-max">
+          <a href="#" className="w-max h-max">
             Home
           </a>
         </div>
         <div className="w-max h-max">
-          <a className="w-max h-max" herf="#about">
+          <a className="w-max h-max" href="#about">
             About
           </a>
         </div>
         <div className="w-max h-max">
-          <a className="w-max h-max" herf="#contact">
+          <a className="w-max h-max" href="#contact">
             Contact
           </a>
         </div>

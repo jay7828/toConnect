@@ -26,12 +26,14 @@ function LoginForm() {
   const submitHandler = async (e) => {
     //We need TO add Fetch method Here
     e.preventDefault();
+
     console.log(
       JSON.stringify({
         email: formData.email,
         password: formData.password,
       })
     );
+
     const response = await fetch("https://toconnect.onrender.com/api/login", {
       method: "POST",
       headers: {
@@ -42,6 +44,7 @@ function LoginForm() {
         password: formData.password,
       }),
     });
+
     console.log(response);
     if (response.ok) {
       const json = await response.json();
@@ -88,7 +91,7 @@ function LoginForm() {
             ></input>
             <span
               onClick={() => setShowPass((prev) => !prev)}
-              className="bg-myDark2 bg-white text-black z-10 flex justify-center items-center h-[2rem] w-[2rem] cursor-pointer rounded-r-lg border-r-[0.5px] border-y-[0.5px] border-slate-700 "
+              className="bg-myDark2 bg-white text-black z-10 flex justify-center items-center h-[2rem] w-[2rem] cursor-pointer rounded-r-lg border-r-[0.5px] border-y-[0.5px] border-slate-700"
             >
               {showPass === false ? (
                 <AiOutlineEye />
