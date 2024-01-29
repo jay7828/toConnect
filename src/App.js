@@ -1,11 +1,11 @@
 import "./App.css";
-import Home from "./components/Home";
-import Parentpage from "./components/Parentpage";
+import Home from "./components/pages/Home";
+import Parentpage from "./components/pages/Parentpage";
 import { Route, Routes } from 'react-router-dom';
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import NotFound from "./components/NotFound";
-import DashBoardTemplate from "./components/DashBoardTemplate";
+import Login from "./components/pages/Login";
+import Signup from "./components/pages/Signup";
+import NotFound from "./components/pages/NotFound";
+import DashBoardTemplate from "./components/pages/DashBoardTemplate";
 
 function App() {
   return (
@@ -15,7 +15,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
-          <Route path='/dashboard' element={<DashBoardTemplate />} />
+          <Route path='/dashboard' element={<DashBoardTemplate />}>
+            
+          </Route>
           <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>

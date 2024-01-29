@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { FaInstagram, FaLinkedin, FaFacebookSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { AppContext } from "./context/AppContext";
+import { AppContext } from "../context/AppContext";
 
 function Footer() {
   const {sidebar, setSidebar} = useContext(AppContext);

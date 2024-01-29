@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { CiUser } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import homeMain from "./assets/homeMain.png";
-import { AppContext } from "./context/AppContext";
+import homeMain from "../assets/homeMain.png";
+import { AppContext } from "../context/AppContext";
 
 function HomeMainContent() {
   const navigate = useNavigate();
-  const {sidebar, setSidebar} = useContext(AppContext);
+  const {setSidebar} = useContext(AppContext);
 
   return (
     <div 

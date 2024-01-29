@@ -257,8 +257,8 @@
 }
 
 .dashboard-options-panel {
-  top: 0px;
-  left: 0px;
+  top: -37px;
+  left: -8px;
   position: absolute;
   display: flex;
   z-index: 1;

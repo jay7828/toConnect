@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { AppContext } from "./context/AppContext";
+import { AppContext } from "../context/AppContext";
 import DashBoard from "./DashBoard";
 import { useNavigate } from "react-router-dom";
 

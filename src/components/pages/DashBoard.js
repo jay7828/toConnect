@@ -6,10 +6,10 @@ import { RiAccountBoxFill } from "react-icons/ri";
 import { RiGroupFill } from "react-icons/ri";
 import { RiMessage3Fill } from "react-icons/ri";
 import { RiSettingsFill } from "react-icons/ri";
-import user from "./assets/user.png";
+import user from "../assets/user.png";
 import { useNavigate } from "react-router-dom";
 import DashBoardHome from "./DashBoardHome";
-import { AppContext } from "./context/AppContext";
+import { AppContext } from "../context/AppContext";
 import Sidebar from "./Sidebar";
 
 const DashBoard = () => {

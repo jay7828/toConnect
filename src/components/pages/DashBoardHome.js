@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import temp_img from "./assets/temp_img.png";
-import { AppContext } from "./context/AppContext";
+import temp_img from "../assets/temp_img.png";
+import { AppContext } from "../context/AppContext";
 import { PiSquaresFourFill } from "react-icons/pi";
 import { RiFileCodeFill } from "react-icons/ri";
 import { RiAccountBoxFill } from "react-icons/ri";
@@ -8,19 +8,21 @@ import { RiGroupFill } from "react-icons/ri";
 import { RiMessage3Fill } from "react-icons/ri";
 import { RiSettingsFill } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
-import axios from 'axios';
+import axios from "axios";
 import Loader from "./Loader";
+import Projects from "./Projects";
 
 function DashBoardHome() {
-  const { dashboardPanel, setDashboardPanle , loading, setLoading} = useContext(AppContext);
-  const { searchRes , setSearchRes } = useState([]);
+  const { dashboardPanel, setDashboardPanle, loading, setLoading } =
+    useContext(AppContext);
+  const [searchRes, setSearchRes] = useState([]);
   const [searchData, setSearchData] = useState({
     searchProjects: "",
   });
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
-    console.log(value);
+    // console.log(value);
     setSearchData((prevSearchData) => {
       return {
         ...prevSearchData,
@@ -29,29 +31,34 @@ function DashBoardHome() {
     });
   };
 
-  async function searchProjects() {
-    try {
-      setLoading(true);
-      const res = await axios.get("https://toconnect.onrender.com/api/project/fetch");
-      const data = JSON.stringify(res);
-      console.log(data);
-      setSearchRes(data.data);
-      setLoading(false);
-    } catch (error) {
-      console.log("Error occured during fetch call!");
-      console.error(error);
-      setLoading(false);
-    }
-  }
-
   function handleDashPanel() {
     if (dashboardPanel) setDashboardPanle(false);
     else setDashboardPanle(true);
   }
 
-  useEffect(()=>{
-    searchProjects();
-  },[])
+  function searchProjects() {
+    fetchProjects();
+    setLoading(!setLoading);
+  }
+
+  async function fetchProjects() {
+    try {
+      const res = await axios.get(
+        "https://toconnect.onrender.com/api/project/fetch"
+      );
+      const data = res.data;
+      setSearchRes(data.data);
+      setLoading(false);
+    } catch (error) {
+      console.log("Error occurred during fetch call!");
+      console.error(error);
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
 
   return (
     <div className="my-10 flex relative gap-2 flex-col md:flex-row w-[95%] mx-auto">
@@ -103,35 +110,32 @@ function DashBoardHome() {
           {/* heading */}
           Welcome Username !
         </div>
-
         <form className="flex justify-center items-center mx-auto">
           {/* search */}
           <input
-            className="w-[90%] focus:outline-none  h-[2rem] text-black rounded-l-lg my-2 px-2"
+            className="w-[82%] focus:outline-none h-[2rem] text-white bg-black opacity-65 rounded-l-md my-2 px-2"
             placeholder="Search Projects"
             name="searchProjects"
             value={searchData.value}
             onChange={changeHandler}
           />
           <span
-          onClick={searchProjects}
-            className="bg-white text-gray-700 text-lg z-10 flex justify-center items-center h-[2rem] w-[2rem] cursor-pointer rounded-r-lg"
+            onClick={searchProjects}
+            className="bg-black text-white text-lg z-10 flex justify-center items-center opacity-65 h-[2rem] w-[2rem] cursor-pointer rounded-r-md"
           >
             <CiSearch />
           </span>
         </form>
 
-        {loading?(<div className="w-[100%] h-[calc(100%-8rem)] py-[2rem] flex justify-center items-center">
-          <Loader />
-        </div>):
-        (
+        {loading ? (
+          <div className="w-[100%] h-[calc(100%-8rem)] py-[2rem] flex justify-center items-center">
+            <Loader />
+          </div>
+        ) : (
           <div>
-            {/* {searchRes.map((project)=>{
-              console.log('project');
-            })} */}
+            <Projects projects={searchRes} />
           </div>
         )}
-
       </div>
 
       <div className="my-10 dash-main-parts rounded-lg">

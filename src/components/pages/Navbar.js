@@ -1,8 +1,8 @@
 import { React, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "./css files/Navbar.css";
+import "../css files/Navbar.css";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { AppContext } from "./context/AppContext";
+import { AppContext } from "../context/AppContext";
 
 function Navbar() {
   const navigate = useNavigate();
