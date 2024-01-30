@@ -36,9 +36,22 @@ function DashBoardHome() {
     else setDashboardPanle(true);
   }
 
-  function searchProjects() {
-    fetchProjects();
-    setLoading(!setLoading);
+  async function searchHandler() {
+    setLoading(true);
+    try {
+      // console.log(searchData.searchProjects);
+      await fetchProjects();
+      if (searchRes.length > 0) {
+        const filteredData = searchRes.filter((res) =>
+          res.projectTitle.includes(searchData.searchProjects)
+        );
+        setSearchRes(filteredData);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.error("Error occurred during search:", error);
+      setLoading(false);
+    }
   }
 
   async function fetchProjects() {
@@ -120,7 +133,7 @@ function DashBoardHome() {
             onChange={changeHandler}
           />
           <span
-            onClick={searchProjects}
+            onClick={searchHandler}
             className="bg-black text-white text-lg z-10 flex justify-center items-center opacity-65 h-[2rem] w-[2rem] cursor-pointer rounded-r-md"
           >
             <CiSearch />

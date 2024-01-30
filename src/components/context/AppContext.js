@@ -3,9 +3,9 @@ import { createContext, useState } from "react";
 export const AppContext = createContext();
 
 export default function AppContextProvider({ children }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [sidebar, setSidebar] = useState(false);
   const [dashboardPanel, setDashboardPanle] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [loading, setLoading] = useState(true);
   const value = {
     sidebar,
