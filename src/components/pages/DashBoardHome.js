@@ -16,6 +16,7 @@ function DashBoardHome() {
   const { dashboardPanel, setDashboardPanle, loading, setLoading } =
     useContext(AppContext);
   const [searchRes, setSearchRes] = useState([]);
+  const [tempSearchRes, setTempSearchRes] = useState([]);
   const [searchData, setSearchData] = useState({
     searchProjects: "",
   });
@@ -29,29 +30,32 @@ function DashBoardHome() {
         [name]: value,
       };
     });
-  };
 
-  function handleDashPanel() {
-    if (dashboardPanel) setDashboardPanle(false);
-    else setDashboardPanle(true);
-  }
+    console.log(searchData);
 
-  async function searchHandler() {
     setLoading(true);
+
     try {
       // console.log(searchData.searchProjects);
-      await fetchProjects();
-      if (searchRes.length > 0) {
-        const filteredData = searchRes.filter((res) =>
+      // await fetchProjects();
+      setTempSearchRes(searchRes);
+      console.log(tempSearchRes);
+      if (tempSearchRes.length > 0) {
+        const filteredData = tempSearchRes.filter((res) =>
           res.projectTitle.includes(searchData.searchProjects)
         );
-        setSearchRes(filteredData);
+        setTempSearchRes(filteredData);
       }
       setLoading(false);
     } catch (error) {
       console.error("Error occurred during search:", error);
       setLoading(false);
     }
+  };
+
+  function handleDashPanel() {
+    if (dashboardPanel) setDashboardPanle(false);
+    else setDashboardPanle(true);
   }
 
   async function fetchProjects() {
@@ -61,6 +65,7 @@ function DashBoardHome() {
       );
       const data = res.data;
       setSearchRes(data.data);
+      setTempSearchRes(data.data);
       setLoading(false);
     } catch (error) {
       console.log("Error occurred during fetch call!");
@@ -133,7 +138,6 @@ function DashBoardHome() {
             onChange={changeHandler}
           />
           <span
-            onClick={searchHandler}
             className="bg-black text-white text-lg z-10 flex justify-center items-center opacity-65 h-[2rem] w-[2rem] cursor-pointer rounded-r-md"
           >
             <CiSearch />
@@ -146,14 +150,13 @@ function DashBoardHome() {
           </div>
         ) : (
           <div>
-            <Projects projects={searchRes} />
+            <Projects projects={tempSearchRes} />
           </div>
         )}
       </div>
 
-      <div className="my-10 dash-main-parts rounded-lg">
+      {/* <div className="my-10 dash-main-parts rounded-lg">
         <div className="flex gap-2 mx-3 mb-5 mt-5 md:mt-4 sm:mt-3 ">
-          {/* section 1 */}
           <div>
             <img src={temp_img} className="rounded-3xl img-1" />
           </div>
@@ -169,7 +172,6 @@ function DashBoardHome() {
         </div>
 
         <div className="flex gap-2 mx-3 mb-5 mt-5 md:mt-4 sm:mt-3 ">
-          {/* section 1 */}
           <div>
             <img src={temp_img} className="rounded-3xl img-1" />
           </div>
@@ -185,7 +187,6 @@ function DashBoardHome() {
         </div>
 
         <div className="flex gap-2 mx-3 mb-5 mt-5 md:mt-4 sm:mt-3 ">
-          {/* section 1 */}
           <div>
             <img src={temp_img} className="rounded-3xl img-1" />
           </div>
@@ -199,7 +200,7 @@ function DashBoardHome() {
             </h6>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

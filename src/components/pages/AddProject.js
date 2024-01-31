@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 function AddProject() {
   const navigate = useNavigate();
 
+  const [needCollaboration, setNeedCollaboration] = useState(false);
+
   const [formData, setFormData] = useState({
     email: "",
     projectID: "",
@@ -12,9 +14,18 @@ function AddProject() {
     projectDesc: "",
     techStack: "",
     skillsRequired: "",
-    needCollaboration: false,
     contactInfo: "",
   });
+
+  const collabChange = (event) => {
+    if (event.target.checked) {
+      setNeedCollaboration(true);
+    } else {
+      setNeedCollaboration(false);
+    }
+
+    console.log(needCollaboration);
+  };
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -26,24 +37,23 @@ function AddProject() {
       };
     });
 
-    if (event.target.checked) {
-      setFormData((prevFormData) => {
-        return {
-          ...prevFormData,
-          needCollaboration: true,
-        };
-      });
-    } 
-    else {
-      setFormData((prevFormData) => {
-        return {
-          ...prevFormData,
-          needCollaboration: false,
-        };
-      });
-    }
+    // if (event.target.checked) {
+    //   setFormData((prevFormData) => {
+    //     return {
+    //       ...prevFormData,
+    //       needCollaboration: true,
+    //     };
+    //   });
+    // } else {
+    //   setFormData((prevFormData) => {
+    //     return {
+    //       ...prevFormData,
+    //       needCollaboration: false,
+    //     };
+    //   });
+    // }
 
-    console.log(formData);
+    // console.log(formData);
   };
 
   const submitHandler = async (e) => {
@@ -58,7 +68,7 @@ function AddProject() {
         projectDesc: formData.projectDesc,
         techStack: formData.techStack,
         skillsRequired: formData.skillsRequired,
-        needCollaboration: formData.needCollaboration,
+        needCollaboration: needCollaboration,
         contactInfo: formData.contactInfo,
       })
     );
@@ -75,9 +85,9 @@ function AddProject() {
           projectID: formData.projectID,
           projectTitle: formData.projectTitle,
           projectDesc: formData.projectDesc,
-          techStack: formData.techStack,
-          skillsRequired: formData.skillsRequired,
-          needCollaboration: formData.needCollaboration,
+          techStack: formData.techStack.split(" "),
+          skillsRequired: formData.skillsRequired.split(" "),
+          needCollaboration: needCollaboration,
           contactInfo: formData.contactInfo,
         }),
       }
@@ -101,12 +111,20 @@ function AddProject() {
   };
 
   return (
-    <div>
-      <form className="max-w-max flex flex-col gap-4" onSubmit={submitHandler}>
-        <div className="z-10">
+    <div className="main-home-bg pt-10 min-h-[100vh] text-white">
+      <div className="gradient-1"></div>
+      <div className="gradient-2"></div>
+      <div className="gradient-3"></div>
+      <div className="gradient-4"></div>
+
+      <form
+        className="dynamic-panel-main font-semibold mx-auto relative z-10 mb-10 flex flex-col gap-4"
+        onSubmit={submitHandler}
+      >
+        <div className="z-10 px-10 mt-10">
           <p className="text-sm  pb-1">Email Address</p>
           <input
-            className="w-[25rem] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
+            className="w-[100%] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
             type="email"
             name="email"
             placeholder="Enter email address"
@@ -116,10 +134,10 @@ function AddProject() {
           ></input>
         </div>
 
-        <div className="z-10">
+        <div className="z-10 px-10">
           <p className="text-sm  pb-1">Project ID</p>
           <input
-            className="w-[25rem] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
+            className="w-[100%] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
             type="text"
             name="projectID"
             placeholder="Enter Project ID"
@@ -129,10 +147,10 @@ function AddProject() {
           ></input>
         </div>
 
-        <div className="z-10">
+        <div className="z-10 px-10">
           <p className="text-sm  pb-1">Project Title</p>
           <input
-            className="w-[25rem] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
+            className="w-[100%] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
             type="text"
             name="projectTitle"
             placeholder="Enter Project Title"
@@ -142,88 +160,85 @@ function AddProject() {
           ></input>
         </div>
 
-        <div className="z-10">
+        <div className="z-10 px-10">
           <p className="text-sm  pb-1">Project Description</p>
           <textarea
-            className="w-[25rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
+            className="w-[100%] py-1 text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
             name="projectDesc"
             placeholder="Enter Project Description"
             value={formData.projectDesc}
             onChange={changeHandler}
             required
-            rows={10}
+            rows={5}
           ></textarea>
         </div>
 
-        <div className="z-10">
+        <div className="z-10 px-10">
           <p className="text-sm  pb-1">Technology Stack</p>
           <input
-            className="w-[25rem] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
+            className="w-[100%] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
             type="text"
             name="techStack"
-            placeholder="Enter Technology Stack used"
+            placeholder="Eg: SQL java AWS"
             value={formData.techStack}
             onChange={changeHandler}
             required
           ></input>
         </div>
 
-        <div className="z-10">
+        <div className="z-10 px-10">
           <p className="text-sm  pb-1">Skills Required</p>
           <input
-            className="w-[25rem] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
+            className="w-[100%] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
             type="text"
             name="skillsRequired"
-            placeholder="Enter Skills Required"
+            placeholder="Eg: Web-development MongoDB"
             value={formData.skillsRequired}
             onChange={changeHandler}
             required
           ></input>
         </div>
 
-        <div className="z-10">
-          <p className="text-sm  pb-1">Collaboration</p>
-          <legend>
-            <label for="collab1">Yes</label>
+        <div className="flex justify-between px-10">
+          <div className="z-10 w-[45%]">
+            <p className="text-sm  pb-1">Collaboration</p>
+            <legend className="ml-2 gap-4 w-[15rem] flex justify-start items-center ">
+              <label for="collab1">Yes</label>
+              <input
+                className="w-[15px] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
+                type="checkbox"
+                id="collab1"
+                name="needCollaboration"
+                placeholder="allow collaboration"
+                value={needCollaboration}
+                onChange={collabChange}
+                required
+              ></input>
+            </legend>
+          </div>
+
+          <div className="z-10 w-[45%]">
+            <p className="text-sm  pb-1">Contact Info</p>
             <input
-              className="w-[25rem] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
-              type="checkbox"
-              id="collab1"
-              name="needCollaboration"
-              placeholder="allow collaboration"
-              value={formData.needCollaboration}
+              className="w-[100%] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
+              type="text"
+              name="contactInfo"
+              placeholder="Enter Mobile Number"
+              value={formData.contactInfo}
               onChange={changeHandler}
               required
             ></input>
-            {/* <label for="collab2">No</label>
-            <input
-              checked="true"
-              className="w-[25rem] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
-              type="radio"
-              id="collab2"
-              name="needCollaboration"
-              placeholder="allow collaboration"
-              value={formData.needCollaboration}
-              onChange={changeHandler}
-              required
-            ></input> */}
-          </legend>
+          </div>
         </div>
 
-        <div className="z-10">
-          <p className="text-sm  pb-1">Contact Info</p>
-          <input
-            className="w-[25rem] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
-            type="text"
-            name="contactInfo"
-            placeholder="Enter Mobile Number"
-            value={formData.contactInfo}
-            onChange={changeHandler}
-            required
-          ></input>
+        <div className="flex justify-center items-center">
+          <button
+            className="mb-10 my-2 rounded-md border border-[#8f16c7ac] p-1 w-[95%] hover:bg-[#8f16c740]"
+            onClick={submitHandler}
+          >
+            Submit
+          </button>
         </div>
-
-        <button onClick={submitHandler}>Submit</button>
       </form>
     </div>
   );
