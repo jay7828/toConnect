@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Project(props) {
+const ShowProject = (props) => {
   const project = props.project;
   const [collab, setCollab] = useState(false);
 
@@ -8,7 +8,7 @@ function Project(props) {
     if (project.needCollaboration) setCollab(true);
   }, []);
 
-  return (
+  return(
     <div className="text-white my-3 p-2 rounded-md mx-auto w-[90%] flex flex-col border-purple-950 border-[0.5px]">
       <div className="flex w-[100%]">
         <div className="pb-1 w-[calc(100%-5rem)] uppercase text-sm sm:text-base md:text-lg font-semibold">
@@ -36,4 +36,4 @@ function Project(props) {
   );
 }
 
-export default Project;
+export default ShowProject;

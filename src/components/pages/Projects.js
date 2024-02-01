@@ -4,14 +4,8 @@ import Project from "./Project";
 function Projects(props) {
   const projects = props.projects;
 
-  // useEffect(()=>{
-  //   projects.forEach(project => {
-  //     console.log(project);
-  //   });
-  // },[]);
-
   return (
-    <div>
+    <div className="grid grid-cols-1 lg:grid-cols-2">
       {projects?.map((project) => {
         return(<Project project={project} />)
       })}

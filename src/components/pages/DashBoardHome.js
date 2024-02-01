@@ -123,20 +123,22 @@ function DashBoardHome() {
         </div>
       ) : null}
 
-      <div className="rounded-lg p-2 dash-main-parts">
-        <div className="font-semibold ml-3 min-w-[230px] mt-2 text-lg sm:text-xl md:text-2xl lg:text-3xl mb-1">
+      <div className="rounded-lg dash-main-parts">
+        <div className="font-semibold mb-3 ml-3 min-w-[230px] text-lg sm:text-xl md:text-2xl lg:text-3xl">
           {/* heading */}
           Welcome Username !
         </div>
+
         <form className="flex justify-center items-center mx-auto">
           {/* search */}
           <input
-            className="w-[82%] focus:outline-none h-[2rem] text-white bg-black opacity-65 rounded-l-md my-2 px-2"
+            className="w-[83%] focus:outline-none h-[2rem] text-white bg-black opacity-65 rounded-l-md my-2 px-2"
             placeholder="Search Projects"
             name="searchProjects"
             value={searchData.value}
             onChange={changeHandler}
           />
+          
           <span
             className="bg-black text-white text-lg z-10 flex justify-center items-center opacity-65 h-[2rem] w-[2rem] cursor-pointer rounded-r-md"
           >
@@ -149,7 +151,7 @@ function DashBoardHome() {
             <Loader />
           </div>
         ) : (
-          <div>
+          <div className="w-[90%] mx-auto">
             <Projects projects={tempSearchRes} />
           </div>
         )}
