@@ -9,7 +9,7 @@ const projectSchema = new Schema({
   techStack: { type: [String], required: true }, 
   contactInfo: { type: String, required: true },
   needCollaboration: { type: Boolean, required: true },
-  skillsRequired: { type: [String], required: true }, // Changed to array of strings
+  skillsRequired: { type: [String] }, // Changed to array of strings
 });
 
 module.exports = mongoose.model('project', projectSchema);
