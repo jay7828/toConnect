@@ -8,15 +8,12 @@ import { RiGroupFill } from "react-icons/ri";
 import { RiMessage3Fill } from "react-icons/ri";
 import { RiSettingsFill } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
-import axios from "axios";
 import Loader from "./Loader";
 import Projects from "./Projects";
 
 function DashBoardHome() {
-  const { dashboardPanel, setDashboardPanle, loading, setLoading } =
+  const { dashboardPanel, setDashboardPanle, loading, setLoading , tempSearchRes, setTempSearchRes , fetchProjects , searchRes } =
     useContext(AppContext);
-  const [searchRes, setSearchRes] = useState([]);
-  const [tempSearchRes, setTempSearchRes] = useState([]);
   const [searchData, setSearchData] = useState({
     searchProjects: "",
   });
@@ -41,9 +38,11 @@ function DashBoardHome() {
       setTempSearchRes(searchRes);
       console.log(tempSearchRes);
       if (tempSearchRes.length > 0) {
-        const filteredData = tempSearchRes.filter((res) =>
-          res.projectTitle.includes(searchData.searchProjects)
-        );
+        const filteredData = tempSearchRes.filter((res) =>{
+          const resTitle = res.projectTitle.toLowerCase;
+          console.log(resTitle);
+          resTitle.includes(searchData.searchProjects)
+        });
         setTempSearchRes(filteredData);
       }
       setLoading(false);
@@ -56,22 +55,6 @@ function DashBoardHome() {
   function handleDashPanel() {
     if (dashboardPanel) setDashboardPanle(false);
     else setDashboardPanle(true);
-  }
-
-  async function fetchProjects() {
-    try {
-      const res = await axios.get(
-        "https://toconnect.onrender.com/api/project/fetch"
-      );
-      const data = res.data;
-      setSearchRes(data.data);
-      setTempSearchRes(data.data);
-      setLoading(false);
-    } catch (error) {
-      console.log("Error occurred during fetch call!");
-      console.error(error);
-      setLoading(false);
-    }
   }
 
   useEffect(() => {

@@ -8,19 +8,23 @@ import NotFound from "./components/pages/NotFound";
 import DashBoardTemplate from "./components/pages/DashBoardTemplate";
 import DashBoardParent from "./components/pages/DashBoardParent";
 import AddProjectTemplate from "./components/pages/AddProjectTemplate";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
+import { AppContext } from "./components/context/AppContext";
 import ShowProject from "./components/pages/ShowProject";
 
 function App() {
+  const {setPId} = useContext(AppContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
   useEffect(()=>{
     if(location.pathname.includes("project")){
-      const projectId = location.pathname.split("/").at(-1);
+      const pId = location.pathname.split("/").at(-1);
+      setPId(pId);
+      // console.log(pId);
     }
-    console.log(projectId);
-  });
+  },[location.pathname, location.search]);
 
   return (
     <div>
@@ -32,7 +36,7 @@ function App() {
           <Route path='/dashboard' element={<DashBoardParent />}>
             <Route index element={<DashBoardTemplate />} />
             <Route path="addproject" element={<AddProjectTemplate />} />  
-            <Route path="project:projectId" element={<ShowProject />} />  
+            <Route path="project/:projectId" element={<ShowProject />} />  
           </Route>
           <Route path='*' element={<NotFound />} />
         </Route>
