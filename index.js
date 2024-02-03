@@ -22,6 +22,7 @@ mongoDB.connect(mongoURI).then(function()
     app.use(express.json())
     app.use('/api/',require("./Routes/register"))
     app.use('/api/project/',require("./Routes/addProject"))
+    app.use('/api/collab_letter/',require("./Routes/collab_letter"))
 })
 const PORT = process.env.PORT||5000
 app.listen(PORT ,()=>{
