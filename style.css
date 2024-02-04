@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+.container-fluid{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 120px;
+  color: #fff;
+  display: flex;
+  justify-content: Right;
+  align-items: center;
+  z-index: 100;
+}
+/*header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 120px;
+    background: #233142;
+    color: #fff;
+    display: flex;
+    justify-content: Right;
+    align-items: center;
+    z-index: 100;
+}
+.navbar-brand{
+  color: #fff;
+}
+.logo {
+    font-size: 25px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}*/
+/*.navbar-toggler-icon{
+  background-color: #233142;
+}
+.nav-link:hover {
+   color: red;
+}*/
+nav{
+  background-color: black;
+}
+nav a {
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 35px;
+    transition: .3s;
+}
+
+#home{
+  background-size: auto;
+  padding-top: 0px;
+}
+
+
+section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    color: #fff;
+     background: linear-gradient(to bottom, #66d9ff, #ffcc99);
+    font-weight: 700;
+}
+/*section:nth-child(odd) {
+    background: #323946;
+}*/
