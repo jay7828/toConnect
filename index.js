@@ -1,7 +1,8 @@
 const express =require('express')
 const app = express()
 const mongoDB=require("mongoose")
-const mongoURI='mongodb+srv://jayesh:toconnect@userdetails.fdxtamm.mongodb.net/?retryWrites=true&w=majority'
+require("dotenv").config();
+const mongoURI = process.env.MONGODB_URL;
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -22,6 +23,7 @@ mongoDB.connect(mongoURI).then(function()
     app.use(express.json())
     app.use('/api/',require("./Routes/register"))
     app.use('/api/project/',require("./Routes/addProject"))
+    app.use("/api/users/", require("./Routes/userRoutes"));
     app.use('/api/collab_letter/',require("./Routes/collab_letter"))
 })
 const PORT = process.env.PORT||5000
