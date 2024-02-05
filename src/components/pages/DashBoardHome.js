@@ -40,8 +40,10 @@ function DashBoardHome() {
       if (tempSearchRes.length > 0) {
         const filteredData = tempSearchRes.filter((res) =>{
           const resTitle = res.projectTitle.toLowerCase;
+          const pTitle = searchData.searchProjects.toLowerCase;
           console.log(resTitle);
-          resTitle.includes(searchData.searchProjects)
+          console.log(pTitle);
+          resTitle.includes(pTitle);
         });
         setTempSearchRes(filteredData);
       }

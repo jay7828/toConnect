@@ -37,23 +37,6 @@ function AddProject() {
       };
     });
 
-    // if (event.target.checked) {
-    //   setFormData((prevFormData) => {
-    //     return {
-    //       ...prevFormData,
-    //       needCollaboration: true,
-    //     };
-    //   });
-    // } else {
-    //   setFormData((prevFormData) => {
-    //     return {
-    //       ...prevFormData,
-    //       needCollaboration: false,
-    //     };
-    //   });
-    // }
-
-    // console.log(formData);
   };
 
   const submitHandler = async (e) => {

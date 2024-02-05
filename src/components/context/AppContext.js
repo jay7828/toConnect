@@ -13,6 +13,7 @@ export default function AppContextProvider({ children }) {
   const [searchRes, setSearchRes] = useState([]);
 
   async function fetchProjects() {
+    console.log("fetch function called.");
     setLoading(true);
     try {
       const res = await axios.get(
