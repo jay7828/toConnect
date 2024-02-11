@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import temp_img from "../assets/temp_img.png";
 import { AppContext } from "../context/AppContext";
 import { PiSquaresFourFill } from "react-icons/pi";
 import { RiFileCodeFill } from "react-icons/ri";
@@ -142,52 +141,7 @@ function DashBoardHome() {
         )}
       </div>
 
-      {/* <div className="my-10 dash-main-parts rounded-lg">
-        <div className="flex gap-2 mx-3 mb-5 mt-5 md:mt-4 sm:mt-3 ">
-          <div>
-            <img src={temp_img} className="rounded-3xl img-1" />
-          </div>
-
-          <div className="flex-col mt-1 min-w-[110px] ">
-            <h1 className="text-md md:text-lg lg:text-xl font-semibold">
-              Add a Project
-            </h1>
-            <h6 className="text-sm lg:text-base">
-              Start Adding PRojects (description )
-            </h6>
-          </div>
-        </div>
-
-        <div className="flex gap-2 mx-3 mb-5 mt-5 md:mt-4 sm:mt-3 ">
-          <div>
-            <img src={temp_img} className="rounded-3xl img-1" />
-          </div>
-
-          <div className="flex-col min-w-[110px] ">
-            <h1 className="text-md md:text-lg lg:text-xl font-semibold">
-              Add a Project
-            </h1>
-            <h6 className="text-sm lg:text-base">
-              Start Adding PRojects (description )
-            </h6>
-          </div>
-        </div>
-
-        <div className="flex gap-2 mx-3 mb-5 mt-5 md:mt-4 sm:mt-3 ">
-          <div>
-            <img src={temp_img} className="rounded-3xl img-1" />
-          </div>
-
-          <div className="flex-col min-w-[110px] ">
-            <h1 className="text-md md:text-lg lg:text-xl font-semibold">
-              Add a Project
-            </h1>
-            <h6 className="text-sm lg:text-base">
-              Start Adding PRojects (description )
-            </h6>
-          </div>
-        </div>
-      </div> */}
+      
     </div>
   );
 }

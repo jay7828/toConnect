@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Project from "./Project";
 
 function Projects(props) {
@@ -7,7 +7,7 @@ function Projects(props) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2">
       {projects?.map((project) => {
-        return(<Project project={project} />)
+        return(<Project project={project} key={project._id} />)
       })}
     </div>
   );

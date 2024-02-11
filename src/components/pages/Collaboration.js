@@ -10,6 +10,7 @@ function Collaboration() {
 
   const [formData, setFormData] = useState({
     sender: "",
+    subject:"",
     body: "",
   });
 
@@ -25,35 +26,40 @@ function Collaboration() {
   };
 
   const submitHandler = async (e) => {
-    //We need TO add Fetch method Here
     e.preventDefault();
 
-    // const filteredData = tempSearchRes.filter((res) =>{
-    //   res.projectId.includes(pId);
-    // });
+    const filteredData = searchRes.filter((res)=>{
+      if(res.projectID === pId)
+      return res;
+    })
 
-    // setTempSearchRes(filteredData);
-    // console.log(filteredData);
+    var today = new Date();
 
     console.log(
       JSON.stringify({
+        letterID: formData.letterID,
         sender: formData.sender,
+        receiver: filteredData[0].email,
+        subject: formData.subject,
         body: formData.body,
-        // receiver: 
+        date: today,
       })
-    );
-
-    const response = await fetch(
-      "https://toconnect.onrender.com/api/project/add",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          sender: formData.sender,
-          body: formData.body,
-          body: Date.now,
+      );
+      
+      const response = await fetch(
+        "https://toconnect.onrender.com/api/collab_letter/fetch",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            letterID: formData.letterID,
+            sender: formData.sender,
+            receiver: filteredData[0].email,
+            subject: formData.subject,
+            body: formData.body,
+            date: today,
         }),
       }
     );
@@ -64,8 +70,8 @@ function Collaboration() {
       const json = await response.json();
       console.log(json);
       if (json.success) {
-        navigate("/");
-        toast.success("Project Added Successfully!");
+        // navigate("/");
+        toast.success("Message Send Successfully!");
       } else {
         alert("Error occured!");
       }
@@ -78,18 +84,10 @@ function Collaboration() {
   useEffect(()=>{
     const pid = location.pathname.split("/").at(-1);
     setPId(pid);
-    if(searchRes == []){
+    if(searchRes.length === 0){
       fetchProjects();
     }
-    const filteredData = tempSearchRes.filter((res) =>{
-      res.projectId.includes(pId);
-    });
-
-    setTempSearchRes(filteredData);
-    console.log(searchRes);
-    console.log(filteredData);
-
-  },[location.pathname, location.search]);
+  },[]);
 
   return (
     <div className="main-home-bg pt-10 min-h-[100vh] text-white">
@@ -100,7 +98,6 @@ function Collaboration() {
 
       <form
         className="dynamic-panel-main font-semibold mx-auto relative z-10 mb-10 flex flex-col gap-4"
-        // onSubmit={submitHandler}
       >
         <div className="z-10 px-10 mt-10">
           <p className="text-sm  pb-1">Email</p>
@@ -115,12 +112,39 @@ function Collaboration() {
           ></input>
         </div>
 
+        {/* letterID */}
+        <div className="z-10 px-10 mt-10">
+          <p className="text-sm  pb-1">Letter ID</p>
+          <input
+            className="w-[100%] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
+            type="number"
+            name="letterID"
+            placeholder="Enter your Letter ID"
+            value={formData.letterID}
+            onChange={changeHandler}
+            required
+          ></input>
+        </div>
+
+        <div className="z-10 px-10">
+          <p className="text-sm  pb-1">Collaboration Subject</p>
+          <textarea
+            className="w-[100%] py-1 text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
+            name="subject"
+            placeholder="Enter Collaboration Message Subject"
+            value={formData.subject}
+            onChange={changeHandler}
+            required
+            rows={1}
+          ></textarea>
+        </div>
+
         <div className="z-10 px-10">
           <p className="text-sm  pb-1">Collaboration Message</p>
           <textarea
             className="w-[100%] py-1 text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
             name="body"
-            placeholder="Enter Project Description"
+            placeholder="Enter Collaboration Message"
             value={formData.body}
             onChange={changeHandler}
             required

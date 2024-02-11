@@ -114,13 +114,13 @@ function Footer() {
 
         <div className="w-max h-[10rem] flex-col text-sm font-semibold">
           <div className="mt-2">
-            <a herf="#">Home</a>
+            <a href="#">Home</a>
           </div>
           <div className="mt-6">
-            <a herf="#about">About</a>
+            <a href="#about">About</a>
           </div>
           <div className="mt-6">
-            <a herf="#contact">Contact</a>
+            <a href="#contact">Contact</a>
           </div>
         </div>
 
