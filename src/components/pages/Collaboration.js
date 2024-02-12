@@ -33,6 +33,12 @@ function Collaboration() {
       return res;
     })
 
+    if(!filteredData.Collaboration){
+      toast.error("Cannot Send Message!");
+      console.log("Cannot send msg to projects with collab feature turned OFF!");
+      return;
+    }
+
     var today = new Date();
 
     console.log(
@@ -47,7 +53,7 @@ function Collaboration() {
       );
       
       const response = await fetch(
-        "https://toconnect.onrender.com/api/collab_letter/fetch",
+        "https://toconnect.onrender.com/api/collab_letter/add",
         {
           method: "POST",
           headers: {
@@ -70,13 +76,12 @@ function Collaboration() {
       const json = await response.json();
       console.log(json);
       if (json.success) {
-        // navigate("/");
+        navigate("/");
         toast.success("Message Send Successfully!");
       } else {
         alert("Error occured!");
       }
     } else {
-      // Handle error here
       console.error("Failed to fetch data:", response.statusText);
     }
   };
@@ -88,7 +93,7 @@ function Collaboration() {
       fetchProjects();
     }
   },[]);
-
+  
   return (
     <div className="main-home-bg pt-10 min-h-[100vh] text-white">
       <div className="gradient-1"></div>
