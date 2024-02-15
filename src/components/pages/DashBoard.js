@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect  } from "react";
 import Navbar from "./Navbar";
 import { PiSquaresFourFill } from "react-icons/pi";
 import { RiFileCodeFill } from "react-icons/ri";
@@ -14,7 +14,13 @@ import Sidebar from "./Sidebar";
 
 const DashBoard = () => {
   const navigate = useNavigate();
-  const {sidebar} = useContext(AppContext);
+  const {sidebar , isLoggedIn} = useContext(AppContext);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <div className="main-home-bg pt-10 min-h-[100vh]">
@@ -25,7 +31,7 @@ const DashBoard = () => {
 
       <Navbar />
 
-      {sidebar ? <Sidebar /> : <div className="hidden"></div>}
+      {sidebar ? <Sidebar /> : null}
 
       <div className="text-white flex justify-between mx-auto my-10 dashboard-main">
 
@@ -37,7 +43,10 @@ const DashBoard = () => {
               <h2 className="text-sm">Dashboard</h2>
             </button>
 
-            <button className="mt-3 flex mx-auto option-btn items-center gap-1 justify-start">
+            <button 
+            onClick={()=>navigate('/dashboard/profile')}
+            className="mt-3 flex mx-auto option-btn items-center gap-1 justify-start"
+            >
               <RiAccountBoxFill />
               <h2 className="text-sm">Account</h2>
             </button>
@@ -66,7 +75,7 @@ const DashBoard = () => {
           {/* user info */}
           <div
             onClick={() => {
-              navigate("/profile");
+              navigate("/dashboard/profile");
             }}
             className="flex gap-3 justify-start mx-auto mb-4 w-[90%]"
           >

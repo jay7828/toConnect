@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { AppContext } from "../context/AppContext";
 
 function Collaboration() {
-  const {fetchProjects, searchRes , pId, setPId , tempSearchRes, setTempSearchRes } = useContext(AppContext);
+  const {fetchProjects, searchRes , pId, setPId , isLoggedIn } = useContext(AppContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -87,6 +87,10 @@ function Collaboration() {
   };
 
   useEffect(()=>{
+    if (!isLoggedIn) {
+      navigate("/login");
+      return;
+    }
     const pid = location.pathname.split("/").at(-1);
     setPId(pid);
     if(searchRes.length === 0){

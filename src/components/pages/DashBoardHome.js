@@ -9,8 +9,10 @@ import { RiSettingsFill } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
 import Loader from "./Loader";
 import Projects from "./Projects";
+import { useNavigate } from "react-router-dom";
 
 function DashBoardHome() {
+  const navigate = useNavigate();
   const { dashboardPanel, setDashboardPanle, loading, setLoading , tempSearchRes, setTempSearchRes , fetchProjects , searchRes } =
     useContext(AppContext);
   const [searchData, setSearchData] = useState({
@@ -79,7 +81,9 @@ function DashBoardHome() {
               <h2 className="text-sm">Dashboard</h2>
             </button>
 
-            <button className="mt-3 flex mx-auto option-btn items-center gap-1 justify-start">
+            <button 
+            onClick={()=>navigate('/dashboard/profile')}
+            className="mt-3 flex mx-auto option-btn items-center gap-1 justify-start">
               <RiAccountBoxFill />
               <h2 className="text-sm">Account</h2>
             </button>
