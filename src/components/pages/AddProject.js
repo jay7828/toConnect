@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 function AddProject() {
   const navigate = useNavigate();
-
+  const { isLoggedIn } = useContext(AppContext);
   const [needCollaboration, setNeedCollaboration] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -92,6 +93,13 @@ function AddProject() {
       console.error("Failed to fetch data:", response.statusText);
     }
   };
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+      return;
+    }
+  }, []);
 
   return (
     <div className="main-home-bg pt-10 min-h-[100vh] text-white">

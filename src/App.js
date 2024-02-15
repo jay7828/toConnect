@@ -6,7 +6,6 @@ import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import NotFound from "./components/pages/NotFound";
 import DashBoardParent from "./components/pages/DashBoardParent";
-import AddProjectTemplate from "./components/pages/AddProjectTemplate";
 import { useContext, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 import { AppContext } from "./components/context/AppContext";
@@ -15,6 +14,7 @@ import Profile from "./components/pages/Profile";
 import Collaboration from "./components/pages/Collaboration";
 import DashBoard from "./components/pages/DashBoard";
 import Inbox from "./components/pages/Inbox";
+import AddProject from "./components/pages/AddProject";
 
 function App() {
   const {setPId} = useContext(AppContext);
@@ -38,7 +38,7 @@ function App() {
           <Route path='/signup' element={<Signup />} />
           <Route path='/dashboard' element={<DashBoardParent />}>
             <Route index element={<DashBoard />} />
-            <Route path="addproject" ele ment={<AddProjectTemplate />} />  
+            <Route path="addproject" element={<AddProject />} />  
             <Route path="profile" element={<Profile />} />  
             <Route path="inbox" element={<Inbox />} />  
             <Route path="project/:projectId" element={<ShowProject />} />  
