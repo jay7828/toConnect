@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import React, { useContext, useEffect  } from "react";
 import Navbar from "./Navbar";
 import { PiSquaresFourFill } from "react-icons/pi";
@@ -8,11 +9,10 @@ import { RiMessage3Fill } from "react-icons/ri";
 import { RiSettingsFill } from "react-icons/ri";
 import user from "../assets/user.png";
 import { useNavigate } from "react-router-dom";
-import DashBoardHome from "./DashBoardHome";
 import { AppContext } from "../context/AppContext";
 import Sidebar from "./Sidebar";
 
-const DashBoard = () => {
+function DashBoard(){
   const navigate = useNavigate();
   const {sidebar , isLoggedIn} = useContext(AppContext);
 
@@ -23,7 +23,7 @@ const DashBoard = () => {
     }
   }, []);
 
-  return (
+  return(
     <div className="main-home-bg pt-10 min-h-[100vh]">
       <div className="gradient-1"></div>
       <div className="gradient-2"></div>
@@ -98,11 +98,11 @@ const DashBoard = () => {
 
         {/* dynamic panel */}
         <div className="dynamic-panel-main min-h-[500px]">
-          <DashBoardHome />
+          <Outlet />
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default DashBoard;

@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AppContext } from "../context/AppContext";
+import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
+import { PiSquaresFourFill } from "react-icons/pi";
 
 function Collaboration() {
-  const {fetchProjects, searchRes , pId, setPId , isLoggedIn } = useContext(AppContext);
+  const { dashboardPanel, setDashboardPanle, fetchProjects, searchRes , pId, setPId , isLoggedIn } = useContext(AppContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -86,6 +88,11 @@ function Collaboration() {
     }
   };
 
+  function handleDashPanel() {
+    if (dashboardPanel) setDashboardPanle(false);
+    else setDashboardPanle(true);
+  }
+
   useEffect(()=>{
     if (!isLoggedIn) {
       navigate("/login");
@@ -99,14 +106,18 @@ function Collaboration() {
   },[]);
   
   return (
-    <div className="main-home-bg pt-10 min-h-[100vh] text-white">
-      <div className="gradient-1"></div>
-      <div className="gradient-2"></div>
-      <div className="gradient-3"></div>
-      <div className="gradient-4"></div>
+    <div className="min-h-[100vh] text-white">
+      <button
+        onClick={() => handleDashPanel()}
+        className="options-panel-btn flex justify-center items-center h-[2rem] w-[2rem]"
+      >
+        <PiSquaresFourFill />
+      </button>
+
+      {dashboardPanel ? <DashBoardOptionsPanel /> : null}
 
       <form
-        className="dynamic-panel-main font-semibold mx-auto relative z-10 mb-10 flex flex-col gap-4"
+        className="font-semibold mx-auto relative z-10 flex flex-col gap-4"
       >
         <div className="z-10 px-10 mt-10">
           <p className="text-sm  pb-1">Email</p>
@@ -122,7 +133,7 @@ function Collaboration() {
         </div>
 
         {/* letterID */}
-        <div className="z-10 px-10 mt-10">
+        <div className="z-10 px-10">
           <p className="text-sm  pb-1">Letter ID</p>
           <input
             className="w-[100%] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
@@ -163,7 +174,7 @@ function Collaboration() {
 
         <div className="flex justify-center items-center">
           <button
-            className="mb-10 my-2 rounded-md border border-[#8f16c7ac] p-1 w-[95%] hover:bg-[#8f16c740]"
+            className="mb-5 my-2 rounded-md border border-[#8f16c7ac] p-1 w-[95%] hover:bg-[#8f16c740]"
             onClick={submitHandler}
           >
             Send

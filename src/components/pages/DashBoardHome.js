@@ -1,18 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
+import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
 import { AppContext } from "../context/AppContext";
 import { PiSquaresFourFill } from "react-icons/pi";
-import { RiFileCodeFill } from "react-icons/ri";
-import { RiAccountBoxFill } from "react-icons/ri";
-import { RiGroupFill } from "react-icons/ri";
-import { RiMessage3Fill } from "react-icons/ri";
-import { RiSettingsFill } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
 import Loader from "./Loader";
 import Projects from "./Projects";
-import { useNavigate } from "react-router-dom";
 
 function DashBoardHome() {
-  const navigate = useNavigate();
   const { dashboardPanel, setDashboardPanle, loading, setLoading , tempSearchRes, setTempSearchRes , fetchProjects , searchRes } =
     useContext(AppContext);
   const [searchData, setSearchData] = useState({
@@ -65,7 +59,7 @@ function DashBoardHome() {
   }, []);
 
   return (
-    <div className="my-10 flex relative gap-2 flex-col md:flex-row w-[95%] mx-auto">
+    <div className="flex relative gap-2 flex-col md:flex-row w-[100%] mx-auto">
       <button
         onClick={() => handleDashPanel()}
         className="options-panel-btn flex justify-center items-center h-[2rem] w-[2rem]"
@@ -74,45 +68,11 @@ function DashBoardHome() {
       </button>
 
       {dashboardPanel ? (
-        <div className="dashboard-options-panel">
-          <div className="mt-8">
-            <button className="flex mx-auto option-btn items-center gap-1 justify-start">
-              <PiSquaresFourFill />
-              <h2 className="text-sm">Dashboard</h2>
-            </button>
-
-            <button 
-            onClick={()=>navigate('/dashboard/profile')}
-            className="mt-3 flex mx-auto option-btn items-center gap-1 justify-start">
-              <RiAccountBoxFill />
-              <h2 className="text-sm">Account</h2>
-            </button>
-
-            <button className="mt-3 flex mx-auto option-btn items-center gap-1 justify-start">
-              <RiFileCodeFill />
-              <h2 className="text-sm">Projects</h2>
-            </button>
-
-            <button className="flex mt-3 mx-auto option-btn items-center gap-1 justify-start">
-              <RiGroupFill />
-              <h2 className="text-sm">Teams</h2>
-            </button>
-
-            <button className="flex mt-3 mx-auto option-btn items-center gap-1 justify-start">
-              <RiMessage3Fill />
-              <h2 className="text-sm">Community</h2>
-            </button>
-
-            <button className="flex mt-3 mx-auto option-btn items-center gap-1 justify-start">
-              <RiSettingsFill />
-              <h2 className="text-sm">Setting</h2>
-            </button>
-          </div>
-        </div>
+        <DashBoardOptionsPanel />
       ) : null}
 
-      <div className="rounded-lg dash-main-parts">
-        <div className="font-semibold mb-3 ml-3 min-w-[230px] text-lg sm:text-xl md:text-2xl lg:text-3xl">
+      <div className="rounded-lg my-10 dash-main-parts">
+        <div className="font-semibold mb-3 ml-5 sm:ml-10 min-w-[230px] text-lg sm:text-xl md:text-2xl lg:text-3xl">
           {/* heading */}
           Welcome Username !
         </div>

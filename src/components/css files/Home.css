@@ -209,6 +209,7 @@
   position: relative;
   flex-shrink: 0;
   border-radius: 0.45938rem;
+  border-top-left-radius: 1.05rem;
   border: 1.069px solid rgba(185, 54, 245, 0.25);
   background: linear-gradient(
     180deg,
@@ -223,10 +224,10 @@
 }
 
 .options-panel-btn {
+  margin-left: 0.2rem;
+  margin-top: 0.2rem;
   display: flex;
   position: absolute;
-  top: -32px;
-  left: -5px;
   z-index: 2;
   border-radius: 100%;
   border: 1.069px solid rgba(185, 54, 245, 0.25);
@@ -288,7 +289,7 @@
 }
 
 .dash-main-parts {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   position: relative;
   min-width: 235px;
   width: 100%;
@@ -303,7 +304,7 @@
 
 @media (min-width: 550px) {
   .dash-main-parts {
-    margin-top: 0px;
+    margin-top: 1.5rem;
   }
   .dashboard-options-panel {
     display: none;
@@ -315,6 +316,7 @@
     display: flex;
   }
   .dynamic-panel-main {
+    border-top-left-radius: 0.45938rem;
     width: calc(100% - 164px);
   }
 }

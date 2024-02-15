@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
+import { PiSquaresFourFill } from "react-icons/pi";
 
 function AddProject() {
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(AppContext);
+  const { dashboardPanel, setDashboardPanle, isLoggedIn } =
+    useContext(AppContext);
   const [needCollaboration, setNeedCollaboration] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -37,7 +40,6 @@ function AddProject() {
         [name]: value,
       };
     });
-
   };
 
   const submitHandler = async (e) => {
@@ -94,6 +96,11 @@ function AddProject() {
     }
   };
 
+  function handleDashPanel() {
+    if (dashboardPanel) setDashboardPanle(false);
+    else setDashboardPanle(true);
+  }
+
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login");
@@ -102,14 +109,18 @@ function AddProject() {
   }, []);
 
   return (
-    <div className="main-home-bg pt-10 min-h-[100vh] text-white">
-      <div className="gradient-1"></div>
-      <div className="gradient-2"></div>
-      <div className="gradient-3"></div>
-      <div className="gradient-4"></div>
+    <div className="min-h-[100vh] text-white">
+      <button
+        onClick={() => handleDashPanel()}
+        className="options-panel-btn flex justify-center items-center h-[2rem] w-[2rem]"
+      >
+        <PiSquaresFourFill />
+      </button>
+
+      {dashboardPanel ? <DashBoardOptionsPanel /> : null}
 
       <form
-        className="dynamic-panel-main font-semibold mx-auto relative z-10 mb-10 flex flex-col gap-4"
+        className=" font-semibold mx-auto relative z-10 flex flex-col gap-4"
         onSubmit={submitHandler}
       >
         <div className="z-10 px-10 mt-10">
@@ -190,8 +201,8 @@ function AddProject() {
           ></input>
         </div>
 
-        <div className="flex justify-between px-10">
-          <div className="z-10 w-[45%]">
+        <div className="flex md:flex-row flex-col justify-between px-10">
+          <div className="z-10 w-[100%] md:w-[45%]">
             <p className="text-sm  pb-1">Collaboration</p>
             <legend className="ml-2 gap-4 w-[15rem] flex justify-start items-center ">
               <label for="collab1">Yes</label>
@@ -208,7 +219,7 @@ function AddProject() {
             </legend>
           </div>
 
-          <div className="z-10 w-[45%]">
+          <div className="z-10 w-[100%] md:w-[45%]">
             <p className="text-sm  pb-1">Contact Info</p>
             <input
               className="w-[100%] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
@@ -224,7 +235,7 @@ function AddProject() {
 
         <div className="flex justify-center items-center">
           <button
-            className="mb-10 my-2 rounded-md border border-[#8f16c7ac] p-1 w-[95%] hover:bg-[#8f16c740]"
+            className="mb-5 my-2 rounded-md border border-[#8f16c7ac] p-1 w-[95%] hover:bg-[#8f16c740]"
             onClick={submitHandler}
           >
             Submit
