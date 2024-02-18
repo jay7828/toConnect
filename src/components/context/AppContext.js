@@ -4,6 +4,7 @@ import axios from "axios";
 export const AppContext = createContext();
 
 export default function AppContextProvider({ children }) {
+  
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [sidebar, setSidebar] = useState(false);
   const [dashboardPanel, setDashboardPanle] = useState(false);
@@ -11,6 +12,7 @@ export default function AppContextProvider({ children }) {
   const [tempSearchRes, setTempSearchRes] = useState([]);
   const [pId, setPId] = useState(1);
   const [searchRes, setSearchRes] = useState([]);
+  const [user, setUser] = useState([]);
 
   async function fetchProjects() {
     console.log("Fetch Data...");
@@ -46,6 +48,8 @@ export default function AppContextProvider({ children }) {
     fetchProjects,
     searchRes,
     setSearchRes,
+    user,
+    setUser,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

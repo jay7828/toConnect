@@ -7,14 +7,15 @@ import { RiAccountBoxFill } from "react-icons/ri";
 import { RiGroupFill } from "react-icons/ri";
 import { RiMessage3Fill } from "react-icons/ri";
 import { RiSettingsFill } from "react-icons/ri";
-import user from "../assets/user.png";
+import userImg from "../assets/user.png";
+// import userImg from "../assets/user2.jpg";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import Sidebar from "./Sidebar";
 
 function DashBoard(){
   const navigate = useNavigate();
-  const {sidebar , isLoggedIn} = useContext(AppContext);
+  const {sidebar , isLoggedIn , user} = useContext(AppContext);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -81,17 +82,20 @@ function DashBoard(){
             className="flex gap-3 justify-start mx-auto mb-4 w-[90%]"
           >
             {/* profile pic */}
-            <div className="flex justify-center items-center rounded-full p-[1px] max-h-max max-w-max min-w-[35px]">
-              <img src={user} height="50px" width="50px" />
+            <div className="flex justify-center items-center rounded-full p-[1px] max-h-max max-w-[2.5rem] bg-[#e1e1e1] min-w-[35px] overflow-hidden">
+              <img src={userImg} />
             </div>
 
             {/* user info */}
             <div className="mt-1">
               {/* username */}
-              <h2 className="text-sm font-bold">User's Full Name</h2>
+              <h2 className="text-sm font-bold">{user.name}</h2>
 
               {/* proffesion */}
-              <h3 className="text-xs">proffession</h3>
+              {
+                user.proffession?(<h3 className="text-xs">{user.proffession}</h3>):(null)
+              }
+              
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ import Loader from "./Loader";
 import Projects from "./Projects";
 
 function DashBoardHome() {
-  const { dashboardPanel, setDashboardPanle, loading, setLoading , tempSearchRes, setTempSearchRes , fetchProjects , searchRes } =
+  const {user , dashboardPanel, setDashboardPanle, loading, setLoading , tempSearchRes, setTempSearchRes , fetchProjects , searchRes } =
     useContext(AppContext);
   const [searchData, setSearchData] = useState({
     searchProjects: "",
@@ -74,7 +74,7 @@ function DashBoardHome() {
       <div className="rounded-lg my-10 dash-main-parts">
         <div className="font-semibold mb-3 ml-5 sm:ml-10 min-w-[230px] text-lg sm:text-xl md:text-2xl lg:text-3xl">
           {/* heading */}
-          Welcome Username !
+          Welcome {user.name} !
         </div>
 
         <form className="flex justify-center items-center mx-auto">

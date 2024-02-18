@@ -198,7 +198,7 @@
     #aa14f0 -42.59%,
     rgba(0, 0, 0, 0) -42.59%,
     #aa14f0 -42.58%,
-    rgba(170, 20, 240, 0) -6.09%,
+    rgba(170, 20, 240, 0.18) -6.09%,
     rgba(106, 60, 151, 0.23) 99.96%,
     rgba(185, 54, 245, 0) 99.97%
   );
@@ -209,14 +209,14 @@
   position: relative;
   flex-shrink: 0;
   border-radius: 0.45938rem;
-  border-top-left-radius: 1.05rem;
   border: 1.069px solid rgba(185, 54, 245, 0.25);
+  border-top-left-radius: 1.05rem;
   background: linear-gradient(
     180deg,
     #aa14f0 -42.59%,
     rgba(0, 0, 0, 0) -42.59%,
     #aa14f0 -42.58%,
-    rgba(170, 20, 240, 0.18) -6.09%,
+    rgba(170, 20, 240, 0) -6.09%,
     rgba(106, 60, 151, 0.23) 99.96%,
     rgba(185, 54, 245, 0) 99.97%
   );
@@ -228,7 +228,7 @@
   margin-top: 0.2rem;
   display: flex;
   position: absolute;
-  z-index: 2;
+  z-index: 100;
   border-radius: 100%;
   border: 1.069px solid rgba(185, 54, 245, 0.25);
   background: linear-gradient(
@@ -259,12 +259,93 @@
   background: rgba(109, 89, 233, 0.33);
 }
 
+.checkbox {
+  --border-default: #bbbbc1;
+  --border-hover: #9898a3;
+  --active: #9522ca;
+  --active-tick: #ffffff;
+  display: block;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  svg {
+    display: block;
+    position: absolute;
+  }
+  input {
+    display: block;
+    outline: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 36% / 36%;
+    box-shadow: inset 0 0 0 1.5px var(--border, var(--border-default));
+    background: var(--background, transparent);
+    transition: background 0.25s linear, box-shadow 0.25s linear;
+    & + svg {
+      width: 21px;
+      height: 18px;
+      left: 0;
+      top: 0;
+      color: var(--active);
+      .tick {
+        stroke-dasharray: 20;
+        stroke-dashoffset: var(--stroke-dashoffset, 20);
+        transition: stroke-dashoffset 0.2s;
+        &.mask {
+          stroke: var(--active-tick);
+        }
+      }
+      & + svg {
+        width: 11px;
+        height: 11px;
+        fill: none;
+        stroke: var(--active);
+        stroke-width: 1.25;
+        stroke-linecap: round;
+        top: -6px;
+        right: -10px;
+        stroke-dasharray: 4.5px;
+        stroke-dashoffset: 13.5px;
+        pointer-events: none;
+        animation: var(--animation, none) 0.2s ease 0.175s;
+      }
+    }
+    &:checked {
+      --background: var(--active);
+      --border: var(--active);
+      & + svg {
+        --stroke-dashoffset: 0;
+        & + svg {
+          --animation: check;
+        }
+      }
+    }
+  }
+  &:hover {
+    input {
+      &:not(:checked) {
+        --border: var(--border-hover);
+      }
+    }
+  }
+}
+
+@keyframes check {
+  100% {
+    stroke-dashoffset: 4.5px;
+  }
+}
+
 .dashboard-options-panel {
-  top: -37px;
-  left: -8px;
   position: absolute;
   display: flex;
-  z-index: 1;
+  z-index: 50;
   width: 18%;
   min-width: 154px;
   padding: 10px;
@@ -273,6 +354,7 @@
   flex-shrink: 0;
   border-radius: 0.45938rem;
   border: 1.069px solid rgba(185, 54, 245, 0.25);
+  border-top-left-radius: 1.05rem;
   background: linear-gradient(
     180deg,
     #4e056f -42.59%,
@@ -295,6 +377,10 @@
   width: 100%;
 }
 
+.dynamic-padding{
+  padding-top: 2rem;
+}
+
 @media (min-width: 950px) {
   .dynamic-panel-main {
     width: 81%;
@@ -303,6 +389,9 @@
 }
 
 @media (min-width: 550px) {
+  .dynamic-padding{
+    padding-top: 0px;
+  }
   .dash-main-parts {
     margin-top: 1.5rem;
   }

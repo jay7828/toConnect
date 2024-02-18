@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { AppContext } from "../context/AppContext";
 
 function LoginForm() {
   const navigate = useNavigate();
+  const {setIsLoggedIn, setUser, user} = useContext(AppContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -27,12 +29,12 @@ function LoginForm() {
     //We need TO add Fetch method Here
     e.preventDefault();
 
-    console.log(
-      JSON.stringify({
-        email: formData.email,
-        password: formData.password,
-      })
-    );
+    // console.log(
+    //   JSON.stringify({
+    //     email: formData.email,
+    //     password: formData.password,
+    //   })
+    // );
 
     const response = await fetch("https://toconnect.onrender.com/api/login", {
       method: "POST",
@@ -45,12 +47,17 @@ function LoginForm() {
       }),
     });
 
-    console.log(response);
+    // console.log(response);
+    
     if (response.ok) {
       const json = await response.json();
-      console.log(json);
+      // console.log(json);
+      setUser(json.userdata);
+      // console.log(user);
+      setIsLoggedIn(true);
+
       if (json.success) {
-        navigate("/");
+        navigate("/dashboard");
         toast.success("Login Successful!");
       } else {
         alert("Enter Valid Email and Password");

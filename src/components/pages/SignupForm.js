@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 function SignupForm() {
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const navigate = useNavigate();
+  const {setIsLoggedIn , setUser} = useContext(AppContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -29,13 +31,15 @@ function SignupForm() {
   const submitHandler = async(e) => {
     //We need TO add Fetch method Here
     e.preventDefault();
-    console.log(JSON.stringify({  
-      username: formData.UserName,
-      password: formData.createPassword,
-      name: formData.Name,
-      email:formData.email ,
-      date:Date(),
-    }))
+
+    // console.log(JSON.stringify({  
+    //   username: formData.UserName,
+    //   password: formData.createPassword,
+    //   name: formData.Name,
+    //   email:formData.email ,
+    //   date:Date(),
+    // }));
+
     const response=await fetch ("https://toconnect.onrender.com/api/register",(
       {
         method:"POST" ,
@@ -51,11 +55,14 @@ function SignupForm() {
           })
       })
     );
+
     if (response.ok) {
       const json = await response.json();
-      console.log(json);
+      setUser(json.userdata);
+      // console.log(json);
+      setIsLoggedIn(true);
       if (json.success) {
-        navigate("/");
+        navigate("/dashboard");
         toast.success("Sign Up Successful!");
       } else {
         alert("Enter Valid Email and Password");

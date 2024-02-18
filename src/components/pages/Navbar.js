@@ -6,7 +6,8 @@ import { AppContext } from "../context/AppContext";
 
 function Navbar() {
   const navigate = useNavigate();
-  const {sidebar, setSidebar} = useContext(AppContext);
+  const { sidebar, setSidebar, isLoggedIn, setIsLoggedIn } =
+    useContext(AppContext);
 
   function sidebarHandler() {
     if (sidebar) {
@@ -122,17 +123,25 @@ function Navbar() {
       <div className="text-sm btn-container hamburger font-medium">
         {/* home about contact */}
         <div className="w-max h-max">
-          <a href="#" className="w-max h-max">
+          <a href="#" className="w-max h-max" onClick={() => navigate("/")}>
             Home
           </a>
         </div>
         <div className="w-max h-max">
-          <a className="w-max h-max" href="#about">
+          <a
+            className="w-max h-max"
+            href="#about"
+            onClick={() => navigate("/")}
+          >
             About
           </a>
         </div>
         <div className="w-max h-max">
-          <a className="w-max h-max" href="#contact">
+          <a
+            className="w-max h-max"
+            href="#contact"
+            onClick={() => navigate("/")}
+          >
             Contact
           </a>
         </div>
@@ -140,12 +149,28 @@ function Navbar() {
 
       <div className="flex text-sm font-medium hamburger btn-container mr-7 justify-between items-center ">
         {/* login signup btn */}
-        <button className="btn-login btn" onClick={() => navigate("/login")}>
-          Login
-        </button>
-        <button className="btn-signup btn" onClick={() => navigate("/signup")}>
-          Signup
-        </button>
+
+        {isLoggedIn ? <div className="w-[0px] h-[0px]"></div> : (
+          <button className="btn-login btn" onClick={() => navigate("/login")}>
+            Login
+          </button>
+        )}
+
+        {isLoggedIn ? (
+          <button
+            className="btn-signup btn"
+            onClick={() => navigate("/dashboard")}
+          >
+            DashBoard
+          </button>
+        ) : (
+          <button
+            className="btn-signup btn"
+            onClick={() => navigate("/signup")}
+          >
+            Signup
+          </button>
+        )}
       </div>
     </nav>
   );
