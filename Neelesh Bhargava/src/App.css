@@ -1,0 +1,138 @@
+.container-fluid{
+ color: white;
+}
+.main-home-bg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background: #000;
+}
+
+.gradient-4 {
+  position: absolute;
+  bottom: 0%;
+  z-index: 1;
+  width: 100%;
+  height: 353px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    360deg,
+    #8c3cb1 -42.59%,
+    rgba(0, 0, 0, 0) -42.59%,
+    rgba(130, 20, 240, 0.52) -42.58%,
+    rgba(66, 10, 122, 0.49) 27.28%,
+    rgba(13, 2, 24, 0.14) 99.97%,
+    rgba(0, 0, 0, 0.05) 99.99%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.gradient-3 {
+  position: absolute;
+  right: -20%;
+  top: 2vw;
+  z-index: 1;
+  width: 60%;
+  height: 55vw;
+  flex-shrink: 0;
+  border-radius: 667.974px;
+  background: radial-gradient(
+    40.17% 39.79% at 50% 50%,
+    rgba(66, 0, 255, 0.31) 0%,
+    rgba(90, 20, 240, 0) 100%
+  );
+}
+
+.gradient-2 {
+  position: absolute;
+  left: -2%;
+  top: -40vw;
+  z-index: 1;
+  border-radius: 675.527px;
+  background: radial-gradient(
+    40.17% 39.79% at 50% 50%,
+    rgba(90, 20, 240, 0.31) 0%,
+    rgba(20, 95, 240, 0) 100%
+  );
+  width: 85%;
+  height: 85vw;
+  flex-shrink: 0;
+}
+
+.gradient-1 {
+  border-radius: 742px;
+  position: absolute;
+  top: 0%;
+  left: -45%;
+  z-index: 1;
+  background: radial-gradient(
+    40.17% 39.79% at 50% 50%,
+    rgba(24, 20, 240, 0.31) 0%,
+    rgba(90, 20, 240, 0) 100%
+  );
+  width: 65%;
+  height: 75vw;
+  flex-shrink: 0;
+}
+
+img{
+  float: left;
+ margin-left: 10px;
+  margin-right: 15px;
+   
+  width: 130px;
+  padding-top: 15px;
+  padding-left: 10px;
+  border-radius: 50%;
+}
+
+.profile-head{
+  width: 400px;
+  color: white;
+  padding-top: 25px;
+  margin-left: 100px;
+  
+}
+h1{
+  color: #fff;
+  padding-top: 20px;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+h3{
+  color: white;
+}
+#border{
+  color: #fff;
+  border: 2px solid purple;
+  width: 500px;
+  border-radius: 20px;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.col.md-3{
+  color: #fff;
+   margin-left: 20px;
+}
+.button{
+  color:  #fff;
+  text-align: center;
+  padding-top: 5px;
+  width: 200px;
+  margin-left : 50px;
+  margin-top: 75px;
+  border: 2px solid purple;
+  border-radius: 30px;
+  border-color: purple;
+  
+  
+}
+.row.lower{
+  color: white;
+  flex-wrap: wrap;
+  flex: 1 0 120px;
+  margin-top: 30px;
+}
