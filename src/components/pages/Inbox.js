@@ -1,18 +1,48 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AppContext } from "../context/AppContext";
 import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
 import { PiSquaresFourFill } from "react-icons/pi";
+import Message from "./Message";
 
 function Inbox(){
   const { dashboardPanel, setDashboardPanle, isLoggedIn } = useContext(AppContext);
   const [inbox , setInbox] = useState(true);
+  const [receivedMsg , setReceivedMsg] = useState([]);
   const navigate = useNavigate();
 
   function handleDashPanel() {
     if (dashboardPanel) setDashboardPanle(false);
     else setDashboardPanle(true);
+  }
+
+  async function FetchReceivedMessages(){
+    const response = await fetch(
+      "https://toconnect.onrender.com/api/collab_letter/fetch",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          receiver: "js758089@gmail.com",
+      }),
+    })
+
+    if (response.ok) {
+      const json = await response.json();
+      if (json.success) {
+        console.log(json);
+        setReceivedMsg(json.data);
+        // console.log(received);
+      } else {
+        alert("Error occured!");
+      }
+    } else {
+      console.error("Failed to fetch data:", response.statusText);
+    }
+
   }
 
   useEffect(()=>{
@@ -21,6 +51,7 @@ function Inbox(){
       return;
     }
 
+    FetchReceivedMessages();
   },[]);
 
   return(
@@ -42,8 +73,8 @@ function Inbox(){
       <div>
         {
           inbox?
-          (<div className="h-[450px] p-5">
-            inbox
+          (<div className=" p-5">
+            <Message msg={receivedMsg[0]} />
           </div>):
           (<div  className="h-[450px] p-5">
             sent

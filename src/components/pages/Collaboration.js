@@ -35,11 +35,11 @@ function Collaboration() {
       return res;
     })
 
-    if(!filteredData.Collaboration){
-      toast.error("Cannot Send Message!");
-      console.log("Cannot send msg to projects with collab feature turned OFF!");
-      return;
-    }
+    // if(!filteredData.Collaboration){
+    //   toast.error("Cannot Send Message!");
+    //   console.log("Cannot send msg to projects with collab feature turned OFF!");
+    //   return;
+    // }
 
     var today = new Date();
 
@@ -51,6 +51,8 @@ function Collaboration() {
         subject: formData.subject,
         body: formData.body,
         date: today,
+        projectID: pId,
+        ProjectTitle: filteredData[0].ProjectTitle,
       })
       );
       
@@ -68,6 +70,8 @@ function Collaboration() {
             subject: formData.subject,
             body: formData.body,
             date: today,
+            projectID: pId,
+            ProjectTitle: filteredData[0].ProjectTitle,
         }),
       }
     );
@@ -122,7 +126,7 @@ function Collaboration() {
         <div className="z-10 px-10 mt-10">
           <p className="text-sm  pb-1">Email</p>
           <input
-            className="w-[100%] h-[2rem] text-black focus:bg-[#9522ca2f] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700  rounded-md placeholder-[#ad67ce6c]"
+            className="w-[100%] h-[2rem] text-white focus:bg-[#9522ca2f] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700  rounded-md placeholder-[#ad67ce6c]"
             type="email"
             name="sender"
             placeholder="Enter your email address"
@@ -136,7 +140,7 @@ function Collaboration() {
         <div className="z-10 px-10">
           <p className="text-sm  pb-1">Letter ID</p>
           <input
-            className="w-[100%] h-[2rem] text-black focus:bg-[#9522ca2f] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md placeholder-[#ad67ce6c]"
+            className="w-[100%] h-[2rem] text-white focus:bg-[#9522ca2f] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md placeholder-[#ad67ce6c]"
             type="number"
             name="letterID"
             placeholder="Enter your Letter ID"
@@ -149,7 +153,7 @@ function Collaboration() {
         <div className="z-10 px-10">
           <p className="text-sm  pb-1">Collaboration Subject</p>
           <textarea
-            className="w-[100%] py-1 text-black focus:bg-[#9522ca2f] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md placeholder-[#ad67ce6c] "
+            className="w-[100%] py-1 text-white focus:bg-[#9522ca2f] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md placeholder-[#ad67ce6c] "
             name="subject"
             placeholder="Enter Collaboration Message Subject"
             value={formData.subject}
@@ -162,7 +166,7 @@ function Collaboration() {
         <div className="z-10 px-10">
           <p className="text-sm  pb-1">Collaboration Message</p>
           <textarea
-            className="w-[100%] py-1 text-black focus:bg-[#9522ca2f] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md placeholder-[#ad67ce6c]"
+            className="w-[100%] py-1 text-white focus:bg-[#9522ca2f] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md placeholder-[#ad67ce6c]"
             name="body"
             placeholder="Enter Collaboration Message"
             value={formData.body}
