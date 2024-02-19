@@ -21,6 +21,9 @@ router.post('/fetch', (req, res) => {
 router.post('/add', async (req, res) => {
   try {
     await Collab_letter.create({
+
+        pid:req.body.pid,
+        ptitle:req.body.ptitle,
         letterID:req.body.letterID,
         sender: req.body.sender,
         receiver: req.body.receiver,
