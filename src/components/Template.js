@@ -11,7 +11,7 @@ function Template({ formtype }) {
     console.log(response);
     await axios({
       method: "POST",
-      url: "http://localhost:google/api/googlelogin",
+      url: "http://localhost:6000/api/googlelogin",
       data: { tokenId: response.tokenId },
     }).then((response) => {
       console.log(response);
