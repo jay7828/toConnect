@@ -40,7 +40,7 @@ router.post("/googlelogin",(req,resp)=>{
                             user:{_id,name,email}
                           })
                         })
-                    }
+                    }npm
                  }
             })
         }
