@@ -25,6 +25,7 @@ mongoDB.connect(mongoURI).then(function()
     app.use('/api/project/',require("./Routes/addProject"))
     app.use('/api/users', require("./Routes/userRoutes"));
     app.use('/api/collab_letter/',require("./Routes/collab_letter"))
+    app.use('/api/googlelogin/',require("./Routes/googlelogin"))
 })
 const PORT = process.env.PORT||5000
 app.listen(PORT ,()=>{
