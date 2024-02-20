@@ -12,6 +12,7 @@ import userImg from "../assets/user.png";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import Sidebar from "./Sidebar";
+import Footer from "./Footer";
 
 function DashBoard(){
   const navigate = useNavigate();
@@ -104,7 +105,10 @@ function DashBoard(){
         <div className="dynamic-panel-main min-h-[500px]">
           <Outlet />
         </div>
+
       </div>
+
+      <div><Footer /></div>
     </div>
   );
 }
