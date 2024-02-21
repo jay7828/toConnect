@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { AppContext } from "../context/AppContext";
-import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
+import { AppContext } from "../../context/AppContext";
+import DashBoardOptionsPanel from "../DashBoardOptionsPanel";
 import { PiSquaresFourFill } from "react-icons/pi";
 import Message from "./Message";
-import Loader from "./Loader";
+import Loader from "../Loader";
 
 function Inbox() {
   const { loading , setLoading , dashboardPanel, setDashboardPanle, isLoggedIn } =

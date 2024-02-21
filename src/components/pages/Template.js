@@ -10,11 +10,11 @@ function Template({ formtype }) {
     const decodedHeader = jwtDecode(credentialResponse.credential);
     console.log(decodedHeader);
 
-    await axios({
-      method: "POST",
-      url: "http://localhost:3000/api/googleLogin",
-      data: { tokenId: credentialResponse.tokenId },
-    }).then((res) => console.log(res));
+    // await axios({
+    //   method: "POST",
+    //   url: "http://localhost:3000/api/googleLogin",
+    //   data: { tokenId: credentialResponse.tokenId },
+    // }).then((res) => console.log(res));
   }
 
   return (

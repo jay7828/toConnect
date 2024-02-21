@@ -4,6 +4,8 @@
   display: grid;
   animation: s4 4s infinite;
 }
+
+
 .custom-loader::before,
 .custom-loader::after {
   content: "";
@@ -336,12 +338,6 @@
   }
 }
 
-@keyframes check {
-  100% {
-    stroke-dashoffset: 4.5px;
-  }
-}
-
 .dashboard-options-panel {
   position: absolute;
   display: flex;
@@ -371,7 +367,6 @@
 }
 
 .dash-main-parts {
-  /* margin-top: 1rem; */
   position: relative;
   min-width: 235px;
   width: 100%;
@@ -379,56 +374,6 @@
 
 .dynamic-padding{
   padding-top: 2rem;
-}
-
-@media (min-width: 950px) {
-  .dynamic-panel-main {
-    width: 81%;
-    max-width: 81%;
-  }
-}
-
-@media (min-width: 550px) {
-  .dynamic-padding{
-    padding-top: 0px;
-  }
-  .dash-main-parts {
-    margin-top: 1.5rem;
-  }
-  .dashboard-options-panel {
-    display: none;
-  }
-  .options-panel-btn {
-    display: none;
-  }
-  .options-main {
-    display: flex;
-  }
-  .dynamic-panel-main {
-    border-top-left-radius: 0.45938rem;
-    width: calc(100% - 164px);
-  }
-}
-
-@media (min-width: 650px) {
-  .gradient-1 {
-    left: -25%;
-    width: 45%;
-    height: 45vw;
-  }
-  .gradient-2 {
-    top: -37vw;
-    width: 65%;
-    height: 75vw;
-  }
-  .gradient-3 {
-    width: 50%;
-    height: 45vw;
-    right: 10%;
-  }
-  .gradient-4 {
-    height: 25vw;
-  }
 }
 
 #notfound {
@@ -515,6 +460,67 @@
 .notfound a:hover {
   color: #8400ff;
 }
+
+.project{
+  background: linear-gradient(180deg, #9160A8 -42.59%, rgba(0, 0, 0, 0.00) -42.59%, #AA14F0 -42.58%, rgba(197, 114, 236, 0.00) -6.09%, rgba(106, 60, 151, 0.23) 99.96%, rgba(178, 67, 229, 0.00) 99.97%);
+}
+
+@keyframes check {
+  100% {
+    stroke-dashoffset: 4.5px;
+  }
+}
+
+@media (min-width: 950px) {
+  .dynamic-panel-main {
+    width: 81%;
+    max-width: 81%;
+  }
+}
+
+@media (min-width: 550px) {
+  .dynamic-padding{
+    padding-top: 0px;
+  }
+  .dash-main-parts {
+    margin-top: 1.5rem;
+  }
+  .dashboard-options-panel {
+    display: none;
+  }
+  .options-panel-btn {
+    display: none;
+  }
+  .options-main {
+    display: flex;
+  }
+  .dynamic-panel-main {
+    border-top-left-radius: 0.45938rem;
+    width: calc(100% - 164px);
+  }
+}
+
+@media (min-width: 650px) {
+  .gradient-1 {
+    left: -25%;
+    width: 45%;
+    height: 45vw;
+  }
+  .gradient-2 {
+    top: -37vw;
+    width: 65%;
+    height: 75vw;
+  }
+  .gradient-3 {
+    width: 50%;
+    height: 45vw;
+    right: 10%;
+  }
+  .gradient-4 {
+    height: 25vw;
+  }
+}
+
 
 @media only screen and (max-width: 767px) {
   .notfound .notfound-404 h2 {

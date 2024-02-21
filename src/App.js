@@ -12,9 +12,12 @@ import { AppContext } from "./components/context/AppContext";
 import ShowProject from "./components/pages/ShowProject";
 import Profile from "./components/pages/Profile";
 import Collaboration from "./components/pages/Collaboration";
-import Inbox from "./components/pages/Inbox";
+import Inbox from "./components/pages/Inbox/Inbox";
 import AddProject from "./components/pages/AddProject";
 import DashBoardHome from "./components/pages/DashBoardHome";
+import InboxTemplate from "./components/pages/Inbox/InboxTemplate";
+import Loader from "./components/pages/Loader";
+import CollabMessage from "./components/pages/Inbox/CollabMessage";
 
 function App() {
   const {setPId} = useContext(AppContext);
@@ -32,20 +35,37 @@ function App() {
   return (
     <div>
       <Routes>
+
         <Route path='/' element={<Parentpage />}>
+
           <Route index element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+
           <Route path='/dashboard' element={<DashBoard />}>
+
             <Route index element={<DashBoardHome />} />
             <Route path="addproject" element={<AddProject />} />  
             <Route path="profile" element={<Profile />} />  
             <Route path="inbox" element={<Inbox />} />  
+
+            <Route path="inbox" element={<InboxTemplate />}>
+              <Route index element={<Inbox />} />
+              <Route path="sent" element={<div>sent</div>} />  
+              <Route path="received" element={<div>received</div>} />  
+              <Route path="sent/:pid" element={<CollabMessage />} />  
+              <Route path="received/pid" element={<div>received/pid</div>} />  
+            </Route>
+
             <Route path="project/:projectId" element={<ShowProject />} />  
             <Route path="collaboration/:projectId" element={<Collaboration />} />  
+
           </Route>
+
           <Route path='*' element={<NotFound />} />
+
         </Route>
+
       </Routes>
     </div>
   );

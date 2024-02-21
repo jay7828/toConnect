@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import userImg from "../assets/user.png";
+import userImg from "../../assets/user.png";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../context/AppContext";
-// import Loader from "./Loader";
+import { AppContext } from "../../context/AppContext";
 
 function Message(props) {
   const navigate = useNavigate();

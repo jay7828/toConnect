@@ -14,7 +14,7 @@ function Project(props) {
   }, []);
 
   return (
-    <div className="text-white my-4 bg-[#9522ca37] py-4 px-6 rounded-md mx-auto w-[90%] flex flex-col border-purple-950 border-[0.5px] hover:cursor-pointer relative">
+    <div className="project text-white my-4 py-4 px-6 rounded-md mx-auto w-[90%] flex flex-col border-purple-950 border-[0.5px] hover:cursor-pointer relative">
       <div className="w-[100%] flex justify-between">
         <div
           className="pb-1 w-[calc(100%-5rem)] uppercase text-sm sm:text-base md:text-lg font-semibold flex items-center"
