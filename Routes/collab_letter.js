@@ -12,11 +12,36 @@ router.post('/fetch', (req, res) => {
       })
       .catch((err) => {
         console.log(err);
-        res.status(401).json({ success: false, errmsg: 'Failed to get Collab Letter data' });
+        res.status(401).json({ err,success: false, errmsg: 'Failed to get Collab Letter data' });
       });
   });
-  
 
+//get Collab Sent
+router.post('/sent', (req, res) => {
+    const sender = req.body.sender;
+  
+    Collab_letter.find({ sender: sender })
+      .then((collab_letterSchema) => {
+        res.json({ success: true, data: collab_letterSchema });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(401).json({ err,success: false, errmsg: 'Failed to get Collab Letter data' });
+      });
+  });
+//get Collab by letter ID
+router.post('/fetch/:letterID', (req, res) => {
+  
+  const { letterID } = req.params;
+  Collab_letter.find({ letterID: letterID })
+    .then((collab_letterSchema) => {
+      res.json({ success: true, data: collab_letterSchema });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(401).json({ err,success: false, errmsg: 'Failed to get Collab Letter data' });
+    });
+});
 // Add a new Collab Letter
 router.post('/add', async (req, res) => {
   try {
@@ -34,7 +59,7 @@ router.post('/add', async (req, res) => {
     res.json({ success: true });
   } catch (e) {
     console.log(e);
-    res.json({ success: false,message:"Collab Letter Not Added" });
+    res.json({ err,success: false,message:"Collab Letter Not Added" });
   }
 });
 
@@ -52,7 +77,7 @@ router.delete('/delete/:letterID', async (req, res) => {
     res.json({ success: true, deletedLetter });
   } catch (e) {
     console.error(e);
-    res.status(500).json({ success: false, message: 'Internal Server Error' });
+    res.status(500).json({ success: false,e, message: 'Internal Server Error' });
   }
 });
 
