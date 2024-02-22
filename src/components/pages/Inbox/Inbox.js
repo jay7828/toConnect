@@ -8,9 +8,9 @@ import Message from "./Message";
 import Loader from "../Loader";
 
 function Inbox() {
-  const { loading , setLoading , dashboardPanel, setDashboardPanle, isLoggedIn } =
+  const { loading, setLoading, dashboardPanel, setDashboardPanle, isLoggedIn } =
     useContext(AppContext);
-  const [inbox, setInbox] = useState(true);
+  const [sent, setSent] = useState(false);
   const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
 
@@ -19,11 +19,42 @@ function Inbox() {
     else setDashboardPanle(true);
   }
 
+  async function FetchSentMessages() {
+    setLoading(true);
+
+    // const response = await fetch(
+    //   "https://toconnect.onrender.com/api/collab_letter/fetch",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       sender: "sanskargour321@gmail.com",
+    //     }),
+    //   }
+    // );
+
+    // if (response.ok) {
+    //   const json = await response.json();
+    //   if (json.success) {
+    //     // console.log(json);
+    //     setMessages(json.data);
+    //     // console.log(received);
+    //   } else {
+    //     alert("Error occured!");
+    //   }
+    // } else {
+    //   console.error("Failed to fetch data:", response.statusText);
+    // }
+
+    setLoading(false);
+  }
+
   async function FetchReceivedMessages() {
     setLoading(true);
 
     const response = await fetch(
-
       "https://toconnect.onrender.com/api/collab_letter/fetch",
       {
         method: "POST",
@@ -50,7 +81,6 @@ function Inbox() {
     }
 
     setLoading(false);
-
   }
 
   useEffect(() => {
@@ -59,37 +89,65 @@ function Inbox() {
       return;
     }
 
-    FetchReceivedMessages();
+    if(!sent)
+      FetchReceivedMessages();
+    // else
+    //   FetchSentMessages();
+
   }, []);
 
   return (
     <div className="min-h-[100%] relative text-white">
+
+      <button
+        onClick={() => handleDashPanel()}
+        className="options-panel-btn flex justify-center items-center h-[2rem] w-[2rem]"
+      >
+        <PiSquaresFourFill />
+      </button>
+
+      <div>{dashboardPanel ? <DashBoardOptionsPanel /> : null}</div>
+
+      <div className="flex justify-around w-[100%]  relative border-b-[0.5px] border-b-slate-700">
+        <button 
+        onClick={() => setSent(false)}
+        className="flex flex-col w-[50%] gap-1 py-3 justify-center items-center "
+        >
+          Recieved 
+          {
+            !sent?
+            <div className="bg-white w-[30%] rounded-full h-[0.1rem] "></div>
+            :
+            null
+          }
+        </button>
+        
+        <button 
+        className="flex flex-col w-[50%] gap-1 py-3 justify-center items-center "
+        onClick={() => setSent(true)}
+        >
+          sent
+          {
+            sent?
+            <div className="bg-white w-[30%] rounded-full h-[0.1rem] "></div>
+            :
+            null
+          }
+        </button>
+      </div>
+
       {loading ? (
         <div className="w-[100%] h-[calc(100%-8rem)] py-[2rem] flex justify-center items-center">
           <Loader />
         </div>
       ) : (
         <div>
-          <button
-            onClick={() => handleDashPanel()}
-            className="options-panel-btn flex justify-center items-center h-[2rem] w-[2rem]"
-          >
-            <PiSquaresFourFill />
-          </button>
-          <div>{dashboardPanel ? <DashBoardOptionsPanel /> : null}</div>
-          <div className="flex justify-around py-4 w-[100%] relative border-b-[0.5px] border-b-slate-700">
-            <button onClick={() => setInbox(true)}>Recieved</button>
-            <button onClick={() => setInbox(false)}>Sent</button>
-          </div>
           <div>
-            {inbox ? (
+            {!sent ? (
               <div className=" p-5">
-                {
-                  messages.map((msg)=>{
-                    return (<Message msg={msg} />)
-                  })
-                }
-                
+                {messages.map((msg) => {
+                  return <Message msg={msg} />;
+                })}
               </div>
             ) : (
               <div className="h-[450px] p-5">sent</div>

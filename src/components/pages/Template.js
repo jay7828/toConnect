@@ -6,15 +6,17 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 function Template({ formtype }) {
-  async function googleLogin(credentialResponse) {
-    const decodedHeader = jwtDecode(credentialResponse.credential);
-    console.log(decodedHeader);
-
-    // await axios({
-    //   method: "POST",
-    //   url: "http://localhost:3000/api/googleLogin",
-    //   data: { tokenId: credentialResponse.tokenId },
-    // }).then((res) => console.log(res));
+  async function googleLogin(response) {
+    // const decodedHeader = jwtDecode(responseGoogle.credential);
+    // console.log(decodedHeader);
+    console.log(response);
+    await axios({
+      method: "POST",
+      url: "http://localhost:6000/api/googlelogin",
+      data: { tokenId: response.tokenId },
+    }).then((response) => {
+      console.log(response);
+    });
   }
 
   return (
@@ -35,7 +37,9 @@ function Template({ formtype }) {
 
         <div className="flex justify-center ">
           <GoogleLogin
-            onSuccess={(credentialResponse) => googleLogin(credentialResponse)}
+             onSuccess={(responseGoogle) => {
+              googleLogin(responseGoogle);
+            }}
             onError={() => {
               console.log("Login Failed");
             }}

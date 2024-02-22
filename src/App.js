@@ -15,8 +15,6 @@ import Collaboration from "./components/pages/Collaboration";
 import Inbox from "./components/pages/Inbox/Inbox";
 import AddProject from "./components/pages/AddProject";
 import DashBoardHome from "./components/pages/DashBoardHome";
-import InboxTemplate from "./components/pages/Inbox/InboxTemplate";
-import Loader from "./components/pages/Loader";
 import CollabMessage from "./components/pages/Inbox/CollabMessage";
 
 function App() {
@@ -49,13 +47,8 @@ function App() {
             <Route path="profile" element={<Profile />} />  
             <Route path="inbox" element={<Inbox />} />  
 
-            <Route path="inbox" element={<InboxTemplate />}>
-              <Route index element={<Inbox />} />
-              <Route path="sent" element={<div>sent</div>} />  
-              <Route path="received" element={<div>received</div>} />  
-              <Route path="sent/:pid" element={<CollabMessage />} />  
-              <Route path="received/pid" element={<div>received/pid</div>} />  
-            </Route>
+            <Route path="inbox" element={<Inbox />} />  
+            <Route path="inbox/:lid" element={<CollabMessage />} />    
 
             <Route path="project/:projectId" element={<ShowProject />} />  
             <Route path="collaboration/:projectId" element={<Collaboration />} />  
