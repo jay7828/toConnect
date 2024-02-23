@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
 import { AppContext } from "../context/AppContext";
 import { PiSquaresFourFill } from "react-icons/pi";
-import { CiSearch } from "react-icons/ci";
 import Loader from "./Loader";
 import Project from "./Project";
+import { IoMdRefresh } from "react-icons/io";
 
 function DashBoardHome() {
   const {
@@ -24,7 +24,6 @@ function DashBoardHome() {
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
-    // console.log(value);
     setSearchData((prevSearchData) => {
       return {
         ...prevSearchData,
@@ -37,18 +36,15 @@ function DashBoardHome() {
     setLoading(true);
 
     try {
-      // console.log(searchData.searchProjects);
-      // await fetchProjects();
       setTempSearchRes(searchRes);
-      console.log(tempSearchRes);
       if (tempSearchRes.length > 0) {
-        const filteredData = tempSearchRes.filter((res) => {
-          const resTitle = res.projectTitle.toLowerCase;
-          const pTitle = searchData.searchProjects.toLowerCase;
-          console.log(resTitle);
-          console.log(pTitle);
-          resTitle.includes(pTitle);
+        const filteredData = searchRes.filter((res) => {
+          return res.projectTitle.includes(searchData.searchProjects);
         });
+        console.log(filteredData);
+        if(filteredData.length === 0){
+          console.log("no data found");
+        }
         setTempSearchRes(filteredData);
       }
       setLoading(false);
@@ -94,8 +90,11 @@ function DashBoardHome() {
             onChange={changeHandler}
           />
 
-          <span className="bg-black text-white text-lg flex justify-center items-center opacity-65 h-[2rem] w-[2rem] cursor-pointer rounded-r-md">
-            <CiSearch />
+          <span
+            onClick={() => setTempSearchRes(searchRes)}
+            className="bg-black text-white text-lg flex justify-center items-center opacity-65 h-[2rem] w-[2rem] cursor-pointer rounded-r-md"
+          >
+            <IoMdRefresh />
           </span>
         </form>
 
