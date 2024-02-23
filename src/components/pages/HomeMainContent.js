@@ -6,12 +6,15 @@ import { AppContext } from "../context/AppContext";
 
 function HomeMainContent() {
   const navigate = useNavigate();
-  const {setSidebar} = useContext(AppContext);
+  const { setSidebar, isLoggedIn } = useContext(AppContext);
 
   return (
-    <div 
-    onClick={()=>{setSidebar(false)}}
-    className=" w-[85%] relative z-10 mb-24 xl:mb-56 mx-auto my-[8%] xl:flex ">
+    <div
+      onClick={() => {
+        setSidebar(false);
+      }}
+      className=" w-[85%] relative z-10 mb-24 xl:mb-56 mx-auto my-[8%] xl:flex "
+    >
       <div className="mx-auto flex">
         <div className="sm:mr-4 md:mr-8 min-w-[2rem] w-[3.5rem] sm:w-[5rem] md:w-[6rem] lg:w-[7rem] min-h-full">
           {/* icon */}
@@ -111,13 +114,21 @@ function HomeMainContent() {
 
           <div className="mt-14 text-[12.5px] lg:text-[1rem] w-max">
             <div className="text-white flex w-[12rem] justify-between items-center font-medium py-6">
-              {/* know more and sign up btn */}
-              <button
+              {isLoggedIn ? 
+              ( <button
                 className="btn-signup btn"
-                onClick={() => navigate("/signup")}
+                onClick={() => navigate("/dashboard")}
               >
-                Signup
-              </button>
+                Dashboard
+              </button>)
+              : (
+                <button
+                  className="btn-signup btn"
+                  onClick={() => navigate("/signup")}
+                >
+                  Signup
+                </button>
+              )}
 
               <button>know More</button>
             </div>

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import React, { useContext, useEffect  } from "react";
+import React, { useContext, useEffect } from "react";
 import Navbar from "./Navbar";
 import { PiSquaresFourFill } from "react-icons/pi";
 import { RiFileCodeFill } from "react-icons/ri";
@@ -14,9 +14,9 @@ import { AppContext } from "../context/AppContext";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 
-function DashBoard(){
+function DashBoard() {
   const navigate = useNavigate();
-  const {sidebar , isLoggedIn , user} = useContext(AppContext);
+  const { sidebar, isLoggedIn, user } = useContext(AppContext);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -25,7 +25,7 @@ function DashBoard(){
     }
   }, []);
 
-  return(
+  return (
     <div className="main-home-bg pt-10 min-h-[100vh]">
       <div className="gradient-1"></div>
       <div className="gradient-2"></div>
@@ -37,26 +37,33 @@ function DashBoard(){
       {sidebar ? <Sidebar /> : null}
 
       <div className="text-white flex justify-between mx-auto my-10 dashboard-main">
-
         {/* options panel */}
         <div className="options-main ">
           <div className="mt-8">
-            <button className="flex mx-auto option-btn items-center gap-1 justify-start">
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="flex mx-auto option-btn items-center gap-1 justify-start"
+            >
               <PiSquaresFourFill />
               <h2 className="text-sm">Dashboard</h2>
             </button>
 
-            <button 
-            onClick={()=>navigate('/dashboard/profile')}
-            className="mt-3 flex mx-auto option-btn items-center gap-1 justify-start"
+            <button
+              onClick={() => navigate("/dashboard/profile")}
+              className="mt-3 flex mx-auto option-btn items-center gap-1 justify-start"
             >
               <RiAccountBoxFill />
               <h2 className="text-sm">Account</h2>
             </button>
 
-            <button className="mt-3 flex mx-auto option-btn items-center gap-1 justify-start">
+            <button
+              onClick={() => {
+                navigate(`addproject`);
+              }}
+              className="mt-3 flex mx-auto option-btn items-center gap-1 justify-start"
+            >
               <RiFileCodeFill />
-              <h2 className="text-sm">Projects</h2>
+              <h2 className="text-sm">Add Projects</h2>
             </button>
 
             <button className="flex mt-3 mx-auto option-btn items-center gap-1 justify-start">
@@ -93,22 +100,22 @@ function DashBoard(){
               <h2 className="text-sm font-bold">{user.name}</h2>
 
               {/* proffesion */}
-              {
-                user.proffession?(<h3 className="text-xs">{user.proffession}</h3>):(null)
-              }
-              
+              {user.proffession ? (
+                <h3 className="text-xs">{user.proffession}</h3>
+              ) : null}
             </div>
           </div>
         </div>
 
         {/* dynamic panel */}
-        <div className="dynamic-panel-main min-h-[500px]">
+        <div className="dynamic-panel-main h-[500px] overflow-y-scroll">
           <Outlet />
         </div>
-
       </div>
 
-      <div><Footer /></div>
+      <div className="mt-40">
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -13,6 +13,7 @@ export default function AppContextProvider({ children }) {
   const [searchRes, setSearchRes] = useState([]);
   const [user, setUser] = useState([]);
   const [collabMsg, setCollabMsg] = useState();
+  const [sent, setSent] = useState(false);
 
   async function fetchProjects() {
     console.log("Fetch Data...");
@@ -52,6 +53,8 @@ export default function AppContextProvider({ children }) {
     setUser,
     collabMsg,
     setCollabMsg,
+    sent,
+    setSent,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

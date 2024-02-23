@@ -7,7 +7,7 @@ import { PiSquaresFourFill } from "react-icons/pi";
 
 function AddProject() {
   const navigate = useNavigate();
-  const { dashboardPanel, setDashboardPanle, isLoggedIn } =
+  const { dashboardPanel, setDashboardPanle, isLoggedIn , user } =
     useContext(AppContext);
   const [needCollaboration, setNeedCollaboration] = useState(false);
 
@@ -49,7 +49,7 @@ function AddProject() {
     console.log(
       JSON.stringify({
         email: formData.email,
-        projectID: formData.projectID,
+        projectID: `${user.username}${formData.projectID}`,
         projectTitle: formData.projectTitle,
         projectDesc: formData.projectDesc,
         techStack: formData.techStack,
@@ -68,7 +68,7 @@ function AddProject() {
         },
         body: JSON.stringify({
           email: formData.email,
-          projectID: formData.projectID,
+          projectID: `${user.username}${formData.projectID}`,
           projectTitle: formData.projectTitle,
           projectDesc: formData.projectDesc,
           techStack: formData.techStack.split(" "),
@@ -85,7 +85,7 @@ function AddProject() {
       const json = await response.json();
       console.log(json);
       if (json.success) {
-        navigate("/");
+        navigate("/dashboard");
         toast.success("Project Added Successfully!");
       } else {
         alert("Error occured!");
@@ -267,7 +267,7 @@ function AddProject() {
 
         <div className="flex justify-center items-center">
           <button
-            className="mb-5 my-2 rounded-md border border-[#8f16c7ac] p-1 w-[92.5%] hover:bg-[#8f16c740]"
+            className="mb-5 my-2 rounded-md border bg-[#9522ca] focus:bg-[#9522ca2f] border-[#8f16c7ac] p-1 w-[15%] hover:bg-[#8f16c7cf]"
             onClick={submitHandler}
           >
             Submit

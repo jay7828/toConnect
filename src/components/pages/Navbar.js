@@ -6,7 +6,7 @@ import { AppContext } from "../context/AppContext";
 
 function Navbar() {
   const navigate = useNavigate();
-  const { sidebar, setSidebar, isLoggedIn, setIsLoggedIn } =
+  const { sidebar, setSidebar, isLoggedIn,  } =
     useContext(AppContext);
 
   function sidebarHandler() {
@@ -159,9 +159,9 @@ function Navbar() {
         {isLoggedIn ? (
           <button
             className="btn-signup btn"
-            onClick={() => navigate("/dashboard")}
+            onClick={() => navigate("/dashboard/inbox")}
           >
-            DashBoard
+            Inbox
           </button>
         ) : (
           <button

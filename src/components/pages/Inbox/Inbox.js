@@ -8,9 +8,8 @@ import Message from "./Message";
 import Loader from "../Loader";
 
 function Inbox() {
-  const { loading, setLoading, dashboardPanel, setDashboardPanle, isLoggedIn } =
+  const { loading, setLoading, dashboardPanel, setDashboardPanle, isLoggedIn ,sent, setSent } =
     useContext(AppContext);
-  const [sent, setSent] = useState(false);
   const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
 
@@ -22,31 +21,30 @@ function Inbox() {
   async function FetchSentMessages() {
     setLoading(true);
 
-    // const response = await fetch(
-    //   "https://toconnect.onrender.com/api/collab_letter/fetch",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       sender: "sanskargour321@gmail.com",
-    //     }),
-    //   }
-    // );
+    const response = await fetch(
+      "https://toconnect.onrender.com/api/collab_letter/sent",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          sender: "sanskargour321@gmail.com",
+        }),
+      }
+    );
 
-    // if (response.ok) {
-    //   const json = await response.json();
-    //   if (json.success) {
-    //     // console.log(json);
-    //     setMessages(json.data);
-    //     // console.log(received);
-    //   } else {
-    //     alert("Error occured!");
-    //   }
-    // } else {
-    //   console.error("Failed to fetch data:", response.statusText);
-    // }
+    if (response.ok) {
+      const json = await response.json();
+      if (json.success) {
+        console.log(json.data);
+        setMessages(json.data);
+      } else {
+        alert("Error occured!");
+      }
+    } else {
+      console.error("Failed to fetch data:", response.statusText);
+    }
 
     setLoading(false);
   }
@@ -70,9 +68,8 @@ function Inbox() {
     if (response.ok) {
       const json = await response.json();
       if (json.success) {
-        // console.log(json);
+        console.log(json.data);
         setMessages(json.data);
-        // console.log(received);
       } else {
         alert("Error occured!");
       }
@@ -89,16 +86,12 @@ function Inbox() {
       return;
     }
 
-    if(!sent)
-      FetchReceivedMessages();
-    // else
-    //   FetchSentMessages();
-
-  }, []);
+    if (!sent) FetchReceivedMessages();
+    else FetchSentMessages();
+  }, [sent]);
 
   return (
     <div className="min-h-[100%] relative text-white">
-
       <button
         onClick={() => handleDashPanel()}
         className="options-panel-btn flex justify-center items-center h-[2rem] w-[2rem]"
@@ -109,30 +102,24 @@ function Inbox() {
       <div>{dashboardPanel ? <DashBoardOptionsPanel /> : null}</div>
 
       <div className="flex justify-around w-[100%]  relative border-b-[0.5px] border-b-slate-700">
-        <button 
-        onClick={() => setSent(false)}
-        className="flex flex-col w-[50%] gap-1 py-3 justify-center items-center "
+        <button
+          onClick={() => setSent(false)}
+          className="flex flex-col w-[50%] gap-1 py-3 justify-center items-center "
         >
-          Recieved 
-          {
-            !sent?
+          Recieved
+          {!sent ? (
             <div className="bg-white w-[30%] rounded-full h-[0.1rem] "></div>
-            :
-            null
-          }
+          ) : null}
         </button>
-        
-        <button 
-        className="flex flex-col w-[50%] gap-1 py-3 justify-center items-center "
-        onClick={() => setSent(true)}
+
+        <button
+          className="flex flex-col w-[50%] gap-1 py-3 justify-center items-center "
+          onClick={() => setSent(true)}
         >
           sent
-          {
-            sent?
+          {sent ? (
             <div className="bg-white w-[30%] rounded-full h-[0.1rem] "></div>
-            :
-            null
-          }
+          ) : null}
         </button>
       </div>
 
@@ -141,18 +128,10 @@ function Inbox() {
           <Loader />
         </div>
       ) : (
-        <div>
-          <div>
-            {!sent ? (
-              <div className=" p-5">
-                {messages.map((msg) => {
-                  return <Message msg={msg} />;
-                })}
-              </div>
-            ) : (
-              <div className="h-[450px] p-5">sent</div>
-            )}
-          </div>
+        <div className=" p-5">
+          {messages.map((msg) => {
+            return <Message msg={msg} />;
+          })}
         </div>
       )}
     </div>

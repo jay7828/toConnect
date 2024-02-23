@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import userImg from "../../assets/user.png";
-import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 function Message(props) {
-  const {setCollabMsg} = useContext(AppContext);
+  const {setCollabMsg , sent } = useContext(AppContext);
   const navigate = useNavigate();
   const msg = props.msg;
   const [date, setDate] = useState("");
@@ -20,7 +20,7 @@ function Message(props) {
     <div
       onClick={() => {
         setCollabMsg(msg);
-        console.log(msg);
+        // console.log(msg);
         navigate(`/dashboard/inbox/${msg.letterID}`);
       }}
       className="flex flex-col bg-[#9522ca4c] justify-between p-4 items-center border-slate-700 border-[0.5px] rounded-xl mb-4"
@@ -31,7 +31,13 @@ function Message(props) {
             <img src={userImg} />
           </div>
 
-          <h2 className="font-bold">{msg.sender}</h2>
+          <h2 className="font-bold">
+            {
+              sent?
+              ("To :  " + msg.receiver):
+              ("From : " + msg.sender)
+            }
+          </h2>
         </div>
 
         <div className="flex gap-3 text-xs justify-center items-center mr-3 text-gray-400">

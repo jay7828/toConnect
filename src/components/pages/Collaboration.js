@@ -188,7 +188,7 @@ function Collaboration() {
 
           <div className="flex justify-center items-center">
             <button
-              className="mb-5 my-2 rounded-md border focus:bg-[#9522ca2f] border-[#8f16c7ac] p-1 w-[92.5%] hover:bg-[#8f16c740]"
+              className="mb-5 my-2 rounded-md border bg-[#9522ca] focus:bg-[#9522ca2f] border-[#8f16c7ac] p-1 w-[15%] hover:bg-[#8f16c7cf]"
               onClick={submitHandler}
             >
               Send
