@@ -7,9 +7,9 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   date: { type: Date, default: Date.now },
   contact_no: { type: Number },
-  year_of_passing: { type: Date },
+  year_of_passing: { type:Number },
   branch: { type: String },
-  skill: { type: String },
+  skill: [{ type: String }],
   about: { type: String },
 });
 
