@@ -10,7 +10,7 @@ const userSchema = new Schema({
   year_of_passing: { type:Number ,default:"0000" },
   branch: { type: String ,default:"xx" },
   skill: [{ type: String,default:"xxxx"  }],
-  about: { type: String,default:"xxxx"  },
+  about: { type: String,default:"xxxx"},
 });
 
 module.exports = mongoose.model("user", userSchema);

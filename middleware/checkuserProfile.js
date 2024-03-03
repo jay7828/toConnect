@@ -5,7 +5,7 @@ const checkUserProfile = async (req, res, next) => {
     try {
         const user = await User.findOne({ email: req.body.email });
         console.log(user);
-    if (user.branch=='xx' || user.year_of_passing==0) {
+    if (user.branch=='xx' || user.year_of_passing==0 ||user.contact_no==0||user.skill=='xxxx'||user.about=='xxxx') {
             req.isProfileComplete = false; // User found but missing required profile fields
         } else {
             req.isProfileComplete = true; // User found and profile is complete
