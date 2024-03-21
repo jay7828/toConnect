@@ -6,6 +6,7 @@ import { AppContext } from "../context/AppContext";
 
 function LoginForm() {
   const navigate = useNavigate();
+  const [loggingIn , setLoggingIn] = useState(false);
   const {setIsLoggedIn, setUser, user} = useContext(AppContext);
 
   const [formData, setFormData] = useState({
@@ -36,6 +37,8 @@ function LoginForm() {
     //   })
     // );
 
+    setLoggingIn(true);
+
     const response = await fetch("https://toconnect.onrender.com/api/login", {
       method: "POST",
       headers: {
@@ -51,7 +54,7 @@ function LoginForm() {
     
     if (response.ok) {
       const json = await response.json();
-      // console.log(json);
+      console.log(json);
       setUser(json.userdata);
       // console.log(user);
       setIsLoggedIn(true);
@@ -66,6 +69,8 @@ function LoginForm() {
       // Handle error here
       console.error("Failed to fetch data:", response.statusText);
     }
+
+    setLoggingIn(false);
   };
 
   return (
@@ -114,7 +119,7 @@ function LoginForm() {
 
         <button
           type="submit"
-          className="mt-5 bg-[#ffd607] text-black font-semibold flex justify-center items-center py-2 rounded-lg border-[0.5px] border-slate-700 "
+          className={loggingIn? "mt-5 bg-[#757575] text-black font-semibold flex justify-center items-center py-2 rounded-lg border-[0.5px] border-slate-700 hover:cursor-none" : "mt-5 bg-[#ffd607] text-black font-semibold flex justify-center items-center py-2 rounded-lg border-[0.5px] border-slate-700 "}
         >
           Sign In
         </button>

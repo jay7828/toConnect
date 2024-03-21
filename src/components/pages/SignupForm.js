@@ -28,9 +28,9 @@ function SignupForm() {
     });
   };
 
-  const submitHandler = async(e) => {
+  const submitHandler = async(event) => {
     //We need TO add Fetch method Here
-    e.preventDefault();
+    event.preventDefault();
 
     // console.log(JSON.stringify({  
     //   username: formData.UserName,
@@ -59,10 +59,10 @@ function SignupForm() {
     if (response.ok) {
       const json = await response.json();
       setUser(json.userdata);
-      // console.log(json);
+      console.log(json);
       setIsLoggedIn(true);
       if (json.success) {
-        navigate("/dashboard");
+        navigate("/");
         toast.success("Sign Up Successful!");
       } else {
         alert("Enter Valid Email and Password");
@@ -77,7 +77,7 @@ function SignupForm() {
   return (
     <div>
       <form 
-      onSubmit={submitHandler} 
+      onSubmit={submitHandler}
       className="min-w-max flex flex-col gap-4">
 
         <div className="flex gap-[1rem] z-10">
@@ -175,6 +175,7 @@ function SignupForm() {
         </div>
 
         <button
+          // onClick={()=>submitHandler()}
           type="submit"
           className="mt-5 bg-[#ffd607] text-black font-semibold flex justify-center items-center py-2 rounded-lg border-[0.5px] border-slate-700 "
         >

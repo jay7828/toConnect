@@ -9,7 +9,7 @@
   /* background-color: #2c294f; */
 }
 .loader {
-  --sz: 7rem;
+  --sz: 3rem;
   width: calc(var(--sz) * 2);
   height: var(--sz);
   margin: auto;

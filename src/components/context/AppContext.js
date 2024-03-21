@@ -12,11 +12,30 @@ export default function AppContextProvider({ children }) {
   const [pId, setPId] = useState(1);
   const [searchRes, setSearchRes] = useState([]);
   const [user, setUser] = useState([]);
+  const [searchedUser, setSearchedUser] = useState([]);
   const [collabMsg, setCollabMsg] = useState();
   const [sent, setSent] = useState(false);
 
+  async function fetchUser(username) {
+    console.log("Fetching User...");
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `https://toconnect.onrender.com/api/users/profile/${username}`
+      );
+      const data = res.data;
+      setSearchRes(data.data);
+      setTempSearchRes(data.data);
+      setLoading(false);
+    } catch (error) {
+      console.log("Error occurred during fetch call!");
+      console.error(error);
+      setLoading(false);
+    }
+  }
+
   async function fetchProjects() {
-    console.log("Fetch Data...");
+    console.log("Fetching Projects...");
     setLoading(true);
     try {
       const res = await axios.get(
@@ -34,6 +53,9 @@ export default function AppContextProvider({ children }) {
   }
 
   const value = {
+    fetchUser,
+    searchedUser,
+    setSearchedUser,
     sidebar,
     setSidebar,
     isLoggedIn,

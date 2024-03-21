@@ -16,6 +16,7 @@ import Inbox from "./components/pages/Inbox/Inbox";
 import AddProject from "./components/pages/AddProject";
 import DashBoardHome from "./components/pages/DashBoardHome";
 import CollabMessage from "./components/pages/Inbox/CollabMessage";
+import SearchProfile from "./components/pages/SearchProfile";
 
 function App() {
   const {setPId} = useContext(AppContext);
@@ -45,6 +46,7 @@ function App() {
             <Route index element={<DashBoardHome />} />
             <Route path="addproject" element={<AddProject />} />  
             <Route path="profile" element={<Profile />} />  
+            <Route path="profile/:username" element={<SearchProfile />} />  
             <Route path="inbox" element={<Inbox />} />  
 
             <Route path="inbox" element={<Inbox />} />  

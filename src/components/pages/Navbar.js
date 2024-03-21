@@ -6,8 +6,7 @@ import { AppContext } from "../context/AppContext";
 
 function Navbar() {
   const navigate = useNavigate();
-  const { sidebar, setSidebar, isLoggedIn,  } =
-    useContext(AppContext);
+  const { sidebar, setSidebar, isLoggedIn , setIsLoggedIn} = useContext(AppContext);
 
   function sidebarHandler() {
     if (sidebar) {
@@ -15,7 +14,6 @@ function Navbar() {
     } else {
       setSidebar(true);
     }
-    // console.log(sidebar);
   }
 
   return (
@@ -150,7 +148,11 @@ function Navbar() {
       <div className="flex text-sm font-medium hamburger btn-container mr-7 justify-between items-center ">
         {/* login signup btn */}
 
-        {isLoggedIn ? <div className="w-[0px] h-[0px]"></div> : (
+        {isLoggedIn ? (
+          <button className="btn-login btn" onClick={() => setIsLoggedIn(false)}>
+            Logout
+          </button>
+        ) : (
           <button className="btn-login btn" onClick={() => navigate("/login")}>
             Login
           </button>
