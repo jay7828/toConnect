@@ -1,52 +1,44 @@
 const express = require('express');
 const router = express.Router();
-const { OAuth2Client } = require('google-auth-library');
-const User =require('../model/userSchema');
+const bcrypt = require('bcrypt');
+const User = require('../model/userSchema');
+const { validationResult } = require('express-validator');
+const jwt = require('jsonwebtoken');
+const { checkUserProfile } = require('../middleware/checkuserProfile');
 
-const client = new OAuth2Client("1063626587554-t35p4t5vfu1a2ier97tch4u74qaboghs.apps.googleusercontent.com");
+router.post("/auth/googlelogin", checkUserProfile, async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const username = req.body.username;
+    const name = req.body.name;
 
-router.post("/googlelogin", (req, resp) => {
-    const { tokenId } = req.body;
-    client.verifyIdToken({ idToken: tokenId, audience: "1063626587554-t35p4t5vfu1a2ier97tch4u74qaboghs.apps.googleusercontent.com" })
-        .then(response => {
-            const { email_verified, name, email } = response.payload; // Use response.payload instead of response.getPayload
-            if (email_verified) {
-                User.findOne({ email }).exec((err, user) => {
-                    if (err) {
-                        return resp.status(400).json({
-                            error: "something went wrong"
-                        });
-                    } else {
-                        if (user) {
-                            const { _id, name, email } = user;
-                            resp.json({
-                                user: { _id, name, email }
-                            });
-                        } else {
-                            let password = email + "googlelogin";
-                            let newUser = new User({ name, email, password });
-                            newUser.save((err, data) => {
-                                if (err) {
-                                    return resp.status(400).json({
-                                        error: "something went wrong..."
-                                    });
-                                }
-                                const { _id, name, email } = newUser;
-                                resp.json({
-                                    user: { _id, name, email }
-                                });
-                            });
-                        }
-                    }
-                });
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            return resp.status(500).json({
-                error: "Internal server error"
+    try {
+        // Check if user with the provided email already exists
+        const existingUser = await User.findOne({ email: email });
+
+        if (existingUser) {
+            // Email already exists, send response with profile completion status
+            res.json({ success: true, isProfileComplete: req.isProfileComplete });
+        } else {
+            // Email does not exist, create a new user
+            await User.create({
+                username: username,
+                name: name,
+                email: email,
+                password: password,
+                branch:"IT",
+                year_of_passing:"2023",
+                skills:"Web",
+                contact_no:"9406885406"
             });
-        });
+
+            // Send response with profile completion status
+            res.json({ success: true, isProfileComplete: false });
+        }
+    } catch (error) {
+        console.error('Error in /auth/googlelogin route:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
 });
 
 module.exports = router;
