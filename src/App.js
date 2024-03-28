@@ -17,6 +17,7 @@ import AddProject from "./components/pages/AddProject";
 import DashBoardHome from "./components/pages/DashBoardHome";
 import CollabMessage from "./components/pages/Inbox/CollabMessage";
 import SearchProfile from "./components/pages/SearchProfile";
+import UpdateProject from "./components/pages/UpdateProject";
 
 function App() {
   const {setPId} = useContext(AppContext);
@@ -53,6 +54,7 @@ function App() {
             <Route path="inbox/:lid" element={<CollabMessage />} />    
 
             <Route path="project/:projectId" element={<ShowProject />} />  
+            <Route path="project/update/:projectId" element={<UpdateProject />} />  
             <Route path="collaboration/:projectId" element={<Collaboration />} />  
 
           </Route>

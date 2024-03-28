@@ -6,7 +6,7 @@ import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
 import { PiSquaresFourFill } from "react-icons/pi";
 import axios from "axios";
 
-function AddProject() {
+function UpdateProject() {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
   const { dashboardPanel, setDashboardPanle, isLoggedIn, user } =
@@ -14,8 +14,6 @@ function AddProject() {
   const [needCollaboration, setNeedCollaboration] = useState(false);
 
   const [formData, setFormData] = useState({
-    email: "",
-    projectID: "",
     projectTitle: "",
     projectDesc: "",
     techStack: "",
@@ -65,16 +63,8 @@ function AddProject() {
     //We need TO add Fetch method Here
     e.preventDefault();
 
-    if (formData.username === undefined) {
-      toast.error("Invalid Operation!");
-      // navigate("/");
-      return;
-    }
-
     console.log(
       JSON.stringify({
-        email: formData.email,
-        projectID: `${user.username}${formData.projectID}`,
         projectTitle: formData.projectTitle,
         projectDesc: formData.projectDesc,
         techStack: formData.techStack,
@@ -92,8 +82,6 @@ function AddProject() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: formData.email,
-          projectID: `${user.username}${formData.projectID}`,
           projectTitle: formData.projectTitle,
           projectDesc: formData.projectDesc,
           techStack: formData.techStack.split(" "),
@@ -149,33 +137,7 @@ function AddProject() {
         onSubmit={submitHandler}
       >
         <div className="mt-5 pl-10 font-bold uppercase text-sm md:text-base lg:text-lg">
-          Add Project
-        </div>
-
-        <div className="z-10 px-10">
-          <p className="text-sm  pb-1">Email Address</p>
-          <input
-            className="w-[100%] h-[2rem] text-white focus:bg-[#9522ca2f] placeholder-[#ad67ce6c] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
-            type="email"
-            name="email"
-            placeholder="Enter email address"
-            value={formData.email}
-            onChange={changeHandler}
-            required
-          ></input>
-        </div>
-
-        <div className="z-10 px-10">
-          <p className="text-sm  pb-1">Project ID</p>
-          <input
-            className="w-[100%] h-[2rem] text-white focus:bg-[#9522ca2f] placeholder-[#ad67ce6c] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
-            type="text"
-            name="projectID"
-            placeholder="Enter Project ID"
-            value={formData.projectID}
-            onChange={changeHandler}
-            required
-          ></input>
+          Update Project
         </div>
 
         <div className="z-10 px-10">
@@ -255,6 +217,7 @@ function AddProject() {
                 placeholder="allow collaboration"
                 value={needCollaboration}
                 onChange={collabChange}
+                required
               />
               <svg viewBox="0 0 21 18">
                 <symbol
@@ -306,7 +269,7 @@ function AddProject() {
           </button>
         </div>
 
-        <div className="flex justify-center items-center z-10 px-10">
+        <div className="flex justify-center items-center">
           <button
             className="mb-5 my-2 rounded-md border bg-[#9522ca] focus:bg-[#9522ca2f] border-[#8f16c7ac] p-1 w-[15%] hover:bg-[#8f16c7cf]"
             onClick={submitHandler}
@@ -319,4 +282,4 @@ function AddProject() {
   );
 }
 
-export default AddProject;
+export default UpdateProject;

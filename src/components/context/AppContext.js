@@ -1,17 +1,19 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export const AppContext = createContext();
 
 export default function AppContextProvider({ children }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLoggedIn")
+  );
   const [sidebar, setSidebar] = useState(false);
   const [dashboardPanel, setDashboardPanle] = useState(false);
   const [loading, setLoading] = useState(true);
   const [tempSearchRes, setTempSearchRes] = useState([]);
   const [pId, setPId] = useState(1);
   const [searchRes, setSearchRes] = useState([]);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [searchedUser, setSearchedUser] = useState([]);
   const [collabMsg, setCollabMsg] = useState();
   const [sent, setSent] = useState(false);

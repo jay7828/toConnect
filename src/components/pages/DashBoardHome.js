@@ -61,6 +61,7 @@ function DashBoardHome() {
 
   useEffect(() => {
     fetchProjects();
+    // console.log(JSON.parse(user));
   }, []);
 
   return (

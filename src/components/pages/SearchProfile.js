@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 function SearchProfile(){
   const location = useLocation();
   const [user, setUser] = useState([]);
+  const {setLoading , loading} = useContext(AppContext);
 
   async function fetchUser(){
     console.log("Fetching User...");

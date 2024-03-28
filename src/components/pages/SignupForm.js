@@ -62,6 +62,8 @@ function SignupForm() {
       console.log(json);
       setIsLoggedIn(true);
       if (json.success) {
+        localStorage.setItem('isLoggedIn', true);
+        localStorage.setItem('user',JSON.stringify(json.userdata));
         navigate("/");
         toast.success("Sign Up Successful!");
       } else {

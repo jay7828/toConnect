@@ -6,7 +6,8 @@ import { AppContext } from "../context/AppContext";
 
 function Navbar() {
   const navigate = useNavigate();
-  const { sidebar, setSidebar, isLoggedIn , setIsLoggedIn} = useContext(AppContext);
+  const { sidebar, setSidebar, isLoggedIn, setIsLoggedIn } =
+    useContext(AppContext);
 
   function sidebarHandler() {
     if (sidebar) {
@@ -149,7 +150,15 @@ function Navbar() {
         {/* login signup btn */}
 
         {isLoggedIn ? (
-          <button className="btn-login btn" onClick={() => setIsLoggedIn(false)}>
+          <button
+            className="btn-login btn"
+            onClick={() => {
+              navigate('/')
+              setIsLoggedIn(false);
+              localStorage.removeItem('user');
+              localStorage.removeItem('isLoggedIn');
+            }}
+          >
             Logout
           </button>
         ) : (

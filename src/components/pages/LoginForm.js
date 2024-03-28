@@ -56,10 +56,13 @@ function LoginForm() {
       const json = await response.json();
       console.log(json);
       setUser(json.userdata);
-      // console.log(user);
+      console.log(user);
       setIsLoggedIn(true);
 
       if (json.success) {
+        localStorage.setItem('isLoggedIn', true);
+        localStorage.setItem('user',JSON.stringify(json.userdata));
+        // localStorage.setItem('email',json.userdata.email);
         navigate("/dashboard");
         toast.success("Login Successful!");
       } else {

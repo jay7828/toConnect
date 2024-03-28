@@ -73,7 +73,7 @@ const ShowProject = () => {
             </div>
 
             <div className="flex justify-between p-4 bg-[#9522ca4c] items-center border-slate-700 border-[0.5px] rounded-xl mb-4">
-              <p>From : username</p>
+              <p>From : {tempSearchRes[0].username}</p>
               <p className="text-sm text-gray-300">{tempSearchRes[0].email}</p>
             </div>
 
