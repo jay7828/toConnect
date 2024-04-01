@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
 import { PiSquaresFourFill } from "react-icons/pi";
-import axios from "axios";
+// import axios from "axios";
 
 function AddProject() {
   const navigate = useNavigate();
@@ -291,8 +291,9 @@ function AddProject() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center z-10 px-10 w-full">
-          {/* add files */}
+        {/* add files */}
+
+        {/* <div className="flex justify-between items-center z-10 px-10 w-full">
           <div className="flex justify-start items-start flex-col gap-2 text-sm">
             <h3 className="text-sm  pb-1">Upload File</h3>
             <input type="file" onChange={handleFileUpload} />
@@ -304,7 +305,7 @@ function AddProject() {
           >
             Upload
           </button>
-        </div>
+        </div> */}
 
         <div className="flex justify-center items-center z-10 px-10">
           <button

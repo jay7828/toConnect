@@ -4,18 +4,21 @@ import Loader from "./Loader";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PiSquaresFourFill } from "react-icons/pi";
 import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
+import { LiaEditSolid } from "react-icons/lia";
 
 const ShowProject = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [edit, setEdit] = useState(false);
 
   const {
+    tempSearchRes,
+    user,
     pId,
     setPId,
     fetchProjects,
     searchRes,
     loading,
-    tempSearchRes,
     setTempSearchRes,
     dashboardPanel,
     setDashboardPanle,
@@ -43,6 +46,8 @@ const ShowProject = () => {
     });
 
     setTempSearchRes(filteredData);
+
+    if (filteredData[0].email == user.email) setEdit(true);
   }, [location.pathname, location.search]);
 
   return (
@@ -72,9 +77,26 @@ const ShowProject = () => {
               </h4>
             </div>
 
-            <div className="flex justify-between p-4 bg-[#9522ca4c] items-center border-slate-700 border-[0.5px] rounded-xl mb-4">
-              <p>From : {tempSearchRes[0].username}</p>
-              <p className="text-sm text-gray-300">{tempSearchRes[0].email}</p>
+            <div className="flex justify-between gap-2 p-4 bg-[#9522ca4c] items-center border-slate-700 border-[0.5px] rounded-xl mb-4">
+              <div className="flex justify-start gap-2 items-center">
+                <p>From : {tempSearchRes[0].username}</p>
+                <p className="text-sm text-gray-300">
+                  {tempSearchRes[0].email}
+                </p>
+              </div>
+
+              <div>
+                {edit ? (
+                  <button
+                    onClick={() =>
+                      navigate(`/dashboard/project/update/${tempSearchRes[0].projectID}`)
+                    }
+                    className="text-base lg:text-xl mr-1"
+                  >
+                    <LiaEditSolid />
+                  </button>
+                ) : null}
+              </div>
             </div>
 
             <div className="flex justify-between bg-[#9522ca4c] px-4 py-4 gap-2 items-start border-slate-700 border-[0.5px] rounded-xl mb-4 flex-col">

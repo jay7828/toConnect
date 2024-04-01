@@ -14,6 +14,7 @@ function Project(props) {
   useEffect(() => {
     if (project.needCollaboration) setCollab(true);
     if (project.email == user.email) setEdit(true);
+    // console.log(project);
   }, []);
 
   return (
@@ -30,14 +31,11 @@ function Project(props) {
 
       <div
         className="text-xs w-[100%] mt-2 lg:text-sm my-1"
-        onClick={() => {
-          navigate(`project/${project.projectID}`);
-        }}
       >
         {project.projectDesc}
       </div>
 
-      <div className="w-[97%] h-[0.1px] my-2 bg-[#691d98] mx-auto  "></div>
+      <div className="w-[97%] h-[0.1px] my-2 bg-[#691d98] mx-auto"></div>
 
       <div className="flex justify-between items-center mt-2 ">
         <div className="flex justify-start items-center ">
@@ -68,7 +66,7 @@ function Project(props) {
 
         {edit ? (
           <button
-            onClick={() => navigate(`project/update/${project.pId}`)}
+            onClick={() => navigate(`project/update/${project.projectID}`)}
             className="text-base lg:text-xl mr-1"
           >
             <LiaEditSolid />

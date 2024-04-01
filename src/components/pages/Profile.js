@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
+  const navigate = useNavigate();
   const { user } = useContext(AppContext);
   const [year , setYear] = useState("");
 
@@ -46,7 +48,9 @@ function Profile() {
           </div>
         </div>
 
-        <button className="mr-2 flex items-center justify-center gap-2 bg-[#9522ca21] border border-[#aa14f099] rounded-full px-4 h-[2.5rem]">
+        <button 
+        onClick={()=>navigate("/dashboard/profile/update")}
+        className="mr-2 flex items-center justify-center gap-2 bg-[#9522ca21] border border-[#aa14f099] rounded-full px-4 h-[2.5rem]">
           <MdOutlineModeEdit />
           <p className="text-sm md:text-base">Edit</p>
         </button>

@@ -1,25 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
 import { PiSquaresFourFill } from "react-icons/pi";
-import axios from "axios";
+// import axios from "axios";
 
 function UpdateProject() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
-  const { dashboardPanel, setDashboardPanle, isLoggedIn, user } =
+  const { dashboardPanel, setDashboardPanle, isLoggedIn, pId, setPId } =
     useContext(AppContext);
   const [needCollaboration, setNeedCollaboration] = useState(false);
+  const [updatedFields, setUpdatedFields] = useState({});
 
-  const [formData, setFormData] = useState({
-    projectTitle: "",
-    projectDesc: "",
-    techStack: "",
-    skillsRequired: "",
-    contactInfo: "",
-  });
+  const initialFormData = {};
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleUpload = () => {
     const formdata = new FormData();
@@ -60,35 +58,28 @@ function UpdateProject() {
   };
 
   const submitHandler = async (e) => {
-    //We need TO add Fetch method Here
     e.preventDefault();
+    const pID = location.pathname.split("/").at(-1);
+    setPId(pID);
 
-    console.log(
-      JSON.stringify({
-        projectTitle: formData.projectTitle,
-        projectDesc: formData.projectDesc,
-        techStack: formData.techStack,
-        skillsRequired: formData.skillsRequired,
-        needCollaboration: needCollaboration,
-        contactInfo: formData.contactInfo,
-      })
-    );
+    const updatedFieldsData = {};
+    for (const key in formData) {
+      if (formData[key] !== initialFormData[key] && formData[key] !== "") {
+        updatedFieldsData[key] = formData[key];
+      }
+    }
+    setUpdatedFields(updatedFieldsData);
+
+    // console.log(JSON.stringify(updatedFields));
 
     const response = await fetch(
-      "https://toconnect.onrender.com/api/project/add",
+      `https://toconnect.onrender.com/api/project/update/${pId}`,
       {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          projectTitle: formData.projectTitle,
-          projectDesc: formData.projectDesc,
-          techStack: formData.techStack.split(" "),
-          skillsRequired: formData.skillsRequired.split(" "),
-          needCollaboration: needCollaboration,
-          contactInfo: formData.contactInfo,
-        }),
+        body: JSON.stringify(formData),
       }
     );
 
@@ -99,14 +90,14 @@ function UpdateProject() {
       console.log(json);
       if (json.success) {
         navigate("/dashboard");
-        toast.success("Project Added Successfully!");
+        toast.success("Project Updated Successfully!");
       } else {
-        alert("Error occured!");
+        toast.error("Error occured!");
       }
     } else {
       // Handle error here
       console.error("Failed to fetch data:", response.statusText);
-    }
+    } 
   };
 
   function handleDashPanel() {
@@ -217,7 +208,6 @@ function UpdateProject() {
                 placeholder="allow collaboration"
                 value={needCollaboration}
                 onChange={collabChange}
-                required
               />
               <svg viewBox="0 0 21 18">
                 <symbol
@@ -254,8 +244,9 @@ function UpdateProject() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center z-10 px-10 w-full">
-          {/* add files */}
+        {/* add files */}
+
+        {/* <div className="flex justify-between items-center z-10 px-10 w-full">
           <div className="flex justify-start items-start flex-col gap-2 text-sm">
             <h3 className="text-sm  pb-1">Upload File</h3>
             <input type="file" onChange={handleFileUpload} />
@@ -267,7 +258,7 @@ function UpdateProject() {
           >
             Upload
           </button>
-        </div>
+        </div> */}
 
         <div className="flex justify-center items-center">
           <button
