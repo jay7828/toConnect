@@ -146,17 +146,15 @@ function Navbar() {
         </div>
       </div>
 
-      <div className="flex text-sm font-medium hamburger btn-container mr-7 justify-between items-center ">
-        {/* login signup btn */}
-
+      <div className="btn-login-container">
         {isLoggedIn ? (
           <button
             className="btn-login btn"
             onClick={() => {
-              navigate('/')
+              navigate("/");
               setIsLoggedIn(false);
-              localStorage.removeItem('user');
-              localStorage.removeItem('isLoggedIn');
+              localStorage.removeItem("user");
+              localStorage.removeItem("isLoggedIn");
             }}
           >
             Logout
@@ -164,22 +162,6 @@ function Navbar() {
         ) : (
           <button className="btn-login btn" onClick={() => navigate("/login")}>
             Login
-          </button>
-        )}
-
-        {isLoggedIn ? (
-          <button
-            className="btn-signup btn"
-            onClick={() => navigate("/dashboard/inbox")}
-          >
-            Inbox
-          </button>
-        ) : (
-          <button
-            className="btn-signup btn"
-            onClick={() => navigate("/signup")}
-          >
-            Signup
           </button>
         )}
       </div>
