@@ -7,16 +7,16 @@ import axios from "axios";
 
 function Template({ formtype }) {
   async function googleLogin(response) {
-    // const decodedHeader = jwtDecode(responseGoogle.credential);
-    // console.log(decodedHeader);
-    console.log(response);
-    await axios({
-      method: "POST",
-      url: "http://localhost:6000/api/googlelogin",
-      data: { tokenId: response.tokenId },
-    }).then((response) => {
-      console.log(response);
-    });
+    const decodedHeader = jwtDecode(response.credential);
+    // console.log(response);
+    console.log(decodedHeader);
+    // await axios({
+    //   method: "POST",
+    //   url: "http://localhost:6000/api/googlelogin",
+    //   data: { tokenId: response.tokenId },
+    // }).then((response) => {
+    //   console.log(response);
+    // });
   }
 
   return (
@@ -29,7 +29,7 @@ function Template({ formtype }) {
       <div className="h-max max-w-[30vw] min-w-max z-10 text-white flex-col gap-4 justify-start items-center">
         {formtype === "signup" ? <SignupForm /> : <LoginForm />}
 
-        <div className="w-full flex justify-evenly items-center py-3">
+        {/* <div className="w-full flex justify-evenly items-center py-3">
           <div className="bg-gray-600 w-[45%] h-[0.5px]"></div>
           <p className="text-[12px] text-gray-400">OR</p>
           <div className="bg-gray-600 w-[45%] h-[0.5px]"></div>
@@ -37,14 +37,15 @@ function Template({ formtype }) {
 
         <div className="flex justify-center ">
           <GoogleLogin
-             onSuccess={(responseGoogle) => {
-              googleLogin(responseGoogle);
+             onSuccess={(response) => {
+              googleLogin(response);
+              // console.log(response);
             }}
             onError={() => {
               console.log("Login Failed");
             }}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

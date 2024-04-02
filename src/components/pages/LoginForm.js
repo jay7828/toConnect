@@ -27,15 +27,7 @@ function LoginForm() {
   };
 
   const submitHandler = async (e) => {
-    //We need TO add Fetch method Here
     e.preventDefault();
-
-    // console.log(
-    //   JSON.stringify({
-    //     email: formData.email,
-    //     password: formData.password,
-    //   })
-    // );
 
     setLoggingIn(true);
 
@@ -115,9 +107,9 @@ function LoginForm() {
               )}
             </span>
           </lable>
-          <div className="flex items-end justify-end w-[100%] mt-1 text-cyan-500 cursor-pointer">
+          {/* <div className="flex items-end justify-end w-[100%] mt-1 text-cyan-500 cursor-pointer">
             <p className="text-xs">Forgot Password</p>
-          </div>
+          </div> */}
         </div>
 
         <button

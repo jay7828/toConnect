@@ -29,16 +29,7 @@ function SignupForm() {
   };
 
   const submitHandler = async(event) => {
-    //We need TO add Fetch method Here
     event.preventDefault();
-
-    // console.log(JSON.stringify({  
-    //   username: formData.UserName,
-    //   password: formData.createPassword,
-    //   name: formData.Name,
-    //   email:formData.email ,
-    //   date:Date(),
-    // }));
 
     const response=await fetch ("https://toconnect.onrender.com/api/register",(
       {
@@ -52,7 +43,7 @@ function SignupForm() {
           name: formData.Name,
           email:formData.email ,
           date: Date()
-          })
+        })
       })
     );
 
@@ -177,7 +168,6 @@ function SignupForm() {
         </div>
 
         <button
-          // onClick={()=>submitHandler()}
           type="submit"
           className="mt-5 bg-[#ffd607] text-black font-semibold flex justify-center items-center py-2 rounded-lg border-[0.5px] border-slate-700 "
         >
