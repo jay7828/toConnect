@@ -258,7 +258,7 @@ html, body {
 .options-main {
   z-index: -1;
   width: 18%;
-  min-width: 154px;
+  min-width: 156px;
   padding: 10px;
   display: none;
   flex-direction: column;
@@ -294,6 +294,22 @@ html, body {
     rgba(185, 54, 245, 0) 99.97%
   );
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.profile-name-edit{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#table tr{
+  display: flex;
+  flex-direction: row;
+}
+
+.inbox{
+  padding-top: 2.35rem;
 }
 
 .options-panel-btn {
@@ -414,7 +430,7 @@ html, body {
   display: flex;
   z-index: 50;
   width: 18%;
-  min-width: 154px;
+  min-width: 156px;
   padding: 10px;
   flex-direction: column;
   justify-content: space-between;
@@ -550,6 +566,9 @@ html, body {
 }
 
 @media (min-width: 550px) {
+  .inbox{
+    padding-top: 0.75rem;
+  }  
   .dynamic-padding{
     padding-top: 0px;
   }
@@ -600,6 +619,9 @@ html, body {
 }
 
 @media only screen and (max-width: 480px) {
+  .profile-name-edit{
+    flex-direction: column;
+  }
   .home-main-heading{
     width: 15rem;
   }
@@ -608,5 +630,11 @@ html, body {
   }
   .notfound .notfound-404 h1 {
     font-size: 182px;
+  }
+}
+
+@media only screen and (max-width: 410px) {
+  #table tr{
+    flex-direction: column;
   }
 }
