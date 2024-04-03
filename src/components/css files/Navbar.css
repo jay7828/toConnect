@@ -1,0 +1,151 @@
+.navbar-main {
+  color: #fff;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  height: max-content;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  flex-shrink: 0;
+  border-radius: 2.125rem;
+  border: 1px solid #472ee3;
+  background: rgba(79, 32, 212, 0.37);
+}
+
+.navbar-heading {
+  color: #fff;
+  font-family: "Red Hat Display";
+  line-height: 2rem /* 28px */;
+  font-weight: 700;
+}
+
+.on-hover {
+  background: white;
+  -webkit-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -ms-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hamburger{
+  display: flex;
+  z-index: 20;
+}
+
+.on-hover:hover {
+  background: linear-gradient(99deg, #c824ec 0.07%, #df308d 106.32%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-login-container{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1.5rem;
+}
+
+.btn-login {
+  background: linear-gradient(99deg, #773cd8 0.07%, #194ed5 106.32%);
+}
+
+.btn-signup {
+  background: linear-gradient(99deg, #773cd8 0.07%, #c54b8c 106.32%);
+}
+
+.btn {
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  border-radius: 0.2085rem;
+  width: 4rem;
+  height: 2rem;
+  z-index: 10;
+  transition: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 200ms;
+}
+
+.btn-container {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  max-width: 14rem;
+  font-size: 12.5px;
+  width: 8.5rem;
+}
+
+.logo-container {
+  width: 10rem;
+}
+
+.parent-container {
+  display: flex;
+  width: calc(100% - 7rem);
+}
+
+.btn:hover {
+  font-size: 15px;
+}
+
+@media (min-width: 750px) {
+  .hamburger{
+    display: none;
+  }
+  .btn-login-container{
+    display: flex;
+  }
+  .btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+  .navbar-main {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (min-width: 640px) {
+  .btn {
+    font-size: 0.7rem;
+    width: 4rem;
+    height: 2rem;
+  }
+  .logo-container {
+    width: 11rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .btn {
+    font-size: 1rem;
+    width: 5.63rem;
+    height: 2.23rem;
+  }
+  .btn-container {
+    font-size: 15.5px;
+    width: 14rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+  .logo-container {
+    width: 11rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .logo-container {
+    width: 14rem;
+  }
+}
