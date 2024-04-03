@@ -70,11 +70,13 @@ function LoginForm() {
 
   return (
     <div>
-      <form className="max-w-max flex flex-col gap-4" onSubmit={submitHandler}>
+      <form 
+      className=" flex flex-col gap-4 h-full w-[13.5rem] sm:w-[25rem]" 
+      onSubmit={submitHandler}>
         <div className="z-10">
           <p className="text-sm  pb-1">Email Address</p>
           <input
-            className="w-[25rem] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
+            className="form-input px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
             type="email"
             name="email"
             placeholder="Enter email address"
@@ -88,7 +90,7 @@ function LoginForm() {
           <p className="text-sm pb-1">Password</p>
           <lable className="z-10 text-black flex">
             <input
-              className="w-[23rem] z-10 h-[2rem] px-2 focus:outline-none text-black text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
+              className="z-10 px-2 form-input focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
               type={showPass === false ? "password" : "text"}
               placeholder="Enter password"
               name="password"

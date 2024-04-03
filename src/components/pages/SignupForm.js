@@ -71,10 +71,11 @@ function SignupForm() {
     <div>
       <form 
       onSubmit={submitHandler}
-      className="min-w-max flex flex-col gap-4">
+      className=" flex flex-col gap-4 h-full w-[15rem] sm:w-[25rem]" 
+      >
 
-        <div className="flex gap-[1rem] z-10">
-          <div>
+        <div className="flex flex-col sm:flex-row gap-[1rem] z-10">
+          <div className="w-full">
             <p className="text-sm pb-1">User Name</p>
             <input
               name="UserName"
@@ -83,7 +84,7 @@ function SignupForm() {
               onChange={changeHandler}
               required
               placeholder="Enter User name"
-              className="w-[12rem] focus:outline-none h-[2rem] px-2 text-sm border-[0.5px] text-black bg-white border-slate-700 rounded-lg"
+              className="w-full sm:w-[12rem] focus:outline-none h-[2rem] px-2 text-sm border-[0.5px] text-black bg-white border-slate-700 rounded-lg"
             ></input>
           </div>
 
@@ -96,7 +97,7 @@ function SignupForm() {
               onChange={changeHandler}
               required
               placeholder="Enter Your Name"
-              className="w-[12rem] text-black bg-white focus:outline-none h-[2rem] px-2 text-sm bg-myDark2 border-[0.5px] border-slate-700 rounded-lg"
+              className="w-full sm:w-[12rem] text-black bg-white focus:outline-none h-[2rem] px-2 text-sm bg-myDark2 border-[0.5px] border-slate-700 rounded-lg"
             ></input>
           </div>
         </div>
@@ -110,11 +111,11 @@ function SignupForm() {
             onChange={changeHandler}
             required
             placeholder="Enter your Email"
-            className="w-[25rem] h-[2rem] px-2 bg-white text-black text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
+            className="w-full h-[2rem] px-2 bg-white text-black text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
           ></input>
         </div>
 
-        <div className="flex gap-[1rem]">
+        <div className="flex flex-col sm:flex-row gap-[1rem] z-10">
           <div className="z-10">
             <p className="text-sm pb-1">Create password</p>
             <lable className="flex">
@@ -125,7 +126,7 @@ function SignupForm() {
                 onChange={changeHandler}
                 required
                 placeholder="Enter Password"
-                className="w-[10rem] bg-white text-black h-[2rem] px-2 focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
+                className="w-full sm:w-[10rem] bg-white text-black h-[2rem] px-2 focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
               ></input>
               <span
                 onClick={() => setShowPass((prev) => !prev)}
@@ -147,7 +148,7 @@ function SignupForm() {
                   value={formData.confirmPassword}
                   onChange={changeHandler}
                   required
-                  className="w-[10rem] bg-white text-black h-[2rem] px-2 focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
+                  className="w-full sm:w-[10rem] bg-white text-black h-[2rem] px-2 focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
                   type={showConfirmPass === false ? "password" : "text"}
                   placeholder="Confirm Password"
                   name="confirmPassword"

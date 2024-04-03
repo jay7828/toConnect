@@ -19,9 +19,9 @@ function Navbar() {
 
   return (
     <nav className="navbar-main mx-auto">
-      <div className="h-full logo-container flex items-center ml-7 justify-between">
+      <div className="h-full logo-container ml-7">
         {/* logo and icon */}
-        <div className="min-w-[2rem] w-[2rem] sm:w-[2.5rem] md:w-[3rem] lg:w-[3.6rem] rounded-full">
+        <div className="rounded-full icon">
           <svg
             className="w-[100%]"
             width="52"
@@ -108,18 +108,18 @@ function Navbar() {
             </defs>
           </svg>
         </div>
-        <h1 className="navbar-heading text-[1.4rem] lg:text-[1.75rem]">
+        <h1 className="navbar-heading">
           toConnect
         </h1>
       </div>
 
-      <div className="hamburger w-[1.75rem] flex justify-center items-center mr-7 text-3xl">
+      <div className="hamburger">
         <button onClick={() => sidebarHandler()}>
           <RxHamburgerMenu />
         </button>
       </div>
 
-      <div className="text-sm btn-container hamburger font-medium">
+      <div className="text-sm btn-container font-medium">
         {/* home about contact */}
         <div className="w-max h-max">
           <a href="#" className="w-max h-max" onClick={() => navigate("/")}>

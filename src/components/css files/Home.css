@@ -100,7 +100,14 @@ html, body {
   z-index: 2;
 }
 
+.icon-2{
+  display: flex;
+  width: clamp(2rem,7vw,7rem);
+}
+
 .home-main-heading {
+  width: max-content;
+  font-size: clamp(2.5rem,7vw,5.5rem);
   color: #fff;
   font-family: "Red Hat Display";
   font-style: normal;
@@ -110,8 +117,8 @@ html, body {
 
 .user-icon {
   color: #fff;
-  width: 2rem;
-  height: 2rem;
+  width: clamp(1.5rem,2vw,2rem);
+  height:clamp(1.5rem,2vw,2rem);
   flex-shrink: 0;
 }
 
@@ -122,6 +129,13 @@ html, body {
   flex-shrink: 0;
   border-radius: 0.2085rem;
   background: linear-gradient(99deg, #773cd8 0.07%, #c54b8c 106.32%);
+}
+
+.form-input{
+  width: 100%;
+  height: 2rem;
+  color: #000;
+  background: #fff;
 }
 
 .btn:hover {
@@ -586,6 +600,12 @@ html, body {
 }
 
 @media only screen and (max-width: 480px) {
+  .home-main-heading{
+    width: 15rem;
+  }
+  .icon-2{
+    display: none;
+  }
   .notfound .notfound-404 h1 {
     font-size: 182px;
   }
