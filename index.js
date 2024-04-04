@@ -6,7 +6,8 @@ require("dotenv").config();
 const mongoURI = process.env.MONGODB_URL;
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  // origin: 'http://localhost:3000',
+  origin: 'https://to-connect-two.vercel.app',
   methods: ['GET', 'POST', 'PATCH', 'DELETE','PUT'],
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
 }));
