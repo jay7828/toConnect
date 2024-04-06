@@ -46,9 +46,9 @@ function LoginForm() {
     
     if (response.ok) {
       const json = await response.json();
-      console.log(json);
+      // console.log(json);
       setUser(json.userdata);
-      console.log(user);
+      // console.log(user);
       setIsLoggedIn(true);
 
       if (json.success) {
