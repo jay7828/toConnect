@@ -13,10 +13,10 @@ function HomeMainContent() {
       onClick={() => {
         setSidebar(false);
       }}
-      className="w-[85%] relative z-10 mb-24 xl:mb-56 mx-auto my-[8%] xl:flex "
+      className=" w-[85%] relative z-10 mb-24 xl:mb-56 mx-auto my-[8%] xl:flex "
     >
       <div className="mx-auto flex">
-        <div className="icon-2 sm:mr-4 md:mr-8 min-h-full">
+        <div className="sm:mr-4 md:mr-8 min-w-[2rem] w-[3.5rem] sm:w-[5rem] md:w-[6rem] lg:w-[7rem] min-h-full">
           {/* icon */}
           <svg
             className="w-[100%]"
@@ -99,14 +99,14 @@ function HomeMainContent() {
           </svg>
         </div>
 
-        <div className="h-max mx-4">
+        <div className="flex-col h-max mx-4">
           <div className="w-max">
-            <h1 className="home-main-heading py-7">
+            <h1 className="home-main-heading text-[2rem] sm:text-[3rem] md:text-[4rem] lg:text-[5rem] py-7">
               {/* heading */}
               IIST toConnect
             </h1>
 
-            <p className="home-main-desc text-[0.75rem] md:text-[1rem] lg:text-[1.43rem] w-[80vw] sm:w-[30rem]">
+            <p className="home-main-desc text-[0.75rem] md:text-[1rem] lg:text-[1.43rem] md:max-w-[30rem] max-w-[50vw]">
               {/* description */}A dynamic platform dedicated to fostering
               creativity, collaboration and knowledge exchange among students.
             </p>
@@ -135,10 +135,10 @@ function HomeMainContent() {
 
             <div className="md:flex w-max items-center">
               {/* connect with others and users' pics */}
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center items-center ">
                 <CiUser className="user-icon" />
                 <CiUser className="user-icon" />
-                {/* <CiUser className="user-icon" /> */}
+                <CiUser className="user-icon" />
                 <CiUser className="user-icon" />
                 <p className="text-white my-2 text-2xl mx-3">+</p>
               </div>

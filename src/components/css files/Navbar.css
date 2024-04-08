@@ -16,7 +16,6 @@
 
 .navbar-heading {
   color: #fff;
-  font-size: clamp(1.25rem,3vw,2rem);
   font-family: "Red Hat Display";
   line-height: 2rem /* 28px */;
   font-weight: 700;
@@ -35,12 +34,7 @@
 }
 
 .hamburger{
-  width: 1.5rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 1rem;
-  font-size: clamp(1rem,3vw,2rem);
   z-index: 20;
 }
 
@@ -88,15 +82,8 @@
   width: 8.5rem;
 }
 
-.icon{
-  width: clamp(2rem,5vw,4rem);
-}
-
 .logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  width: 10rem;
 }
 
 .parent-container {
@@ -108,15 +95,8 @@
   font-size: 15px;
 }
 
-.navbar-ham-options{
-  display: flex;
-}
-
 @media (min-width: 750px) {
   .hamburger{
-    display: none;
-  }
-  .navbar-ham-options{
     display: none;
   }
   .btn-login-container{
@@ -140,6 +120,9 @@
     width: 4rem;
     height: 2rem;
   }
+  .logo-container {
+    width: 11rem;
+  }
 }
 
 @media (min-width: 900px) {
@@ -155,5 +138,14 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+  }
+  .logo-container {
+    width: 11rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .logo-container {
+    width: 14rem;
   }
 }

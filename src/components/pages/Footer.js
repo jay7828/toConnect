@@ -4,15 +4,12 @@ import { FaXTwitter } from "react-icons/fa6";
 import { AppContext } from "../context/AppContext";
 
 function Footer() {
-  const { sidebar, setSidebar } = useContext(AppContext);
+  const {sidebar, setSidebar} = useContext(AppContext);
 
   return (
-    <footer
-      onClick={() => {
-        setSidebar(false);
-      }}
-      className="footer flex flex-wrap mx-auto text-white justify-between items-start"
-    >
+    <footer 
+    onClick={()=>{setSidebar(false)}}
+    className="footer mx-auto text-white sm:flex justify-between items-start">
       <div className="flex mr-10">
         <div className="h-max w-max pr-6">
           <svg
@@ -106,35 +103,37 @@ function Footer() {
         </div>
       </div>
 
-      <div className="mt-3 px-4 font-semibold text-xs mb-10 max-w-[10rem]">
-        <p className="max-w-[13.5rem]">
-          Copyright © 2024 toConnect All rights reserved.
-        </p>
+      <div className="md:flex w-full justify-between max-w-[70%]">
+        <div className="mt-3 font-semibold text-xs mb-10 max-w-[10rem]">
+          <p className="max-w-[13.5rem]">
+            Copyright © 2024 toConnect All rights reserved.
+          </p>
 
-        <p className="mt-6">Help</p>
-      </div>
+          <p className="mt-6">Help</p>
+        </div>
 
-      <div className="w-max px-4 h-[10rem] flex-col flex text-sm font-semibold">
-        <div className="mt-2">
-          <a href="#">Home</a>
+        <div className="w-max h-[10rem] flex-col text-sm font-semibold">
+          <div className="mt-2">
+            <a href="#">Home</a>
+          </div>
+          <div className="mt-6">
+            <a href="#about">About</a>
+          </div>
+          <div className="mt-6">
+            <a href="#contact">Contact</a>
+          </div>
         </div>
-        <div className="mt-6">
-          <a href="#about">About</a>
-        </div>
-        <div className="mt-6">
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
 
-      <div className="w-max px-4 h-[10rem] flex-col flex text-sm font-semibold">
-        <div className="mt-2">
-          <a herf="#">Privacy</a>
-        </div>
-        <div className="mt-6">
-          <a herf="#tnc">Terms and Conditions</a>
-        </div>
-        <div className="mt-6">
-          <a herf="#faq">FAQs</a>
+        <div className="w-max h-[10rem] flex-coltext-sm font-semibold">
+          <div className="mt-2">
+            <a herf="#">Privacy</a>
+          </div>
+          <div className="mt-6">
+            <a herf="#tnc">Terms and Conditions</a>
+          </div>
+          <div className="mt-6">
+            <a herf="#faq">FAQs</a>
+          </div>
         </div>
       </div>
     </footer>

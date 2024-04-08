@@ -9,7 +9,7 @@ function Sidebar() {
   return (
     <div 
     onClick={()=>{setSidebar(false)}}
-    className="text-[0.8rem] w-[10.5rem] z-40 rounded-[0.45938rem] h-[17.5rem] overflow-hidden bg-black text-white absolute flex flex-col top-[7rem] right-[2.5rem] font-medium justify-evenly items-center navbar-ham-options">
+    className="text-sm w-[12.5rem] rounded-[0.45938rem] h-[20rem] overflow-hidden bg-black text-white absolute flex-col top-[7rem] right-[2.5rem]  hamburger  font-medium justify-evenly items-center">
       <div className="sidebar-gradient"></div>
 
       <div className="w-full h-full flex justify-center items-center text-center border-b border-[#b936f540]">

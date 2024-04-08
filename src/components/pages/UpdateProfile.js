@@ -127,7 +127,7 @@ function UpdateProfile() {
             type="text"
             name="about"
             placeholder="Update About You"
-            value={formData.password}
+            value={formData.about}
             onChange={changeHandler}
           ></input>
         </div>

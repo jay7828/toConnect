@@ -4,9 +4,8 @@ import { LiaEditSolid } from "react-icons/lia";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { AppContext } from "../context/AppContext";
 
-function Project(props) {
+function Project({project}) {
   const navigate = useNavigate();
-  const project = props.project;
   const [collab, setCollab] = useState(false);
   const [edit, setEdit] = useState(false);
   const { user } = useContext(AppContext);
@@ -43,7 +42,7 @@ function Project(props) {
             <div
               className="bg-purple-800 w-[4rem] lg:w-[5rem] h-[1.5rem] md:h-[1.6rem] m-1 rounded-full font-semibold text-xs lg:text-sm flex justify-center items-center z-20 relative hover:cursor-pointer"
               onClick={() => {
-                navigate(`collaboration/${props.projectID}`);
+                navigate(`collaboration/${project.projectID}`);
               }}
             >
               Collab

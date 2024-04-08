@@ -6,8 +6,8 @@ import { AppContext } from "../context/AppContext";
 
 function LoginForm() {
   const navigate = useNavigate();
-  const [loggingIn, setLoggingIn] = useState(false);
-  const { setIsLoggedIn, setUser, user } = useContext(AppContext);
+  const [loggingIn , setLoggingIn] = useState(false);
+  const {setIsLoggedIn, setUser, user} = useContext(AppContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -31,13 +31,6 @@ function LoginForm() {
 
     setLoggingIn(true);
 
-    console.log(
-      JSON.stringify({
-        email: formData.email,
-        password: formData.password,
-      })
-    );
-
     const response = await fetch("https://toconnect.onrender.com/api/login", {
       method: "POST",
       headers: {
@@ -50,17 +43,17 @@ function LoginForm() {
     });
 
     // console.log(response);
-
+    
     if (response.ok) {
       const json = await response.json();
-      console.log(json);
+      // console.log(json);
       setUser(json.userdata);
-      console.log(user);
+      // console.log(user);
       setIsLoggedIn(true);
 
       if (json.success) {
-        localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("user", JSON.stringify(json.userdata));
+        localStorage.setItem('isLoggedIn', true);
+        localStorage.setItem('user',JSON.stringify(json.userdata));
         // localStorage.setItem('email',json.userdata.email);
         navigate("/dashboard");
         toast.success("Login Successful!");
@@ -77,14 +70,11 @@ function LoginForm() {
 
   return (
     <div>
-      <form
-        className=" flex flex-col gap-4 h-full w-[13.5rem] sm:w-[25rem]"
-        onSubmit={submitHandler}
-      >
+      <form className="max-w-max flex flex-col gap-4" onSubmit={submitHandler}>
         <div className="z-10">
           <p className="text-sm  pb-1">Email Address</p>
           <input
-            className="form-input px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
+            className="w-[25rem] h-[2rem] text-black bg-white px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-lg"
             type="email"
             name="email"
             placeholder="Enter email address"
@@ -98,7 +88,7 @@ function LoginForm() {
           <p className="text-sm pb-1">Password</p>
           <lable className="z-10 text-black flex">
             <input
-              className="z-10 px-2 form-input focus:outline-none text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
+              className="w-[23rem] z-10 h-[2rem] px-2 focus:outline-none text-black text-sm border-y-[0.5px] border-l-[0.5px] border-slate-700  rounded-l-lg"
               type={showPass === false ? "password" : "text"}
               placeholder="Enter password"
               name="password"
@@ -124,11 +114,7 @@ function LoginForm() {
 
         <button
           type="submit"
-          className={
-            loggingIn
-              ? "mt-5 bg-[#757575] text-black font-semibold flex justify-center items-center py-2 rounded-lg border-[0.5px] border-slate-700 hover:cursor-none"
-              : "mt-5 bg-[#ffd607] text-black font-semibold flex justify-center items-center py-2 rounded-lg border-[0.5px] border-slate-700 "
-          }
+          className={loggingIn? "mt-5 bg-[#757575] text-black font-semibold flex justify-center items-center py-2 rounded-lg border-[0.5px] border-slate-700 hover:cursor-none" : "mt-5 bg-[#ffd607] text-black font-semibold flex justify-center items-center py-2 rounded-lg border-[0.5px] border-slate-700 "}
         >
           Sign In
         </button>

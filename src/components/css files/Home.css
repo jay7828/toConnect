@@ -100,14 +100,7 @@ html, body {
   z-index: 2;
 }
 
-.icon-2{
-  display: flex;
-  width: clamp(2rem,7vw,7rem);
-}
-
 .home-main-heading {
-  width: max-content;
-  font-size: clamp(2.5rem,7vw,5.5rem);
   color: #fff;
   font-family: "Red Hat Display";
   font-style: normal;
@@ -117,8 +110,8 @@ html, body {
 
 .user-icon {
   color: #fff;
-  width: clamp(1.5rem,2vw,2rem);
-  height:clamp(1.5rem,2vw,2rem);
+  width: 2rem;
+  height: 2rem;
   flex-shrink: 0;
 }
 
@@ -129,13 +122,6 @@ html, body {
   flex-shrink: 0;
   border-radius: 0.2085rem;
   background: linear-gradient(99deg, #773cd8 0.07%, #c54b8c 106.32%);
-}
-
-.form-input{
-  width: 100%;
-  height: 2rem;
-  color: #000;
-  background: #fff;
 }
 
 .btn:hover {
@@ -258,7 +244,7 @@ html, body {
 .options-main {
   z-index: -1;
   width: 18%;
-  min-width: 156px;
+  min-width: 154px;
   padding: 10px;
   display: none;
   flex-direction: column;
@@ -294,22 +280,6 @@ html, body {
     rgba(185, 54, 245, 0) 99.97%
   );
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
-.profile-name-edit{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#table tr{
-  display: flex;
-  flex-direction: row;
-}
-
-.inbox{
-  padding-top: 2.35rem;
 }
 
 .options-panel-btn {
@@ -430,7 +400,7 @@ html, body {
   display: flex;
   z-index: 50;
   width: 18%;
-  min-width: 156px;
+  min-width: 154px;
   padding: 10px;
   flex-direction: column;
   justify-content: space-between;
@@ -566,9 +536,6 @@ html, body {
 }
 
 @media (min-width: 550px) {
-  .inbox{
-    padding-top: 0.75rem;
-  }  
   .dynamic-padding{
     padding-top: 0px;
   }
@@ -619,22 +586,7 @@ html, body {
 }
 
 @media only screen and (max-width: 480px) {
-  .profile-name-edit{
-    flex-direction: column;
-  }
-  .home-main-heading{
-    width: 15rem;
-  }
-  .icon-2{
-    display: none;
-  }
   .notfound .notfound-404 h1 {
     font-size: 182px;
-  }
-}
-
-@media only screen and (max-width: 410px) {
-  #table tr{
-    flex-direction: column;
   }
 }

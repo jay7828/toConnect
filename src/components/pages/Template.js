@@ -20,7 +20,7 @@ function Template({ formtype }) {
   }
 
   return (
-    <div className="flex justify-center items-center w-[100vw] h-[100vh] relative main-home-bg pt-10 min-h-[100vh]">
+    <div className="flex justify-center items-center w-[100vw] h-[100vh] main-home-bg pt-10 min-h-[100vh]">
       <div className="gradient-1"></div>
       <div className="gradient-2"></div>
       <div className="gradient-3"></div>

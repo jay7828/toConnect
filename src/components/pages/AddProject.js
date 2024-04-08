@@ -65,7 +65,7 @@ function AddProject() {
     //We need TO add Fetch method Here
     e.preventDefault();
 
-    if (formData.username === undefined) {
+    if (user.username === undefined) {
       toast.error("Invalid Operation!");
       // navigate("/");
       return;

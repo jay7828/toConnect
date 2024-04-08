@@ -7,6 +7,7 @@ import { PiSquaresFourFill } from "react-icons/pi";
 
 function Collaboration() {
   const {
+    user,
     dashboardPanel,
     setDashboardPanle,
     fetchProjects,
@@ -54,7 +55,7 @@ function Collaboration() {
     console.log(
       JSON.stringify({
         letterID: formData.letterID,
-        sender: formData.sender,
+        sender: user.email,
         receiver: filteredData[0].email,
         subject: formData.subject,
         body: formData.body,
@@ -75,7 +76,7 @@ function Collaboration() {
           pid: pId,
           ptitle: filteredData[0].projectTitle,
           letterID: formData.letterID,
-          sender: formData.sender,
+          sender: user.email,
           receiver: filteredData[0].email,
           subject: formData.subject,
           body: formData.body,
@@ -90,7 +91,7 @@ function Collaboration() {
       const json = await response.json();
       console.log(json);
       if (json.success) {
-        navigate("/");
+        navigate("/dashboard");
         toast.success("Message Send Successfully!");
       } else {
         alert("Error occured!");
@@ -134,7 +135,7 @@ function Collaboration() {
         </div>
       ) : (
         <form className="font-semibold mx-auto relative z-10 flex flex-col gap-4">
-          <div className="z-10 px-10 mt-10">
+          {/* <div className="z-10 px-10 mt-10">
             <p className="text-sm  pb-1">Email</p>
             <input
               className="w-[100%] h-[2rem] text-white focus:bg-[#9522ca2f] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700  rounded-md placeholder-[#ad67ce6c]"
@@ -145,7 +146,7 @@ function Collaboration() {
               onChange={changeHandler}
               required
             ></input>
-          </div>
+          </div> */}
 
           <div className="z-10 px-10">
             <p className="text-sm  pb-1">Letter ID</p>

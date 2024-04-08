@@ -102,22 +102,22 @@ function Inbox() {
 
   return (
     <div className="min-h-[100%] relative text-white">
-      <button
-        onClick={() => handleDashPanel()}
-        className="options-panel-btn flex justify-center items-center h-[2rem] w-[2rem]"
-      >
-        <PiSquaresFourFill />
-      </button>
+      <div className="w-[97%] mx-auto relative text-white">
+        <button
+          onClick={() => handleDashPanel()}
+          className="options-panel-btn flex justify-center items-center h-[2rem] w-[2rem]"
+        >
+          <PiSquaresFourFill />
+        </button>
 
-      <div>{dashboardPanel ? <DashBoardOptionsPanel /> : null}</div>
+        <div>{dashboardPanel ? <DashBoardOptionsPanel /> : null}</div>
 
-      <div className="w-[95%] inbox mx-auto relative text-white">
-        <div className="flex justify-around w-[100%] rounded-[0.45938rem] relative border-[0.5px] border-[#aa14f04e] overflow-hidden">
+        <div className="flex mt-5 justify-around w-[100%] rounded-[0.45938rem] relative border-[0.5px] border-[#aa14f04e]">
           <button
             className={
               sent
-                ? "flex flex-col w-[50%] gap-1 py-3 justify-center items-center overflow-hidden"
-                : "flex flex-col w-[50%] gap-1 py-3 justify-center items-center bg-[#9522ca4c] overflow-hidden"
+              ? "flex flex-col w-[50%] gap-1 py-3 justify-center items-center"
+              : "flex flex-col w-[50%] gap-1 py-3 justify-center items-center bg-[#9522ca4c]"
             }
             onClick={() => setSent(false)}
           >
@@ -132,8 +132,8 @@ function Inbox() {
           <button
             className={
               sent
-                ? "flex flex-col w-[50%] gap-1 py-3 justify-center items-center bg-[#9522ca4c] overflow-hidden"
-                : "flex flex-col w-[50%] gap-1 py-3 justify-center items-center overflow-hidden"
+                ? "flex flex-col w-[50%] gap-1 py-3 justify-center items-center bg-[#9522ca4c]"
+                : "flex flex-col w-[50%] gap-1 py-3 justify-center items-center"
             }
             onClick={() => setSent(true)}
           >

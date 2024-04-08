@@ -8,9 +8,9 @@ function AboutUs() {
     <div
     onClick={()=>{setSidebar(false)}}
     id="about" 
-    className="footer mx-auto text-white flex-col justify-between items-start pt-6 sm:pt-10 md:pt-16 lg:pt-24 pb-24">
+    className="footer mx-auto text-white flex-col justify-between items-start py-24">
       <div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">About Us</h1>
+        <h1 className="text-5xl font-bold">About Us</h1>
         <p className="pt-6">
           Welcome to IIST toConnect , a dynamic platform dedicated to fostering
           creativity, collaboration, and knowledge exchange among students. We
@@ -18,7 +18,7 @@ function AboutUs() {
           to inspire and connect individuals with a shared passion for learning
           and innovation
         </p>
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-6">Our Vision</h2>
+        <h2 className="text-4xl font-semibold mt-6">Our Vision</h2>
         <p className="mt-6">
           At our Platform, we envision a community where students from diverse
           backgrounds come together to share, collaborate, and learn from one
@@ -30,9 +30,9 @@ function AboutUs() {
       </div>
 
       <div className="mt-14">
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">What We Offer</h2>
+        <h2 className="text-4xl font-semibold">What We Offer</h2>
         <div>
-          <h3 className="text-base md:text-xl font-semibold mt-6">Project Showcase</h3>
+          <h3 className="text-2xl font-semibold mt-6">Project Showcase</h3>
           <p className="mt-4">
             Elevate your projects to new heights! Our platform allows students
             to showcase their innovative and creative endeavors. Whether it's a
@@ -43,7 +43,7 @@ function AboutUs() {
           </p>
         </div>
         <div>
-          <h3 className="text-base md:text-xl font-semibold mt-6">Collaborate and Connect</h3>
+          <h3 className="text-2xl font-semibold mt-6">Collaborate and Connect</h3>
           <p className="mt-4">
             Looking for a project partner or seeking help with your latest
             endeavor? Connect with fellow students who share your interests and
@@ -53,7 +53,7 @@ function AboutUs() {
           </p>
         </div>
         <div>
-          <h3 className="text-base md:text-xl font-semibold mt-6">Learning Opportunities</h3>
+          <h3 className="text-2xl font-semibold mt-6">Learning Opportunities</h3>
           <p className="mt-4">
             Beyond project sharing, we provide resources and learning
             opportunities to help you grow. Access educational content,
@@ -63,7 +63,7 @@ function AboutUs() {
           </p>
         </div>
         <div>
-          <h3 className="text-base md:text-xl font-semibold  mt-6">Join Us on this Journey</h3>
+          <h3 className="text-2xl font-semibold  mt-6">Join Us on this Journey</h3>
           <p className="mt-4">
             IIST ToConnect is more than just a platform; it's a community-driven
             initiative fueled by the passion and creativity of students like
