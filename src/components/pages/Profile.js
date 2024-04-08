@@ -6,16 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Profile() {
   const navigate = useNavigate();
   const { user } = useContext(AppContext);
-  const [year , setYear] = useState("");
-
-  useEffect(() => {
-    console.log(user);
-    if(user.year_of_passing){
-      let y = user.year_of_passing.substring(0,10) ;
-      // console.log(y);
-      setYear(y);
-    }
-  }, []);
+  // const [year , setYear] = useState("");
 
   return (
     <div className="flex flex-col relative gap-6 w-[100%] mx-auto p-[1.5rem]">
@@ -93,7 +84,7 @@ function Profile() {
 
             <td className="w-[1rem]">:</td>
 
-            <td className="text-gray-300">{year}</td>
+            <td className="text-gray-300">{user.year_of_passing}</td>
           </tr>
         ) : null}
         
