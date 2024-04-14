@@ -3,6 +3,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AppContext } from "../context/AppContext";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function LoginForm() {
 
     setLoggingIn(true);
 
-    const response = await fetch("https://toconnect.onrender.com/api/login", {
+    const response = await fetch(`${BASE_URL}/api/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

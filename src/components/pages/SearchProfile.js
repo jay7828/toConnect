@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { MdOutlineModeEdit } from "react-icons/md";
 import Loader from "./Loader";
 import { AppContext } from "../context/AppContext";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function SearchProfile() {
   const location = useLocation();
@@ -18,7 +19,7 @@ function SearchProfile() {
     // console.log(username);
 
     const response = await fetch(
-      `https://toconnect.onrender.com/api/users/profile/${username}`,
+      `${BASE_URL}/api/users/profile/${username}`,
       {
         method: "GET",
         headers: {

@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
 import { PiSquaresFourFill } from "react-icons/pi";
 // import axios from "axios";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function AddProject() {
   const navigate = useNavigate();
@@ -85,7 +86,7 @@ function AddProject() {
     );
 
     const response = await fetch(
-      "https://toconnect.onrender.com/api/project/add",
+      `${BASE_URL}/api/project/add`,
       {
         method: "POST",
         headers: {

@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { AppContext } from "../context/AppContext";
 import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
 import { PiSquaresFourFill } from "react-icons/pi";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function Collaboration() {
   const {
@@ -66,7 +67,7 @@ function Collaboration() {
     );
 
     const response = await fetch(
-      "https://toconnect.onrender.com/api/collab_letter/add",
+      `${BASE_URL}/api/collab_letter/add`,
       {
         method: "POST",
         headers: {
