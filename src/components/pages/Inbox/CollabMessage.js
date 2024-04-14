@@ -3,6 +3,7 @@ import { AppContext } from "../../context/AppContext";
 import { PiSquaresFourFill } from "react-icons/pi";
 import DashBoardOptionsPanel from "../DashBoardOptionsPanel";
 import { useLocation } from "react-router-dom";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function CollabMessage() {
   const {
@@ -22,7 +23,7 @@ function CollabMessage() {
   async function fetchMessage() {
     setLoading(true);
     // console.log(location.pathname.split("/").at(-1));
-    const url = `https://toconnect.onrender.com/api/collab_letter/fetch/${location.pathname.split("/").at(-1)}`;
+    const url = `${BASE_URL}/api/collab_letter/fetch/${location.pathname.split("/").at(-1)}`;
     // console.log(url);
 
     const response = await fetch(url ,

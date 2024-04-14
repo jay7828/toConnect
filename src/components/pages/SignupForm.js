@@ -3,6 +3,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function SignupForm() {
   const [showPass, setShowPass] = useState(false);
@@ -31,7 +32,7 @@ function SignupForm() {
   const submitHandler = async(event) => {
     event.preventDefault();
 
-    const response=await fetch ("https://toconnect.onrender.com/api/register",(
+    const response=await fetch (`${BASE_URL}/api/register`,(
       {
         method:"POST" ,
         headers:{
@@ -139,6 +140,7 @@ function SignupForm() {
               </span>
             </lable>
           </div>
+          
           <div>
             <lable className="flex flex-col">
               <p className="text-sm pb-1">Confirm password</p>

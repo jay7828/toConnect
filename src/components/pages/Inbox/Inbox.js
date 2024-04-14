@@ -6,6 +6,7 @@ import DashBoardOptionsPanel from "../DashBoardOptionsPanel";
 import { PiSquaresFourFill } from "react-icons/pi";
 import Message from "./Message";
 import Loader from "../Loader";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function Inbox() {
   const {
@@ -30,7 +31,7 @@ function Inbox() {
     setLoading(true);
 
     const response = await fetch(
-      "https://toconnect.onrender.com/api/collab_letter/sent",
+      `${BASE_URL}/api/collab_letter/sent`,
       {
         method: "POST",
         headers: {
@@ -61,7 +62,7 @@ function Inbox() {
     setLoading(true);
 
     const response = await fetch(
-      "https://toconnect.onrender.com/api/collab_letter/fetch",
+      `${BASE_URL}/api/collab_letter/fetch`,
       {
         method: "POST",
         headers: {

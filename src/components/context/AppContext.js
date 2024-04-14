@@ -1,9 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const AppContext = createContext();
 
 export default function AppContextProvider({ children }) {
+  const BASE_URL = process.env.BASE_URL;
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn")
   );
@@ -39,7 +41,7 @@ export default function AppContextProvider({ children }) {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://toconnect.onrender.com/api/users/profile/${username}`
+        `${BASE_URL}/api/users/profile/${username}`
       );
       const data = res.data;
       setSearchRes(data.data);
@@ -57,7 +59,7 @@ export default function AppContextProvider({ children }) {
     setLoading(true);
     try {
       const res = await axios.get(
-        "https://toconnect.onrender.com/api/project/fetch"
+        `${BASE_URL}/api/project/fetch`
       );
       const data = res.data;
       setSearchRes(data.data);

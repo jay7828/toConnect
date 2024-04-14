@@ -4,14 +4,17 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
 import { PiSquaresFourFill } from "react-icons/pi";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function UpdateProfile() {
   const navigate = useNavigate();
-  const { dashboardPanel, setDashboardPanle, isLoggedIn, user , setUser } =
+  const { dashboardPanel, setDashboardPanle, isLoggedIn, user, setUser } =
     useContext(AppContext);
   const [updatedFields, setUpdatedFields] = useState({});
   const initialFormData = {};
   const [formData, setFormData] = useState(initialFormData);
+  const [showPass, setShowPass] = useState(false);
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -36,7 +39,7 @@ function UpdateProfile() {
     setUpdatedFields(updatedFieldsData);
 
     const response = await fetch(
-      `https://toconnect.onrender.com/api/users/profile/${user.username}`,
+      `${BASE_URL}/api/users/profile/${user.username}`,
       {
         method: "PUT",
         headers: {
@@ -53,16 +56,16 @@ function UpdateProfile() {
       if (json.success) {
         console.log(JSON.stringify(json.updatedUser));
         setUser(JSON.stringify(json.updatedUser));
-        localStorage.removeItem('user');
-        localStorage.setItem('user',JSON.stringify(json.updatedUser));
+        localStorage.removeItem("user");
+        localStorage.setItem("user", JSON.stringify(json.updatedUser));
         navigate("/dashboard");
-        toast.success("Project Updated Successfully!");
+        toast.success("Profile Updated Successfully!");
       } else {
         toast.error("Error occured!");
       }
     } else {
       console.error("Failed to fetch data:", response.statusText);
-    } 
+    }
   };
 
   function handleDashPanel() {
@@ -110,15 +113,28 @@ function UpdateProfile() {
 
         <div className="z-10 px-10">
           <p className="text-sm  pb-1">Password</p>
-          <input
-            className="w-[100%] h-[2rem] text-white focus:bg-[#9522ca2f] placeholder-[#ad67ce6c] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
-            type="password"
-            name="password"
-            placeholder="Update Password"
-            value={formData.password}
-            onChange={changeHandler}
-          ></input>
+          <lable className="flex">
+            <input
+              className="w-[100%] h-[2rem] text-white focus:bg-[#9522ca2f] placeholder-[#ad67ce6c] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
+              type={showPass === false ? "password" : "text"}
+              name="password"
+              placeholder="Update Password"
+              value={formData.password}
+              onChange={changeHandler}
+            ></input>
+            <span
+              onClick={() => setShowPass((prev) => !prev)}
+              className="flex bg-white text-black justify-center items-center h-[2rem] w-[2rem] rounded-r-lg border-r-[0.5px] border-y-[0.5px] border-slate-700 cursor-pointer "
+            >
+              {showPass === false ? (
+                <AiOutlineEye />
+              ) : (
+                <AiOutlineEyeInvisible />
+              )}
+            </span>
+          </lable>
         </div>
+
 
         <div className="z-10 px-10">
           <p className="text-sm  pb-1">About You</p>

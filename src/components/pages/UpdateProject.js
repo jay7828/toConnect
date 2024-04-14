@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
 import { PiSquaresFourFill } from "react-icons/pi";
 // import axios from "axios";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function UpdateProject() {
   const location = useLocation();
@@ -73,7 +74,7 @@ function UpdateProject() {
     // console.log(JSON.stringify(updatedFields));
 
     const response = await fetch(
-      `https://toconnect.onrender.com/api/project/update/${pId}`,
+      `${BASE_URL}/api/project/update/${pId}`,
       {
         method: "PUT",
         headers: {
