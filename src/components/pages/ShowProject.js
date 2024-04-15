@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { PiSquaresFourFill } from "react-icons/pi";
 import DashBoardOptionsPanel from "./DashBoardOptionsPanel";
 import { LiaEditSolid } from "react-icons/lia";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const ShowProject = () => {
   const location = useLocation();
@@ -17,8 +18,10 @@ const ShowProject = () => {
     pId,
     setPId,
     fetchProjects,
+    setSearchRes,
     searchRes,
     loading,
+    setLoading,
     setTempSearchRes,
     dashboardPanel,
     setDashboardPanle,
@@ -30,6 +33,33 @@ const ShowProject = () => {
     else setDashboardPanle(true);
   }
 
+  async function getProject(){
+    console.log("Fetching Projects...");
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `${BASE_URL}/api/project/fetch`
+      );
+      const data = res.data;
+      setSearchRes(data.data);
+      setTempSearchRes(data.data);
+      setLoading(false);
+    } catch (error) {
+      console.log("Error occurred during fetch call!");
+      console.error(error);
+      setLoading(false);
+    }
+
+    const filteredData = searchRes.filter((res) => {
+      if (res.projectID === pID) return res;
+    });
+
+    setTempSearchRes(filteredData);
+
+    if (filteredData[0].email == user.email) setEdit(true);
+    return;
+  }
+  
   useEffect(() => {
     const pID = location.pathname.split("/").at(-1);
     setPId(pID);
@@ -39,16 +69,20 @@ const ShowProject = () => {
       return;
     }
 
-    if (searchRes.length === 0) fetchProjects();
+    if (!searchRes.length === 0) {
+      const filteredData = searchRes.filter((res) => {
+        if (res.projectID === pID) return res;
+      });
 
-    const filteredData = searchRes.filter((res) => {
-      if (res.projectID === pID) return res;
-    });
+      setTempSearchRes(filteredData);
 
-    setTempSearchRes(filteredData);
-
-    if (filteredData[0].email == user.email) setEdit(true);
-  }, [location.pathname, location.search]);
+      if (filteredData[0].email == user.email) setEdit(true);
+    }
+    else{
+      getProject();
+    }
+    
+  }, [location.pathname, location.search, searchRes, tempSearchRes]);
 
   return (
     <div className="min-h-[100%] text-white relative">
