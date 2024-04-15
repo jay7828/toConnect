@@ -115,7 +115,7 @@ function UpdateProfile() {
           <p className="text-sm  pb-1">Password</p>
           <lable className="flex">
             <input
-              className="w-[100%] h-[2rem] text-white focus:bg-[#9522ca2f] placeholder-[#ad67ce6c] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700 rounded-md"
+              className="w-[100%] h-[2rem] text-white focus:bg-[#9522ca2f] placeholder-[#ad67ce6c] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-l-[0.5px] border-t-[0.5px] border-b-[0.5px] border-slate-700 rounded-l-md"
               type={showPass === false ? "password" : "text"}
               name="password"
               placeholder="Update Password"
@@ -124,7 +124,7 @@ function UpdateProfile() {
             ></input>
             <span
               onClick={() => setShowPass((prev) => !prev)}
-              className="flex bg-white text-black justify-center items-center h-[2rem] w-[2rem] rounded-r-lg border-r-[0.5px] border-y-[0.5px] border-slate-700 cursor-pointer "
+              className="flex text-white justify-center items-center bg-[#9522ca4c] focus:bg-[#9522ca2f] h-[2rem] w-[2rem] rounded-r-lg border-r-[0.5px] border-y-[0.5px] border-slate-700 cursor-pointer "
             >
               {showPass === false ? (
                 <AiOutlineEye />

@@ -33,6 +33,7 @@ const ShowProject = () => {
   useEffect(() => {
     const pID = location.pathname.split("/").at(-1);
     setPId(pID);
+    // console.log(pID);
 
     if (!isLoggedIn) {
       navigate("/login");
@@ -41,6 +42,8 @@ const ShowProject = () => {
 
     if (searchRes.length === 0) fetchProjects();
 
+    console.log(searchRes);
+
     const filteredData = searchRes.filter((res) => {
       if (res.projectID === pID) return res;
     });
@@ -48,7 +51,7 @@ const ShowProject = () => {
     setTempSearchRes(filteredData);
 
     if (filteredData[0].email == user.email) setEdit(true);
-  }, [location.pathname, location.search]);
+  }, [location.pathname, location.search, searchRes]);
 
   return (
     <div className="min-h-[100%] text-white relative">

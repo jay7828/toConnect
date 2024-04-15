@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 import { AppContext } from "../../context/AppContext";
 import DashBoardOptionsPanel from "../DashBoardOptionsPanel";
 import { PiSquaresFourFill } from "react-icons/pi";
@@ -46,7 +45,7 @@ function Inbox() {
     if (response.ok) {
       const json = await response.json();
       if (json.success) {
-        console.log(json.data);
+        // console.log(json.data);
         setMessages(json.data);
       } else {
         alert("Error occured!");
@@ -139,9 +138,6 @@ function Inbox() {
             onClick={() => setSent(true)}
           >
             sent
-            {/* {sent ? (
-              <div className="bg-white w-[30%] rounded-full h-[0.1rem] "></div>
-            ) : null} */}
           </button>
         </div>
 
@@ -151,7 +147,7 @@ function Inbox() {
           </div>
         ) : (
           <div className=" px-4 pt-4 rounded-[0.45938rem] relative border-[0.5px] border-[#aa14f04e] my-5">
-            {messages.map((msg) => {
+            {messages.reverse().map((msg) => {
               return <Message msg={msg} />;
             })}
           </div>

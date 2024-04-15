@@ -4,10 +4,6 @@ import Navbar from "./Navbar";
 import { PiSquaresFourFill } from "react-icons/pi";
 import { RiFileCodeFill } from "react-icons/ri";
 import { RiAccountBoxFill } from "react-icons/ri";
-import { RiGroupFill } from "react-icons/ri";
-import { RiMessage3Fill } from "react-icons/ri";
-import { RiSettingsFill } from "react-icons/ri";
-import { HiOutlineInbox } from "react-icons/hi";
 import { RiInboxArchiveFill } from "react-icons/ri";
 import userImg from "../assets/user.png";
 import { useNavigate } from "react-router-dom";
@@ -75,20 +71,6 @@ function DashBoard() {
               <h2 className="text-sm">Inbox</h2>
             </button>
 
-            {/* <button className="flex mt-3 mx-auto option-btn items-center gap-1 justify-start">
-              <RiGroupFill />
-              <h2 className="text-sm">Teams</h2>
-            </button> */}
-
-            {/* <button className="flex mt-3 mx-auto option-btn items-center gap-1 justify-start">
-              <RiMessage3Fill />
-              <h2 className="text-sm">Community</h2>
-            </button> */}
-
-            {/* <button className="flex mt-3 mx-auto option-btn items-center gap-1 justify-start">
-              <RiSettingsFill />
-              <h2 className="text-sm">Setting</h2>
-            </button> */}
           </div>
 
           {/* user info */}
@@ -106,7 +88,9 @@ function DashBoard() {
             {/* user info */}
             <div className="mt-1">
               {/* username */}
-              <h2 className="text-sm font-bold">{user.name}</h2>
+              {user.name ? (
+                <h2 className="text-xs font-bold">{user.name}</h2>
+              ) : null}
 
               {/* proffesion */}
               {user.proffession ? (

@@ -48,7 +48,7 @@ function AddProject() {
       setNeedCollaboration(false);
     }
 
-    console.log(needCollaboration);
+    // console.log(needCollaboration);
   };
 
   const changeHandler = (event) => {
@@ -72,18 +72,18 @@ function AddProject() {
       return;
     }
 
-    console.log(
-      JSON.stringify({
-        email: formData.email,
-        projectID: `${user.username}${formData.projectID}`,
-        projectTitle: formData.projectTitle,
-        projectDesc: formData.projectDesc,
-        techStack: formData.techStack,
-        skillsRequired: formData.skillsRequired,
-        needCollaboration: needCollaboration,
-        contactInfo: formData.contactInfo,
-      })
-    );
+    // console.log(
+    //   JSON.stringify({
+    //     email: formData.email,
+    //     projectID: `${user.username}${formData.projectID}`,
+    //     projectTitle: formData.projectTitle,
+    //     projectDesc: formData.projectDesc,
+    //     techStack: formData.techStack,
+    //     skillsRequired: formData.skillsRequired,
+    //     needCollaboration: needCollaboration,
+    //     contactInfo: formData.contactInfo,
+    //   })
+    // );
 
     const response = await fetch(
       `${BASE_URL}/api/project/add`,
@@ -109,7 +109,7 @@ function AddProject() {
 
     if (response.ok) {
       const json = await response.json();
-      console.log(json);
+      // console.log(json);
       if (json.success) {
         navigate("/dashboard");
         toast.success("Project Added Successfully!");

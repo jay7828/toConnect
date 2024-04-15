@@ -5,7 +5,6 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const AppContext = createContext();
 
 export default function AppContextProvider({ children }) {
-  const BASE_URL = process.env.BASE_URL;
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn")
   );
@@ -15,34 +14,24 @@ export default function AppContextProvider({ children }) {
   const [tempSearchRes, setTempSearchRes] = useState([]);
   const [pId, setPId] = useState(1);
   const [searchRes, setSearchRes] = useState([]);
-    // Use useEffect to fetch user data from localStorage only once when the component mounts
-    useEffect(() => {
-      const storedUser = localStorage.getItem('user');
-      if (storedUser) {
-        try {
-          const parsedUser = JSON.parse(storedUser);
-          setUser(parsedUser); // Update user state with parsed user data
-        } catch (error) {
-          console.error('Error parsing user data:', error);
-          // Handle parsing error gracefully, e.g., set user state to null or a default value
-          setUser(null); // Set user state to null
-        }
-      }
-    }, []); // Empty dependency array ensures this effect runs only once after initial render
-  
-    // Define user state using useState hook, initialized with null or a default value
-    const [user, setUser] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [searchedUser, setSearchedUser] = useState([]);
   const [collabMsg, setCollabMsg] = useState();
   const [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      if(parsedUser != user) setUser(parsedUser);
+    }
+  }, [localStorage.getItem("user")]);
 
   async function fetchUser(username) {
     console.log("Fetching User...");
     setLoading(true);
     try {
-      const res = await axios.get(
-        `${BASE_URL}/api/users/profile/${username}`
-      );
+      const res = await axios.get(`${BASE_URL}/api/users/profile/${username}`);
       const data = res.data;
       setSearchRes(data.data);
       setTempSearchRes(data.data);
@@ -58,9 +47,7 @@ export default function AppContextProvider({ children }) {
     console.log("Fetching Projects...");
     setLoading(true);
     try {
-      const res = await axios.get(
-        `${BASE_URL}/api/project/fetch`
-      );
+      const res = await axios.get(`${BASE_URL}/api/project/fetch`);
       const data = res.data;
       setSearchRes(data.data);
       setTempSearchRes(data.data);

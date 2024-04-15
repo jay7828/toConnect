@@ -45,12 +45,6 @@ function Collaboration() {
       if (res.projectID === pId) return res;
     });
 
-    // if(!filteredData.Collaboration){
-    //   toast.error("Cannot Send Message!");
-    //   console.log("Cannot send msg to projects with collab feature turned OFF!");
-    //   return;
-    // }
-
     var today = new Date();
 
     console.log(
@@ -66,25 +60,22 @@ function Collaboration() {
       })
     );
 
-    const response = await fetch(
-      `${BASE_URL}/api/collab_letter/add`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          pid: pId,
-          ptitle: filteredData[0].projectTitle,
-          letterID: formData.letterID,
-          sender: user.email,
-          receiver: filteredData[0].email,
-          subject: formData.subject,
-          body: formData.body,
-          date: today,
-        }),
-      }
-    );
+    const response = await fetch(`${BASE_URL}/api/collab_letter/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        pid: pId,
+        ptitle: filteredData[0].projectTitle,
+        letterID: formData.letterID,
+        sender: user.email,
+        receiver: filteredData[0].email,
+        subject: formData.subject,
+        body: formData.body,
+        date: today,
+      }),
+    });
 
     console.log(response);
 
@@ -92,7 +83,7 @@ function Collaboration() {
       const json = await response.json();
       console.log(json);
       if (json.success) {
-        navigate("/dashboard");
+        navigate("/dashboard/inbox");
         toast.success("Message Send Successfully!");
       } else {
         alert("Error occured!");
@@ -136,18 +127,9 @@ function Collaboration() {
         </div>
       ) : (
         <form className="font-semibold mx-auto relative z-10 flex flex-col gap-4">
-          {/* <div className="z-10 px-10 mt-10">
-            <p className="text-sm  pb-1">Email</p>
-            <input
-              className="w-[100%] h-[2rem] text-white focus:bg-[#9522ca2f] bg-[#9522ca4c] px-2 text-sm focus:outline-none border-[0.5px] border-slate-700  rounded-md placeholder-[#ad67ce6c]"
-              type="email"
-              name="sender"
-              placeholder="Enter your email address"
-              value={formData.sender}
-              onChange={changeHandler}
-              required
-            ></input>
-          </div> */}
+          <div className="mt-5 pl-10 font-bold uppercase text-sm md:text-base lg:text-lg">
+            Collaboration Message
+          </div>
 
           <div className="z-10 px-10">
             <p className="text-sm  pb-1">Letter ID</p>

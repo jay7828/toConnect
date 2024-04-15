@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 function Profile() {
   const navigate = useNavigate();
   const { user } = useContext(AppContext);
-  // const [year , setYear] = useState("");
+
+  useEffect(() => {}, [user]);
 
   return (
     <div className="flex flex-col relative gap-6 w-[100%] mx-auto p-[1.5rem]">
@@ -39,9 +40,10 @@ function Profile() {
           </div>
         </div>
 
-        <button 
-        onClick={()=>navigate("/dashboard/profile/update")}
-        className="mr-2 flex items-center justify-center gap-2 bg-[#9522ca21] border border-[#aa14f099] rounded-full px-4 h-[2.5rem]">
+        <button
+          onClick={() => navigate("/dashboard/profile/update")}
+          className="mr-2 flex items-center justify-center gap-2 bg-[#9522ca21] border border-[#aa14f099] rounded-full px-4 h-[2.5rem]"
+        >
           <MdOutlineModeEdit />
           <p className="text-sm md:text-base">Edit</p>
         </button>
@@ -87,7 +89,7 @@ function Profile() {
             <td className="text-gray-300">{user.year_of_passing}</td>
           </tr>
         ) : null}
-        
+
         {user.contact_no ? (
           <tr>
             <td className="w-[5rem]">Contact Number </td>
@@ -107,7 +109,6 @@ function Profile() {
             <td className="text-gray-300">{user.about}</td>
           </tr>
         ) : null}
-
       </table>
     </div>
   );
