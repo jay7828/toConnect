@@ -9,7 +9,7 @@ function SignupForm() {
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const navigate = useNavigate();
-  const {setIsLoggedIn , setUser} = useContext(AppContext);
+  const { setIsLoggedIn, setUser } = useContext(AppContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -29,51 +29,45 @@ function SignupForm() {
     });
   };
 
-  const submitHandler = async(event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
-    const response=await fetch (`${BASE_URL}/api/register`,(
-      {
-        method:"POST" ,
-        headers:{
-        'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-          username: formData.UserName,
-          password: formData.createPassword,
-          name: formData.Name,
-          email:formData.email ,
-          date: Date()
-        })
-      })
-    );
+    const response = await fetch(`${BASE_URL}/api/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: formData.UserName,
+        password: formData.createPassword,
+        name: formData.Name,
+        email: formData.email,
+      }),
+    });
 
     if (response.ok) {
       const json = await response.json();
       setUser(json.userdata);
-      console.log(json);
+      // console.log(json);
       setIsLoggedIn(true);
       if (json.success) {
-        localStorage.setItem('isLoggedIn', true);
-        localStorage.setItem('user',JSON.stringify(json.userdata));
-        navigate("/");
+        // console.log(JSON.stringify(json.userdata));
+        // localStorage.setItem("isLoggedIn", true);
+        // localStorage.setItem("user", JSON.stringify(json.userdata));
+        navigate("/login");
         toast.success("Sign Up Successful!");
+        // toast.success("Please Login.");
       } else {
         alert("Enter Valid Email and Password");
       }
     } else {
-      // Handle error here
       console.error("Failed to fetch data:", response.statusText);
     }
-    
   };
 
   return (
     <div>
-      <form 
-      onSubmit={submitHandler}
-      className="min-w-max flex flex-col gap-4">
-
+      <form onSubmit={submitHandler} className="min-w-max flex flex-col gap-4">
         <div className="flex gap-[1rem] z-10">
           <div>
             <p className="text-sm pb-1">User Name</p>
@@ -140,7 +134,7 @@ function SignupForm() {
               </span>
             </lable>
           </div>
-          
+
           <div>
             <lable className="flex flex-col">
               <p className="text-sm pb-1">Confirm password</p>
